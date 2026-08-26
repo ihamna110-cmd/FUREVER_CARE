@@ -1774,18 +1774,31 @@ function App() {
                   <p>Manage your furry companion's health profiles, nutritional guides, video care, and training.</p>
                 </div>
 
-                {/* Dedicated Active Pet Profile Badge */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', background: 'var(--bg-surface)', padding: '10px 20px', borderRadius: 'var(--radius-full)', border: '1.5px solid var(--border-color)', boxShadow: 'var(--shadow-sm)' }}>
-                  <img 
-                    src={petForm.photo} 
-                    alt={petForm.name} 
-                    style={{ width: '42px', height: '42px', borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--primary-400)' }} 
-                    onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=200&q=80'; }} 
-                  />
-                  <div>
-                    <div style={{ fontWeight: '800', fontSize: '0.98rem', color: 'var(--text-main)' }}>{petForm.name}</div>
-                    <div style={{ fontSize: '0.78rem', color: 'var(--primary-500)', fontWeight: '600' }}>{petForm.species} • {petForm.breed}</div>
+                {/* Dedicated Active Pet Profile Badge & Add Pet Profile Button */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', background: 'var(--bg-surface)', padding: '8px 18px', borderRadius: 'var(--radius-full)', border: '1.5px solid var(--border-color)', boxShadow: 'var(--shadow-sm)' }}>
+                    <img 
+                      src={petForm.photo} 
+                      alt={petForm.name} 
+                      style={{ width: '42px', height: '42px', borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--primary-400)' }} 
+                      onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=200&q=80'; }} 
+                    />
+                    <div>
+                      <div style={{ fontWeight: '800', fontSize: '0.98rem', color: 'var(--text-main)' }}>{petForm.name}</div>
+                      <div style={{ fontSize: '0.78rem', color: 'var(--primary-500)', fontWeight: '600' }}>{petForm.species} • {petForm.breed}</div>
+                    </div>
                   </div>
+
+                  <button 
+                    className="btn-sky-primary" 
+                    style={{ padding: '10px 20px', fontSize: '0.88rem', fontWeight: '700', borderRadius: 'var(--radius-full)', display: 'flex', alignItems: 'center', gap: '8px', boxShadow: '0 4px 14px rgba(14,165,233,0.35)' }}
+                    onClick={() => {
+                      setAddPetModalOpen(true);
+                      if (window.SoundEngine) window.SoundEngine.playClicker();
+                    }}
+                  >
+                    <i className="fa-solid fa-plus-circle"></i> Add Pet Profile
+                  </button>
                 </div>
               </div>
 
@@ -2853,6 +2866,28 @@ function App() {
             ================================================================== */}
         {activeTab === 'vet' && (
           <div>
+            {/* Quick Navigation Back to Pet Owner Profile */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '12px' }}>
+              <button 
+                className="btn-sky-outline" 
+                style={{ padding: '8px 20px', fontSize: '0.88rem', fontWeight: '700', borderRadius: 'var(--radius-full)', display: 'inline-flex', alignItems: 'center', gap: '8px', cursor: 'pointer', background: 'rgba(14,165,233,0.08)', boxShadow: 'var(--shadow-sm)' }}
+                onClick={() => {
+                  setActiveTab('pet-owner');
+                  setPetOwnerSubTab('vet-appts');
+                  if (window.SoundEngine) window.SoundEngine.playClicker();
+                  addToast('Returned to Pet Owner Dashboard', 'fa-arrow-left');
+                }}
+              >
+                <i className="fa-solid fa-arrow-left"></i> Back to Pet Owner Profile
+              </button>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span className="badge-sky" style={{ fontSize: '0.78rem' }}>
+                  <i className="fa-solid fa-paw"></i> Active Pet: <strong>{petForm.name}</strong>
+                </span>
+              </div>
+            </div>
+
             <div className="section-header-wrap">
               <div className="section-title-box">
                 <span className="badge-sky">Certified Clinical Network (15 Specialists)</span>
@@ -3104,10 +3139,26 @@ function App() {
                               onClick={() => {
                                 if (slot.status === 'available') {
                                   setTimeSlots(timeSlots.map(s => s.id === slot.id ? { ...s, status: 'booked', patient: `${user.firstName || 'Patient'} (Confirmed)` } : s));
+                                  
+                                  // Automatically sync appointment into Pet Owner Appointments
+                                  const newAptRecord = {
+                                    id: 'APT-' + Math.floor(1000 + Math.random() * 9000),
+                                    doctor: currentDoc.name,
+                                    specialty: currentDoc.specialization,
+                                    clinic: currentDoc.clinic,
+                                    city: currentDoc.city || 'Central Clinic',
+                                    date: '2026-09-28',
+                                    time: slot.time,
+                                    status: 'Confirmed',
+                                    fee: currentDoc.consultationFee || 85,
+                                    doctorImg: currentDoc.image
+                                  };
+                                  setOwnerVetAppointments(prev => [newAptRecord, ...prev]);
+
                                   if (window.SoundEngine) window.SoundEngine.playChime();
-                                  addToast(`Appointment reserved with ${currentDoc.name.split(',')[0]} for ${slot.time}!`, 'fa-circle-check');
+                                  addToast(`🎉 Appointment Booked with ${currentDoc.name.split(',')[0]} for ${slot.time}!`, 'fa-calendar-check', 'success');
                                 } else {
-                                  addToast(`This slot is already booked for: ${slot.patient}`, 'fa-info-circle');
+                                  addToast(`This slot is already booked for: ${slot.patient}`, 'fa-info-circle', 'warning');
                                 }
                               }}
                             >

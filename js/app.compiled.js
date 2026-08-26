@@ -2494,8 +2494,15 @@ function App() {
       display: 'flex',
       alignItems: 'center',
       gap: '12px',
+      flexWrap: 'wrap'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '12px',
       background: 'var(--bg-surface)',
-      padding: '10px 20px',
+      padding: '8px 18px',
       borderRadius: 'var(--radius-full)',
       border: '1.5px solid var(--border-color)',
       boxShadow: 'var(--shadow-sm)'
@@ -2525,7 +2532,25 @@ function App() {
       color: 'var(--primary-500)',
       fontWeight: '600'
     }
-  }, petForm.species, " \u2022 ", petForm.breed)))), /*#__PURE__*/React.createElement("div", {
+  }, petForm.species, " \u2022 ", petForm.breed))), /*#__PURE__*/React.createElement("button", {
+    className: "btn-sky-primary",
+    style: {
+      padding: '10px 20px',
+      fontSize: '0.88rem',
+      fontWeight: '700',
+      borderRadius: 'var(--radius-full)',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '8px',
+      boxShadow: '0 4px 14px rgba(14,165,233,0.35)'
+    },
+    onClick: () => {
+      setAddPetModalOpen(true);
+      if (window.SoundEngine) window.SoundEngine.playClicker();
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-plus-circle"
+  }), " Add Pet Profile"))), /*#__PURE__*/React.createElement("div", {
     className: "portal-subnav glass-panel",
     style: {
       overflowX: 'auto',
@@ -4478,6 +4503,50 @@ function App() {
       setSelectedProductCategory('All');
     }
   }, "Reset Filters"))), activeTab === 'vet' && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginBottom: '16px',
+      flexWrap: 'wrap',
+      gap: '12px'
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn-sky-outline",
+    style: {
+      padding: '8px 20px',
+      fontSize: '0.88rem',
+      fontWeight: '700',
+      borderRadius: 'var(--radius-full)',
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '8px',
+      cursor: 'pointer',
+      background: 'rgba(14,165,233,0.08)',
+      boxShadow: 'var(--shadow-sm)'
+    },
+    onClick: () => {
+      setActiveTab('pet-owner');
+      setPetOwnerSubTab('vet-appts');
+      if (window.SoundEngine) window.SoundEngine.playClicker();
+      addToast('Returned to Pet Owner Dashboard', 'fa-arrow-left');
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-arrow-left"
+  }), " Back to Pet Owner Profile"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '8px'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "badge-sky",
+    style: {
+      fontSize: '0.78rem'
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-paw"
+  }), " Active Pet: ", /*#__PURE__*/React.createElement("strong", null, petForm.name)))), /*#__PURE__*/React.createElement("div", {
     className: "section-header-wrap"
   }, /*#__PURE__*/React.createElement("div", {
     className: "section-title-box"
@@ -4879,10 +4948,25 @@ function App() {
             status: 'booked',
             patient: `${user.firstName || 'Patient'} (Confirmed)`
           } : s));
+
+          // Automatically sync appointment into Pet Owner Appointments
+          const newAptRecord = {
+            id: 'APT-' + Math.floor(1000 + Math.random() * 9000),
+            doctor: currentDoc.name,
+            specialty: currentDoc.specialization,
+            clinic: currentDoc.clinic,
+            city: currentDoc.city || 'Central Clinic',
+            date: '2026-09-28',
+            time: slot.time,
+            status: 'Confirmed',
+            fee: currentDoc.consultationFee || 85,
+            doctorImg: currentDoc.image
+          };
+          setOwnerVetAppointments(prev => [newAptRecord, ...prev]);
           if (window.SoundEngine) window.SoundEngine.playChime();
-          addToast(`Appointment reserved with ${currentDoc.name.split(',')[0]} for ${slot.time}!`, 'fa-circle-check');
+          addToast(`🎉 Appointment Booked with ${currentDoc.name.split(',')[0]} for ${slot.time}!`, 'fa-calendar-check', 'success');
         } else {
-          addToast(`This slot is already booked for: ${slot.patient}`, 'fa-info-circle');
+          addToast(`This slot is already booked for: ${slot.patient}`, 'fa-info-circle', 'warning');
         }
       }
     }, /*#__PURE__*/React.createElement("div", {
