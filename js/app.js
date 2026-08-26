@@ -112,6 +112,11 @@ function App() {
   const [medModalOpen, setMedModalOpen] = useState(false);
   const [vacModalOpen, setVacModalOpen] = useState(false);
   const [groomingModalOpen, setGroomingModalOpen] = useState(false);
+  const [reminderModalOpen, setReminderModalOpen] = useState(false);
+  const [reminderModalData, setReminderModalData] = useState(null);
+  const [reminderSuccess, setReminderSuccess] = useState(false);
+  const [groomingSuccess, setGroomingSuccess] = useState(false);
+  const [groomingFormErrors, setGroomingFormErrors] = useState({});
   const [prescriptionModalOpen, setPrescriptionModalOpen] = useState(false);
   const [prescriptionSuccess, setPrescriptionSuccess] = useState(null);
   const [rxForm, setRxForm] = useState({ petName: '', petSpecies: 'Dog', petAge: '', weight: '', symptoms: '', medication: '', dosage: '', duration: '', notes: '' });
@@ -2199,7 +2204,9 @@ function App() {
                   <button className="btn-sky-primary" onClick={() => {
                     setActiveTab('vet');
                     setVetViewMode('directory');
-                    addToast('Explore our verified doctors to book a new appointment!', 'fa-user-doctor');
+                    window._cameFromPetOwner = true;
+                    addToast('Select a doctor and book your appointment!', 'fa-user-doctor');
+                    if (window.SoundEngine) window.SoundEngine.playClicker();
                   }}>
                     <i className="fa-solid fa-plus"></i> Book New Appointment
                   </button>
@@ -2430,7 +2437,7 @@ function App() {
                           </div>
 
                           {grm.status === 'Upcoming' && (
-                            <button className="btn-sky-outline" style={{ padding: '6px 14px', fontSize: '0.8rem', marginTop: '6px' }} onClick={() => addToast('Grooming reminder SMS sent!', 'fa-bell')}>
+                            <button className="btn-sky-outline" style={{ padding: '6px 14px', fontSize: '0.8rem', marginTop: '6px' }} onClick={() => { setReminderModalData(grm); setReminderModalOpen(true); if (window.SoundEngine) window.SoundEngine.playClicker(); }}>
                               <i className="fa-solid fa-bell"></i> Send Reminder
                             </button>
                           )}
@@ -2846,6 +2853,27 @@ function App() {
             ================================================================== */}
         {activeTab === 'vet' && (
           <div>
+            {/* Smart Back Button: only shown when navigated from Pet Owner appointment booking */}
+            {(typeof window !== 'undefined' && window._cameFromPetOwner) && (
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '12px' }}>
+                <button
+                  className="btn-sky-outline"
+                  style={{ padding: '9px 22px', fontSize: '0.88rem', fontWeight: '700', borderRadius: 'var(--radius-full)', display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(14,165,233,0.09)' }}
+                  onClick={() => {
+                    window._cameFromPetOwner = false;
+                    setActiveTab('pet-owner');
+                    setPetOwnerSubTab('vet-appts');
+                    if (window.SoundEngine) window.SoundEngine.playClicker();
+                    addToast('Back to Pet Owner Dashboard', 'fa-arrow-left');
+                  }}
+                >
+                  <i className="fa-solid fa-arrow-left"></i> Back to Pet Owner Profile
+                </button>
+                <span className="badge-sky" style={{ fontSize: '0.8rem' }}>
+                  <i className="fa-solid fa-paw"></i> Active Pet: <strong>{petForm.name}</strong>
+                </span>
+              </div>
+            )}
             <div className="section-header-wrap">
               <div className="section-title-box">
                 <span className="badge-sky">Certified Clinical Network (15 Specialists)</span>
@@ -7230,76 +7258,249 @@ function App() {
       )}
 
       {/* 8. Book New Grooming Session Modal */}
+      {/* ======== ENHANCED GROOMING MODAL (Scrollable + Validation + Success) ======== */}
       {groomingModalOpen && (
-        <div className="modal-overlay" onClick={() => setGroomingModalOpen(false)}>
-          <div className="modal-dialog-content" onClick={(e) => e.stopPropagation()}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-              <h3 style={{ fontSize: '1.3rem' }}><i className="fa-solid fa-scissors" style={{ color: 'var(--primary-500)', marginRight: '8px' }}></i> Book Grooming Spa Session</h3>
-              <button className="btn-icon" onClick={() => setGroomingModalOpen(false)}><i className="fa-solid fa-xmark"></i></button>
-            </div>
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '18px' }}>Schedule professional spa and deshedding for {petForm.name}.</p>
-
-            <form noValidate onSubmit={(e) => {
-              e.preventDefault();
-              if (!groomingForm.date) {
-                markInvalidField(document.getElementById('grooming-date-input'), 'Please select a preferred grooming date');
-                return;
-              }
-              const newBooking = {
-                id: `GRM-${500 + groomingBookings.length + 1}`,
-                service: groomingForm.service.split('(')[0].trim(),
-                groomer: groomingForm.groomer,
-                date: groomingForm.date,
-                time: groomingForm.time,
-                price: groomingForm.service.includes('$') ? '$' + groomingForm.service.split('$')[1].replace(')', '') : '$50.00',
-                status: 'Upcoming'
-              };
-              setGroomingBookings([newBooking, ...groomingBookings]);
-              setGroomingModalOpen(false);
-              if (window.SoundEngine) window.SoundEngine.playChime();
-              addToast(`Booked ${newBooking.service} for ${petForm.name}!`, 'fa-circle-check');
-            }}>
-              <div className="form-group-custom">
-                <label className="form-label-custom">Select Grooming Treatment</label>
-                <select className="input-sky" value={groomingForm.service} onChange={(e) => setGroomingForm({ ...groomingForm, service: e.target.value })}>
-                  <option>Full Luxury Spa, Deshedding & Hydro-Bath ($65)</option>
-                  <option>Breed Styling Haircut & Fluff Dry ($55)</option>
-                  <option>Gentle Oatmeal Bath & Blowdry ($40)</option>
-                  <option>Nail Grinding, Ear Cleanse & Paw Pad Balm ($28)</option>
-                  <option>Ultrasonic Teeth Cleaning & Breath Polish ($30)</option>
-                </select>
-              </div>
-
-              <div className="form-group-custom">
-                <label className="form-label-custom">Preferred Grooming Salon / Specialist</label>
-                <select className="input-sky" value={groomingForm.groomer} onChange={(e) => setGroomingForm({ ...groomingForm, groomer: e.target.value })}>
-                  <option>Paws & Bubbles Master Spa Salon</option>
-                  <option>Bella Pet Styling Studio</option>
-                  <option>FurEver Mobile Grooming Van (At-Home Service)</option>
-                </select>
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
-                <div className="form-group-custom">
-                  <label className="form-label-custom">Preferred Date *</label>
-                  <input type="date" id="grooming-date-input" className="input-sky" value={groomingForm.date} onChange={(e) => setGroomingForm({ ...groomingForm, date: e.target.value })} />
+        <div className="modal-overlay" onClick={() => { setGroomingModalOpen(false); setGroomingFormErrors({}); }}>
+          <div className="modal-dialog-content" onClick={(e) => e.stopPropagation()} style={{ maxHeight: '92vh', overflowY: 'auto', padding: '0', borderRadius: '20px', maxWidth: '520px', width: '95%' }}>
+            <div style={{ background: 'linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%)', padding: '24px 28px 20px', borderRadius: '20px 20px 0 0', position: 'sticky', top: 0, zIndex: 2 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <span style={{ background: 'rgba(255,255,255,0.2)', borderRadius: '50%', width: '38px', height: '38px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <i className="fa-solid fa-scissors" style={{ color: '#fff', fontSize: '1rem' }}></i>
+                    </span>
+                    <h3 style={{ color: '#fff', fontSize: '1.2rem', margin: 0, fontWeight: '800' }}>Book Grooming Spa Session</h3>
+                  </div>
+                  <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.8rem', margin: '6px 0 0 48px' }}>Schedule professional spa for <strong>{petForm.name}</strong></p>
                 </div>
-                <div className="form-group-custom">
-                  <label className="form-label-custom">Preferred Time Slot</label>
-                  <select className="input-sky" value={groomingForm.time} onChange={(e) => setGroomingForm({ ...groomingForm, time: e.target.value })}>
-                    <option>09:30 AM</option>
-                    <option>11:00 AM</option>
-                    <option>01:30 PM</option>
-                    <option>03:00 PM</option>
-                    <option>04:30 PM</option>
+                <button onClick={() => { setGroomingModalOpen(false); setGroomingFormErrors({}); }} style={{ background: 'rgba(255,255,255,0.2)', border: 'none', borderRadius: '50%', width: '34px', height: '34px', cursor: 'pointer', color: '#fff', fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <i className="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+            </div>
+            <div style={{ padding: '24px 28px', overflowY: 'auto' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 16px', background: 'var(--bg-surface)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-glass)', marginBottom: '20px' }}>
+                <img src={petForm.photo} alt={petForm.name} style={{ width: '44px', height: '44px', borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--primary-400)' }} onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=200'; }} />
+                <div>
+                  <div style={{ fontWeight: '700', fontSize: '0.95rem' }}>{petForm.name}</div>
+                  <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>{petForm.species} - {petForm.breed}</div>
+                </div>
+                <span style={{ marginLeft: 'auto', background: 'rgba(14,165,233,0.12)', color: 'var(--primary-600)', padding: '3px 10px', borderRadius: 'var(--radius-full)', fontSize: '0.72rem', fontWeight: '700' }}>Spa Booking</span>
+              </div>
+              <form noValidate onSubmit={(e) => {
+                e.preventDefault();
+                const errors = {};
+                if (!groomingForm.date) errors.date = 'Please select a preferred date';
+                const today = new Date(); today.setHours(0,0,0,0);
+                if (groomingForm.date && new Date(groomingForm.date) < today) errors.date = 'Date cannot be in the past';
+                setGroomingFormErrors(errors);
+                if (Object.keys(errors).length > 0) return;
+                const newBooking = {
+                  id: 'GRM-' + (500 + groomingBookings.length + 1),
+                  service: groomingForm.service.split('(')[0].trim(),
+                  groomer: groomingForm.groomer,
+                  date: groomingForm.date,
+                  time: groomingForm.time,
+                  price: groomingForm.service.includes('$') ? '$' + groomingForm.service.split('$')[1].replace(')', '') : '$50.00',
+                  status: 'Upcoming'
+                };
+                setGroomingBookings([newBooking, ...groomingBookings]);
+                setGroomingModalOpen(false);
+                setGroomingFormErrors({});
+                setGroomingSuccess(true);
+                setTimeout(() => setGroomingSuccess(false), 4500);
+                if (window.SoundEngine) window.SoundEngine.playChime();
+              }}>
+                <div className="form-group-custom" style={{ marginBottom: '16px' }}>
+                  <label className="form-label-custom" style={{ fontWeight: '700', marginBottom: '6px', display: 'block' }}>
+                    <i className="fa-solid fa-spa" style={{ color: 'var(--primary-500)', marginRight: '6px' }}></i>Select Grooming Treatment *
+                  </label>
+                  <select className="input-sky" value={groomingForm.service} onChange={(e) => setGroomingForm({ ...groomingForm, service: e.target.value })} style={{ borderRadius: '10px' }}>
+                    <option>Full Luxury Spa, Deshedding &amp; Hydro-Bath ($65)</option>
+                    <option>Breed Styling Haircut &amp; Fluff Dry ($55)</option>
+                    <option>Gentle Oatmeal Bath &amp; Blowdry ($40)</option>
+                    <option>Nail Grinding, Ear Cleanse &amp; Paw Pad Balm ($28)</option>
+                    <option>Ultrasonic Teeth Cleaning &amp; Breath Polish ($30)</option>
                   </select>
                 </div>
-              </div>
+                <div className="form-group-custom" style={{ marginBottom: '16px' }}>
+                  <label className="form-label-custom" style={{ fontWeight: '700', marginBottom: '6px', display: 'block' }}>
+                    <i className="fa-solid fa-store" style={{ color: 'var(--primary-500)', marginRight: '6px' }}></i>Preferred Grooming Salon *
+                  </label>
+                  <select className="input-sky" value={groomingForm.groomer} onChange={(e) => setGroomingForm({ ...groomingForm, groomer: e.target.value })} style={{ borderRadius: '10px' }}>
+                    <option>Paws &amp; Bubbles Master Spa Salon</option>
+                    <option>Bella Pet Styling Studio</option>
+                    <option>FurEver Mobile Grooming Van (At-Home Service)</option>
+                  </select>
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '16px' }}>
+                  <div className="form-group-custom">
+                    <label className="form-label-custom" style={{ fontWeight: '700', marginBottom: '6px', display: 'block' }}>
+                      <i className="fa-solid fa-calendar" style={{ color: 'var(--primary-500)', marginRight: '6px' }}></i>Preferred Date *
+                    </label>
+                    <input type="date" id="grooming-date-input" className="input-sky" value={groomingForm.date}
+                      onChange={(e) => { setGroomingForm({ ...groomingForm, date: e.target.value }); setGroomingFormErrors({ ...groomingFormErrors, date: '' }); }}
+                      style={{ borderRadius: '10px', border: groomingFormErrors.date ? '2px solid #ef4444' : '' }} />
+                    {groomingFormErrors.date && (
+                      <div style={{ color: '#ef4444', fontSize: '0.74rem', marginTop: '4px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <i className="fa-solid fa-circle-exclamation"></i> {groomingFormErrors.date}
+                      </div>
+                    )}
+                  </div>
+                  <div className="form-group-custom">
+                    <label className="form-label-custom" style={{ fontWeight: '700', marginBottom: '6px', display: 'block' }}>
+                      <i className="fa-solid fa-clock" style={{ color: 'var(--primary-500)', marginRight: '6px' }}></i>Preferred Time *
+                    </label>
+                    <select className="input-sky" value={groomingForm.time} onChange={(e) => setGroomingForm({ ...groomingForm, time: e.target.value })} style={{ borderRadius: '10px' }}>
+                      <option>09:30 AM</option>
+                      <option>11:00 AM</option>
+                      <option>01:30 PM</option>
+                      <option>03:00 PM</option>
+                      <option>04:30 PM</option>
+                    </select>
+                  </div>
+                </div>
+                <div style={{ padding: '14px 16px', background: 'linear-gradient(135deg, rgba(14,165,233,0.08), rgba(99,102,241,0.08))', borderRadius: '12px', border: '1px solid var(--border-glass)', marginBottom: '20px' }}>
+                  <div style={{ fontSize: '0.76rem', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase', marginBottom: '8px' }}>Booking Summary</div>
+                  <div style={{ fontSize: '0.88rem', color: 'var(--text-main)', fontWeight: '600' }}>{groomingForm.service.split('(')[0].trim()}</div>
+                  <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '4px' }}><i className="fa-solid fa-store" style={{ marginRight: '5px' }}></i>{groomingForm.groomer}</div>
+                  {groomingForm.date && (
+                    <div style={{ fontSize: '0.82rem', color: 'var(--primary-600)', marginTop: '4px', fontWeight: '600' }}>
+                      <i className="fa-solid fa-calendar-check" style={{ marginRight: '5px' }}></i>{groomingForm.date} at {groomingForm.time}
+                    </div>
+                  )}
+                </div>
+                <button type="submit" className="btn-sky-primary" style={{ width: '100%', padding: '14px', fontWeight: '800', fontSize: '1rem', borderRadius: '12px', boxShadow: '0 4px 16px rgba(14,165,233,0.35)' }}>
+                  <i className="fa-solid fa-calendar-check" style={{ marginRight: '8px' }}></i>Confirm Grooming Booking
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
 
-              <button type="submit" className="btn-sky-primary" style={{ width: '100%' }}>
-                Confirm Grooming Appointment
+      {/* ======== GROOMING SUCCESS POPUP ======== */}
+      {groomingSuccess && (
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
+          <div style={{ background: 'var(--bg-card)', borderRadius: '24px', padding: '44px 36px', textAlign: 'center', maxWidth: '380px', width: '90%', boxShadow: '0 20px 60px rgba(0,0,0,0.35)', border: '1px solid var(--border-glass)' }}>
+            <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'linear-gradient(135deg, #10b981, #059669)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
+              <i className="fa-solid fa-circle-check" style={{ color: '#fff', fontSize: '2.4rem' }}></i>
+            </div>
+            <h2 style={{ fontSize: '1.55rem', fontWeight: '900', color: 'var(--text-main)', margin: '0 0 10px' }}>Booking Confirmed!</h2>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', lineHeight: '1.6', margin: '0 0 8px' }}>
+              Your grooming spa session for <strong style={{ color: 'var(--primary-500)' }}>{petForm.name}</strong> has been successfully booked.
+            </p>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.83rem', margin: '0 0 24px' }}>
+              <i className="fa-solid fa-bell" style={{ color: '#f59e0b', marginRight: '5px' }}></i>
+              You will receive an SMS reminder before your appointment.
+            </p>
+            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center', marginBottom: '22px' }}>
+              {['Bath & Spa', 'Grooming', 'Premium Care'].map(tag => (
+                <span key={tag} style={{ background: 'rgba(14,165,233,0.12)', color: 'var(--primary-600)', padding: '4px 12px', borderRadius: 'var(--radius-full)', fontSize: '0.74rem', fontWeight: '700' }}>{tag}</span>
+              ))}
+            </div>
+            <button className="btn-sky-primary" style={{ width: '100%', padding: '13px', fontWeight: '800', borderRadius: '12px' }} onClick={() => setGroomingSuccess(false)}>
+              <i className="fa-solid fa-check" style={{ marginRight: '8px' }}></i>Done
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* ======== SEND REMINDER MODAL ======== */}
+      {reminderModalOpen && reminderModalData && (
+        <div className="modal-overlay" onClick={() => { setReminderModalOpen(false); setReminderSuccess(false); }}>
+          <div className="modal-dialog-content" onClick={(e) => e.stopPropagation()} style={{ maxHeight: '92vh', overflowY: 'auto', padding: '0', borderRadius: '20px', maxWidth: '480px', width: '95%' }}>
+            <div style={{ background: 'linear-gradient(135deg, #f59e0b 0%, #ef4444 100%)', padding: '22px 26px 18px', borderRadius: '20px 20px 0 0', position: 'sticky', top: 0, zIndex: 2 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span style={{ background: 'rgba(255,255,255,0.2)', borderRadius: '50%', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <i className="fa-solid fa-bell" style={{ color: '#fff', fontSize: '1rem' }}></i>
+                  </span>
+                  <div>
+                    <h3 style={{ color: '#fff', fontSize: '1.1rem', margin: 0, fontWeight: '800' }}>Send Grooming Reminder</h3>
+                    <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.76rem', margin: 0 }}>Notify yourself before the appointment</p>
+                  </div>
+                </div>
+                <button onClick={() => { setReminderModalOpen(false); setReminderSuccess(false); }} style={{ background: 'rgba(255,255,255,0.2)', border: 'none', borderRadius: '50%', width: '32px', height: '32px', cursor: 'pointer', color: '#fff', fontSize: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <i className="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+            </div>
+            <div style={{ padding: '22px 26px', overflowY: 'auto' }}>
+              <div style={{ padding: '16px', background: 'var(--bg-surface)', borderRadius: '14px', border: '1px solid var(--border-glass)', marginBottom: '20px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '10px' }}>
+                  <strong style={{ color: 'var(--primary-700)', fontSize: '1rem' }}>{reminderModalData.service}</strong>
+                  <span style={{ background: 'rgba(14,165,233,0.12)', color: 'var(--primary-600)', padding: '3px 10px', borderRadius: 'var(--radius-full)', fontSize: '0.72rem', fontWeight: '700' }}>{reminderModalData.status}</span>
+                </div>
+                <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: '5px' }}>
+                  <i className="fa-solid fa-store" style={{ color: 'var(--primary-500)', marginRight: '6px' }}></i>{reminderModalData.groomer}
+                </div>
+                <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: '5px' }}>
+                  <i className="fa-solid fa-clock" style={{ color: 'var(--primary-500)', marginRight: '6px' }}></i>{reminderModalData.date} at {reminderModalData.time} - <strong>{reminderModalData.price}</strong>
+                </div>
+                <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)' }}>
+                  <i className="fa-solid fa-paw" style={{ color: 'var(--primary-500)', marginRight: '6px' }}></i>For: <strong>{petForm.name}</strong>
+                </div>
+              </div>
+              <div style={{ marginBottom: '20px' }}>
+                <div style={{ fontWeight: '700', fontSize: '0.85rem', marginBottom: '12px', color: 'var(--text-main)' }}>
+                  <i className="fa-solid fa-sliders" style={{ color: 'var(--primary-500)', marginRight: '6px' }}></i>Choose Reminder Options
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', maxHeight: '230px', overflowY: 'auto', paddingRight: '4px' }}>
+                  {[
+                    { icon: 'fa-message-sms', label: 'SMS Reminder', desc: 'Text message 2 hours before', color: '#10b981' },
+                    { icon: 'fa-envelope', label: 'Email Reminder', desc: 'Email notification 1 day before', color: '#6366f1' },
+                    { icon: 'fa-comment', label: 'WhatsApp Reminder', desc: 'WhatsApp message morning of appointment', color: '#25D366' },
+                    { icon: 'fa-bell', label: 'Push Notification', desc: 'App notification 30 minutes before', color: '#f59e0b' },
+                    { icon: 'fa-phone', label: 'Phone Call Reminder', desc: 'Automated call 1 hour before', color: '#0ea5e9' }
+                  ].map((opt, idx) => (
+                    <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px 14px', background: 'var(--bg-surface)', borderRadius: '10px', border: '1px solid var(--border-glass)', cursor: 'pointer' }}>
+                      <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: opt.color + '20', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                        <i className={'fa-solid ' + opt.icon} style={{ color: opt.color, fontSize: '0.9rem' }}></i>
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontWeight: '700', fontSize: '0.88rem', color: 'var(--text-main)' }}>{opt.label}</div>
+                        <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{opt.desc}</div>
+                      </div>
+                      <i className="fa-solid fa-circle-check" style={{ color: opt.color, fontSize: '1.1rem' }}></i>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <button
+                className="btn-sky-primary"
+                style={{ width: '100%', padding: '13px', fontWeight: '800', fontSize: '0.98rem', borderRadius: '12px', background: 'linear-gradient(135deg, #f59e0b, #ef4444)', boxShadow: '0 4px 14px rgba(245,158,11,0.35)' }}
+                onClick={() => {
+                  setReminderModalOpen(false);
+                  setReminderSuccess(true);
+                  setTimeout(() => setReminderSuccess(false), 4500);
+                  if (window.SoundEngine) window.SoundEngine.playChime();
+                }}
+              >
+                <i className="fa-solid fa-paper-plane" style={{ marginRight: '8px' }}></i>Continue - Send All Reminders
               </button>
-            </form>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ======== REMINDER SUCCESS POPUP ======== */}
+      {reminderSuccess && (
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
+          <div style={{ background: 'var(--bg-card)', borderRadius: '24px', padding: '40px 32px', textAlign: 'center', maxWidth: '360px', width: '90%', boxShadow: '0 20px 60px rgba(0,0,0,0.3)', border: '1px solid var(--border-glass)' }}>
+            <div style={{ width: '76px', height: '76px', borderRadius: '50%', background: 'linear-gradient(135deg, #f59e0b, #ef4444)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 18px' }}>
+              <i className="fa-solid fa-bell" style={{ color: '#fff', fontSize: '2rem' }}></i>
+            </div>
+            <h2 style={{ fontSize: '1.45rem', fontWeight: '900', color: 'var(--text-main)', margin: '0 0 8px' }}>Reminders Sent!</h2>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6', margin: '0 0 6px' }}>
+              All reminders for <strong style={{ color: '#f59e0b' }}>{reminderModalData ? reminderModalData.service : 'your appointment'}</strong> have been successfully scheduled.
+            </p>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem', margin: '0 0 22px' }}>
+              <i className="fa-solid fa-check" style={{ color: '#10b981', marginRight: '5px' }}></i>You will be notified via SMS, Email and WhatsApp.
+            </p>
+            <button className="btn-sky-primary" style={{ width: '100%', padding: '12px', fontWeight: '800', borderRadius: '12px', background: 'linear-gradient(135deg, #f59e0b, #ef4444)' }} onClick={() => setReminderSuccess(false)}>
+              <i className="fa-solid fa-check" style={{ marginRight: '8px' }}></i>Done
+            </button>
           </div>
         </div>
       )}

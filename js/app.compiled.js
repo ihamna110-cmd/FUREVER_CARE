@@ -121,6 +121,11 @@ function App() {
   const [medModalOpen, setMedModalOpen] = useState(false);
   const [vacModalOpen, setVacModalOpen] = useState(false);
   const [groomingModalOpen, setGroomingModalOpen] = useState(false);
+  const [reminderModalOpen, setReminderModalOpen] = useState(false);
+  const [reminderModalData, setReminderModalData] = useState(null);
+  const [reminderSuccess, setReminderSuccess] = useState(false);
+  const [groomingSuccess, setGroomingSuccess] = useState(false);
+  const [groomingFormErrors, setGroomingFormErrors] = useState({});
   const [prescriptionModalOpen, setPrescriptionModalOpen] = useState(false);
   const [prescriptionSuccess, setPrescriptionSuccess] = useState(null);
   const [rxForm, setRxForm] = useState({
@@ -3348,7 +3353,9 @@ function App() {
     onClick: () => {
       setActiveTab('vet');
       setVetViewMode('directory');
-      addToast('Explore our verified doctors to book a new appointment!', 'fa-user-doctor');
+      window._cameFromPetOwner = true;
+      addToast('Select a doctor and book your appointment!', 'fa-user-doctor');
+      if (window.SoundEngine) window.SoundEngine.playClicker();
     }
   }, /*#__PURE__*/React.createElement("i", {
     className: "fa-solid fa-plus"
@@ -3672,7 +3679,11 @@ function App() {
       fontSize: '0.8rem',
       marginTop: '6px'
     },
-    onClick: () => addToast('Grooming reminder SMS sent!', 'fa-bell')
+    onClick: () => {
+      setReminderModalData(grm);
+      setReminderModalOpen(true);
+      if (window.SoundEngine) window.SoundEngine.playClicker();
+    }
   }, /*#__PURE__*/React.createElement("i", {
     className: "fa-solid fa-bell"
   }), " Send Reminder"))))), /*#__PURE__*/React.createElement("div", {
@@ -4508,7 +4519,44 @@ function App() {
       setProductSearch('');
       setSelectedProductCategory('All');
     }
-  }, "Reset Filters"))), activeTab === 'vet' && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+  }, "Reset Filters"))), activeTab === 'vet' && /*#__PURE__*/React.createElement("div", null, typeof window !== 'undefined' && window._cameFromPetOwner && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginBottom: '16px',
+      flexWrap: 'wrap',
+      gap: '12px'
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn-sky-outline",
+    style: {
+      padding: '9px 22px',
+      fontSize: '0.88rem',
+      fontWeight: '700',
+      borderRadius: 'var(--radius-full)',
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '8px',
+      background: 'rgba(14,165,233,0.09)'
+    },
+    onClick: () => {
+      window._cameFromPetOwner = false;
+      setActiveTab('pet-owner');
+      setPetOwnerSubTab('vet-appts');
+      if (window.SoundEngine) window.SoundEngine.playClicker();
+      addToast('Back to Pet Owner Dashboard', 'fa-arrow-left');
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-arrow-left"
+  }), " Back to Pet Owner Profile"), /*#__PURE__*/React.createElement("span", {
+    className: "badge-sky",
+    style: {
+      fontSize: '0.8rem'
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-paw"
+  }), " Active Pet: ", /*#__PURE__*/React.createElement("strong", null, petForm.name))), /*#__PURE__*/React.createElement("div", {
     className: "section-header-wrap"
   }, /*#__PURE__*/React.createElement("div", {
     className: "section-title-box"
@@ -12216,48 +12264,153 @@ function App() {
     }
   }, "Save Vaccination Record")))), groomingModalOpen && /*#__PURE__*/React.createElement("div", {
     className: "modal-overlay",
-    onClick: () => setGroomingModalOpen(false)
+    onClick: () => {
+      setGroomingModalOpen(false);
+      setGroomingFormErrors({});
+    }
   }, /*#__PURE__*/React.createElement("div", {
     className: "modal-dialog-content",
-    onClick: e => e.stopPropagation()
+    onClick: e => e.stopPropagation(),
+    style: {
+      maxHeight: '92vh',
+      overflowY: 'auto',
+      padding: '0',
+      borderRadius: '20px',
+      maxWidth: '520px',
+      width: '95%'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%)',
+      padding: '24px 28px 20px',
+      borderRadius: '20px 20px 0 0',
+      position: 'sticky',
+      top: 0,
+      zIndex: 2
+    }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       justifyContent: 'space-between',
-      alignItems: 'center',
-      marginBottom: '16px'
+      alignItems: 'center'
     }
-  }, /*#__PURE__*/React.createElement("h3", {
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: '1.3rem'
+      display: 'flex',
+      alignItems: 'center',
+      gap: '10px'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      background: 'rgba(255,255,255,0.2)',
+      borderRadius: '50%',
+      width: '38px',
+      height: '38px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
     }
   }, /*#__PURE__*/React.createElement("i", {
     className: "fa-solid fa-scissors",
     style: {
-      color: 'var(--primary-500)',
-      marginRight: '8px'
+      color: '#fff',
+      fontSize: '1rem'
     }
-  }), " Book Grooming Spa Session"), /*#__PURE__*/React.createElement("button", {
-    className: "btn-icon",
-    onClick: () => setGroomingModalOpen(false)
+  })), /*#__PURE__*/React.createElement("h3", {
+    style: {
+      color: '#fff',
+      fontSize: '1.2rem',
+      margin: 0,
+      fontWeight: '800'
+    }
+  }, "Book Grooming Spa Session")), /*#__PURE__*/React.createElement("p", {
+    style: {
+      color: 'rgba(255,255,255,0.8)',
+      fontSize: '0.8rem',
+      margin: '6px 0 0 48px'
+    }
+  }, "Schedule professional spa for ", /*#__PURE__*/React.createElement("strong", null, petForm.name))), /*#__PURE__*/React.createElement("button", {
+    onClick: () => {
+      setGroomingModalOpen(false);
+      setGroomingFormErrors({});
+    },
+    style: {
+      background: 'rgba(255,255,255,0.2)',
+      border: 'none',
+      borderRadius: '50%',
+      width: '34px',
+      height: '34px',
+      cursor: 'pointer',
+      color: '#fff',
+      fontSize: '1rem',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }
   }, /*#__PURE__*/React.createElement("i", {
     className: "fa-solid fa-xmark"
-  }))), /*#__PURE__*/React.createElement("p", {
+  })))), /*#__PURE__*/React.createElement("div", {
     style: {
-      color: 'var(--text-muted)',
-      fontSize: '0.85rem',
-      marginBottom: '18px'
+      padding: '24px 28px',
+      overflowY: 'auto'
     }
-  }, "Schedule professional spa and deshedding for ", petForm.name, "."), /*#__PURE__*/React.createElement("form", {
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '12px',
+      padding: '12px 16px',
+      background: 'var(--bg-surface)',
+      borderRadius: 'var(--radius-md)',
+      border: '1px solid var(--border-glass)',
+      marginBottom: '20px'
+    }
+  }, /*#__PURE__*/React.createElement("img", {
+    src: petForm.photo,
+    alt: petForm.name,
+    style: {
+      width: '44px',
+      height: '44px',
+      borderRadius: '50%',
+      objectFit: 'cover',
+      border: '2px solid var(--primary-400)'
+    },
+    onError: e => {
+      e.target.src = 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?w=200';
+    }
+  }), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: '700',
+      fontSize: '0.95rem'
+    }
+  }, petForm.name), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: '0.78rem',
+      color: 'var(--text-muted)'
+    }
+  }, petForm.species, " - ", petForm.breed)), /*#__PURE__*/React.createElement("span", {
+    style: {
+      marginLeft: 'auto',
+      background: 'rgba(14,165,233,0.12)',
+      color: 'var(--primary-600)',
+      padding: '3px 10px',
+      borderRadius: 'var(--radius-full)',
+      fontSize: '0.72rem',
+      fontWeight: '700'
+    }
+  }, "Spa Booking")), /*#__PURE__*/React.createElement("form", {
     noValidate: true,
     onSubmit: e => {
       e.preventDefault();
-      if (!groomingForm.date) {
-        markInvalidField(document.getElementById('grooming-date-input'), 'Please select a preferred grooming date');
-        return;
-      }
+      const errors = {};
+      if (!groomingForm.date) errors.date = 'Please select a preferred date';
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      if (groomingForm.date && new Date(groomingForm.date) < today) errors.date = 'Date cannot be in the past';
+      setGroomingFormErrors(errors);
+      if (Object.keys(errors).length > 0) return;
       const newBooking = {
-        id: `GRM-${500 + groomingBookings.length + 1}`,
+        id: 'GRM-' + (500 + groomingBookings.length + 1),
         service: groomingForm.service.split('(')[0].trim(),
         groomer: groomingForm.groomer,
         date: groomingForm.date,
@@ -12267,68 +12420,670 @@ function App() {
       };
       setGroomingBookings([newBooking, ...groomingBookings]);
       setGroomingModalOpen(false);
+      setGroomingFormErrors({});
+      setGroomingSuccess(true);
+      setTimeout(() => setGroomingSuccess(false), 4500);
       if (window.SoundEngine) window.SoundEngine.playChime();
-      addToast(`Booked ${newBooking.service} for ${petForm.name}!`, 'fa-circle-check');
     }
   }, /*#__PURE__*/React.createElement("div", {
-    className: "form-group-custom"
+    className: "form-group-custom",
+    style: {
+      marginBottom: '16px'
+    }
   }, /*#__PURE__*/React.createElement("label", {
-    className: "form-label-custom"
-  }, "Select Grooming Treatment"), /*#__PURE__*/React.createElement("select", {
+    className: "form-label-custom",
+    style: {
+      fontWeight: '700',
+      marginBottom: '6px',
+      display: 'block'
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-spa",
+    style: {
+      color: 'var(--primary-500)',
+      marginRight: '6px'
+    }
+  }), "Select Grooming Treatment *"), /*#__PURE__*/React.createElement("select", {
     className: "input-sky",
     value: groomingForm.service,
     onChange: e => setGroomingForm({
       ...groomingForm,
       service: e.target.value
-    })
+    }),
+    style: {
+      borderRadius: '10px'
+    }
   }, /*#__PURE__*/React.createElement("option", null, "Full Luxury Spa, Deshedding & Hydro-Bath ($65)"), /*#__PURE__*/React.createElement("option", null, "Breed Styling Haircut & Fluff Dry ($55)"), /*#__PURE__*/React.createElement("option", null, "Gentle Oatmeal Bath & Blowdry ($40)"), /*#__PURE__*/React.createElement("option", null, "Nail Grinding, Ear Cleanse & Paw Pad Balm ($28)"), /*#__PURE__*/React.createElement("option", null, "Ultrasonic Teeth Cleaning & Breath Polish ($30)"))), /*#__PURE__*/React.createElement("div", {
-    className: "form-group-custom"
+    className: "form-group-custom",
+    style: {
+      marginBottom: '16px'
+    }
   }, /*#__PURE__*/React.createElement("label", {
-    className: "form-label-custom"
-  }, "Preferred Grooming Salon / Specialist"), /*#__PURE__*/React.createElement("select", {
+    className: "form-label-custom",
+    style: {
+      fontWeight: '700',
+      marginBottom: '6px',
+      display: 'block'
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-store",
+    style: {
+      color: 'var(--primary-500)',
+      marginRight: '6px'
+    }
+  }), "Preferred Grooming Salon *"), /*#__PURE__*/React.createElement("select", {
     className: "input-sky",
     value: groomingForm.groomer,
     onChange: e => setGroomingForm({
       ...groomingForm,
       groomer: e.target.value
-    })
+    }),
+    style: {
+      borderRadius: '10px'
+    }
   }, /*#__PURE__*/React.createElement("option", null, "Paws & Bubbles Master Spa Salon"), /*#__PURE__*/React.createElement("option", null, "Bella Pet Styling Studio"), /*#__PURE__*/React.createElement("option", null, "FurEver Mobile Grooming Van (At-Home Service)"))), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'grid',
       gridTemplateColumns: '1fr 1fr',
-      gap: '14px'
+      gap: '14px',
+      marginBottom: '16px'
     }
   }, /*#__PURE__*/React.createElement("div", {
     className: "form-group-custom"
   }, /*#__PURE__*/React.createElement("label", {
-    className: "form-label-custom"
-  }, "Preferred Date *"), /*#__PURE__*/React.createElement("input", {
+    className: "form-label-custom",
+    style: {
+      fontWeight: '700',
+      marginBottom: '6px',
+      display: 'block'
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-calendar",
+    style: {
+      color: 'var(--primary-500)',
+      marginRight: '6px'
+    }
+  }), "Preferred Date *"), /*#__PURE__*/React.createElement("input", {
     type: "date",
     id: "grooming-date-input",
     className: "input-sky",
     value: groomingForm.date,
-    onChange: e => setGroomingForm({
-      ...groomingForm,
-      date: e.target.value
-    })
-  })), /*#__PURE__*/React.createElement("div", {
+    onChange: e => {
+      setGroomingForm({
+        ...groomingForm,
+        date: e.target.value
+      });
+      setGroomingFormErrors({
+        ...groomingFormErrors,
+        date: ''
+      });
+    },
+    style: {
+      borderRadius: '10px',
+      border: groomingFormErrors.date ? '2px solid #ef4444' : ''
+    }
+  }), groomingFormErrors.date && /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: '#ef4444',
+      fontSize: '0.74rem',
+      marginTop: '4px',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '4px'
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-circle-exclamation"
+  }), " ", groomingFormErrors.date)), /*#__PURE__*/React.createElement("div", {
     className: "form-group-custom"
   }, /*#__PURE__*/React.createElement("label", {
-    className: "form-label-custom"
-  }, "Preferred Time Slot"), /*#__PURE__*/React.createElement("select", {
+    className: "form-label-custom",
+    style: {
+      fontWeight: '700',
+      marginBottom: '6px',
+      display: 'block'
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-clock",
+    style: {
+      color: 'var(--primary-500)',
+      marginRight: '6px'
+    }
+  }), "Preferred Time *"), /*#__PURE__*/React.createElement("select", {
     className: "input-sky",
     value: groomingForm.time,
     onChange: e => setGroomingForm({
       ...groomingForm,
       time: e.target.value
-    })
-  }, /*#__PURE__*/React.createElement("option", null, "09:30 AM"), /*#__PURE__*/React.createElement("option", null, "11:00 AM"), /*#__PURE__*/React.createElement("option", null, "01:30 PM"), /*#__PURE__*/React.createElement("option", null, "03:00 PM"), /*#__PURE__*/React.createElement("option", null, "04:30 PM")))), /*#__PURE__*/React.createElement("button", {
+    }),
+    style: {
+      borderRadius: '10px'
+    }
+  }, /*#__PURE__*/React.createElement("option", null, "09:30 AM"), /*#__PURE__*/React.createElement("option", null, "11:00 AM"), /*#__PURE__*/React.createElement("option", null, "01:30 PM"), /*#__PURE__*/React.createElement("option", null, "03:00 PM"), /*#__PURE__*/React.createElement("option", null, "04:30 PM")))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 16px',
+      background: 'linear-gradient(135deg, rgba(14,165,233,0.08), rgba(99,102,241,0.08))',
+      borderRadius: '12px',
+      border: '1px solid var(--border-glass)',
+      marginBottom: '20px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: '0.76rem',
+      fontWeight: '700',
+      color: 'var(--text-muted)',
+      textTransform: 'uppercase',
+      marginBottom: '8px'
+    }
+  }, "Booking Summary"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: '0.88rem',
+      color: 'var(--text-main)',
+      fontWeight: '600'
+    }
+  }, groomingForm.service.split('(')[0].trim()), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: '0.82rem',
+      color: 'var(--text-muted)',
+      marginTop: '4px'
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-store",
+    style: {
+      marginRight: '5px'
+    }
+  }), groomingForm.groomer), groomingForm.date && /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: '0.82rem',
+      color: 'var(--primary-600)',
+      marginTop: '4px',
+      fontWeight: '600'
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-calendar-check",
+    style: {
+      marginRight: '5px'
+    }
+  }), groomingForm.date, " at ", groomingForm.time)), /*#__PURE__*/React.createElement("button", {
     type: "submit",
     className: "btn-sky-primary",
     style: {
-      width: '100%'
+      width: '100%',
+      padding: '14px',
+      fontWeight: '800',
+      fontSize: '1rem',
+      borderRadius: '12px',
+      boxShadow: '0 4px 16px rgba(14,165,233,0.35)'
     }
-  }, "Confirm Grooming Appointment")))), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-calendar-check",
+    style: {
+      marginRight: '8px'
+    }
+  }), "Confirm Grooming Booking"))))), groomingSuccess && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'fixed',
+      inset: 0,
+      background: 'rgba(0,0,0,0.6)',
+      backdropFilter: 'blur(8px)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 9999
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--bg-card)',
+      borderRadius: '24px',
+      padding: '44px 36px',
+      textAlign: 'center',
+      maxWidth: '380px',
+      width: '90%',
+      boxShadow: '0 20px 60px rgba(0,0,0,0.35)',
+      border: '1px solid var(--border-glass)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: '80px',
+      height: '80px',
+      borderRadius: '50%',
+      background: 'linear-gradient(135deg, #10b981, #059669)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      margin: '0 auto 20px'
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-circle-check",
+    style: {
+      color: '#fff',
+      fontSize: '2.4rem'
+    }
+  })), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      fontSize: '1.55rem',
+      fontWeight: '900',
+      color: 'var(--text-main)',
+      margin: '0 0 10px'
+    }
+  }, "Booking Confirmed!"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      color: 'var(--text-muted)',
+      fontSize: '0.92rem',
+      lineHeight: '1.6',
+      margin: '0 0 8px'
+    }
+  }, "Your grooming spa session for ", /*#__PURE__*/React.createElement("strong", {
+    style: {
+      color: 'var(--primary-500)'
+    }
+  }, petForm.name), " has been successfully booked."), /*#__PURE__*/React.createElement("p", {
+    style: {
+      color: 'var(--text-muted)',
+      fontSize: '0.83rem',
+      margin: '0 0 24px'
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-bell",
+    style: {
+      color: '#f59e0b',
+      marginRight: '5px'
+    }
+  }), "You will receive an SMS reminder before your appointment."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: '8px',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+      marginBottom: '22px'
+    }
+  }, ['Bath & Spa', 'Grooming', 'Premium Care'].map(tag => /*#__PURE__*/React.createElement("span", {
+    key: tag,
+    style: {
+      background: 'rgba(14,165,233,0.12)',
+      color: 'var(--primary-600)',
+      padding: '4px 12px',
+      borderRadius: 'var(--radius-full)',
+      fontSize: '0.74rem',
+      fontWeight: '700'
+    }
+  }, tag))), /*#__PURE__*/React.createElement("button", {
+    className: "btn-sky-primary",
+    style: {
+      width: '100%',
+      padding: '13px',
+      fontWeight: '800',
+      borderRadius: '12px'
+    },
+    onClick: () => setGroomingSuccess(false)
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-check",
+    style: {
+      marginRight: '8px'
+    }
+  }), "Done"))), reminderModalOpen && reminderModalData && /*#__PURE__*/React.createElement("div", {
+    className: "modal-overlay",
+    onClick: () => {
+      setReminderModalOpen(false);
+      setReminderSuccess(false);
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "modal-dialog-content",
+    onClick: e => e.stopPropagation(),
+    style: {
+      maxHeight: '92vh',
+      overflowY: 'auto',
+      padding: '0',
+      borderRadius: '20px',
+      maxWidth: '480px',
+      width: '95%'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'linear-gradient(135deg, #f59e0b 0%, #ef4444 100%)',
+      padding: '22px 26px 18px',
+      borderRadius: '20px 20px 0 0',
+      position: 'sticky',
+      top: 0,
+      zIndex: 2
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '10px'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      background: 'rgba(255,255,255,0.2)',
+      borderRadius: '50%',
+      width: '36px',
+      height: '36px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-bell",
+    style: {
+      color: '#fff',
+      fontSize: '1rem'
+    }
+  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", {
+    style: {
+      color: '#fff',
+      fontSize: '1.1rem',
+      margin: 0,
+      fontWeight: '800'
+    }
+  }, "Send Grooming Reminder"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      color: 'rgba(255,255,255,0.8)',
+      fontSize: '0.76rem',
+      margin: 0
+    }
+  }, "Notify yourself before the appointment"))), /*#__PURE__*/React.createElement("button", {
+    onClick: () => {
+      setReminderModalOpen(false);
+      setReminderSuccess(false);
+    },
+    style: {
+      background: 'rgba(255,255,255,0.2)',
+      border: 'none',
+      borderRadius: '50%',
+      width: '32px',
+      height: '32px',
+      cursor: 'pointer',
+      color: '#fff',
+      fontSize: '1rem',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-xmark"
+  })))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '22px 26px',
+      overflowY: 'auto'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '16px',
+      background: 'var(--bg-surface)',
+      borderRadius: '14px',
+      border: '1px solid var(--border-glass)',
+      marginBottom: '20px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'flex-start',
+      marginBottom: '10px'
+    }
+  }, /*#__PURE__*/React.createElement("strong", {
+    style: {
+      color: 'var(--primary-700)',
+      fontSize: '1rem'
+    }
+  }, reminderModalData.service), /*#__PURE__*/React.createElement("span", {
+    style: {
+      background: 'rgba(14,165,233,0.12)',
+      color: 'var(--primary-600)',
+      padding: '3px 10px',
+      borderRadius: 'var(--radius-full)',
+      fontSize: '0.72rem',
+      fontWeight: '700'
+    }
+  }, reminderModalData.status)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: '0.84rem',
+      color: 'var(--text-muted)',
+      marginBottom: '5px'
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-store",
+    style: {
+      color: 'var(--primary-500)',
+      marginRight: '6px'
+    }
+  }), reminderModalData.groomer), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: '0.84rem',
+      color: 'var(--text-muted)',
+      marginBottom: '5px'
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-clock",
+    style: {
+      color: 'var(--primary-500)',
+      marginRight: '6px'
+    }
+  }), reminderModalData.date, " at ", reminderModalData.time, " - ", /*#__PURE__*/React.createElement("strong", null, reminderModalData.price)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: '0.84rem',
+      color: 'var(--text-muted)'
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-paw",
+    style: {
+      color: 'var(--primary-500)',
+      marginRight: '6px'
+    }
+  }), "For: ", /*#__PURE__*/React.createElement("strong", null, petForm.name))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginBottom: '20px'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: '700',
+      fontSize: '0.85rem',
+      marginBottom: '12px',
+      color: 'var(--text-main)'
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-sliders",
+    style: {
+      color: 'var(--primary-500)',
+      marginRight: '6px'
+    }
+  }), "Choose Reminder Options"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '10px',
+      maxHeight: '230px',
+      overflowY: 'auto',
+      paddingRight: '4px'
+    }
+  }, [{
+    icon: 'fa-message-sms',
+    label: 'SMS Reminder',
+    desc: 'Text message 2 hours before',
+    color: '#10b981'
+  }, {
+    icon: 'fa-envelope',
+    label: 'Email Reminder',
+    desc: 'Email notification 1 day before',
+    color: '#6366f1'
+  }, {
+    icon: 'fa-comment',
+    label: 'WhatsApp Reminder',
+    desc: 'WhatsApp message morning of appointment',
+    color: '#25D366'
+  }, {
+    icon: 'fa-bell',
+    label: 'Push Notification',
+    desc: 'App notification 30 minutes before',
+    color: '#f59e0b'
+  }, {
+    icon: 'fa-phone',
+    label: 'Phone Call Reminder',
+    desc: 'Automated call 1 hour before',
+    color: '#0ea5e9'
+  }].map((opt, idx) => /*#__PURE__*/React.createElement("div", {
+    key: idx,
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '12px',
+      padding: '12px 14px',
+      background: 'var(--bg-surface)',
+      borderRadius: '10px',
+      border: '1px solid var(--border-glass)',
+      cursor: 'pointer'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: '36px',
+      height: '36px',
+      borderRadius: '50%',
+      background: opt.color + '20',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      flexShrink: 0
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: 'fa-solid ' + opt.icon,
+    style: {
+      color: opt.color,
+      fontSize: '0.9rem'
+    }
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: '700',
+      fontSize: '0.88rem',
+      color: 'var(--text-main)'
+    }
+  }, opt.label), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: '0.75rem',
+      color: 'var(--text-muted)'
+    }
+  }, opt.desc)), /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-circle-check",
+    style: {
+      color: opt.color,
+      fontSize: '1.1rem'
+    }
+  }))))), /*#__PURE__*/React.createElement("button", {
+    className: "btn-sky-primary",
+    style: {
+      width: '100%',
+      padding: '13px',
+      fontWeight: '800',
+      fontSize: '0.98rem',
+      borderRadius: '12px',
+      background: 'linear-gradient(135deg, #f59e0b, #ef4444)',
+      boxShadow: '0 4px 14px rgba(245,158,11,0.35)'
+    },
+    onClick: () => {
+      setReminderModalOpen(false);
+      setReminderSuccess(true);
+      setTimeout(() => setReminderSuccess(false), 4500);
+      if (window.SoundEngine) window.SoundEngine.playChime();
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-paper-plane",
+    style: {
+      marginRight: '8px'
+    }
+  }), "Continue - Send All Reminders")))), reminderSuccess && /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'fixed',
+      inset: 0,
+      background: 'rgba(0,0,0,0.55)',
+      backdropFilter: 'blur(8px)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 9999
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: 'var(--bg-card)',
+      borderRadius: '24px',
+      padding: '40px 32px',
+      textAlign: 'center',
+      maxWidth: '360px',
+      width: '90%',
+      boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
+      border: '1px solid var(--border-glass)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: '76px',
+      height: '76px',
+      borderRadius: '50%',
+      background: 'linear-gradient(135deg, #f59e0b, #ef4444)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      margin: '0 auto 18px'
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-bell",
+    style: {
+      color: '#fff',
+      fontSize: '2rem'
+    }
+  })), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      fontSize: '1.45rem',
+      fontWeight: '900',
+      color: 'var(--text-main)',
+      margin: '0 0 8px'
+    }
+  }, "Reminders Sent!"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      color: 'var(--text-muted)',
+      fontSize: '0.9rem',
+      lineHeight: '1.6',
+      margin: '0 0 6px'
+    }
+  }, "All reminders for ", /*#__PURE__*/React.createElement("strong", {
+    style: {
+      color: '#f59e0b'
+    }
+  }, reminderModalData ? reminderModalData.service : 'your appointment'), " have been successfully scheduled."), /*#__PURE__*/React.createElement("p", {
+    style: {
+      color: 'var(--text-muted)',
+      fontSize: '0.82rem',
+      margin: '0 0 22px'
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-check",
+    style: {
+      color: '#10b981',
+      marginRight: '5px'
+    }
+  }), "You will be notified via SMS, Email and WhatsApp."), /*#__PURE__*/React.createElement("button", {
+    className: "btn-sky-primary",
+    style: {
+      width: '100%',
+      padding: '12px',
+      fontWeight: '800',
+      borderRadius: '12px',
+      background: 'linear-gradient(135deg, #f59e0b, #ef4444)'
+    },
+    onClick: () => setReminderSuccess(false)
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-check",
+    style: {
+      marginRight: '8px'
+    }
+  }), "Done"))), /*#__PURE__*/React.createElement("div", {
     className: "toast-container"
   }, toasts.map(t => /*#__PURE__*/React.createElement("div", {
     key: t.id,
