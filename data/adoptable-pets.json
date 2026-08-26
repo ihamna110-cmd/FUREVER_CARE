@@ -144,7 +144,7 @@
     "size": "Mini",
     "location": "Bunny Meadow Corner",
     "vaccinated": true,
-    "image": "https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?auto=format&fit=crop&w=600&q=80",
+    "image": "images/rabbit-brown.jpg",
     "badge": "Gentle Spirit",
     "description": "Quiet and curious bunny, enjoys fresh cilantro treats, tunnel exploration, and gentle nose rubs.",
     "healthStatus": "Vaccinated & Health Checked"
@@ -159,7 +159,7 @@
     "size": "Small",
     "location": "Foster Care Suite",
     "vaccinated": true,
-    "image": "https://images.unsplash.com/photo-1591382696684-38c427c7547a?auto=format&fit=crop&w=600&q=80",
+    "image": "images/rabbit-lop.jpg",
     "badge": "Velvet Coats",
     "description": "Velvety soft fur duo who snuggle together all day, very affectionate and accustomed to indoor living.",
     "healthStatus": "Both Neutered & Vaccinated"
@@ -174,7 +174,7 @@
     "size": "Mini",
     "location": "Bunny Suite D",
     "vaccinated": true,
-    "image": "https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=600&q=80",
+    "image": "images/rabbit-chair.jpg",
     "badge": "Fluffy Princess",
     "description": "Adorable lionhead with a super fluffy mane, loves being held, binky dancing and organic strawberry treats.",
     "healthStatus": "RHDV2 Vaccinated & Healthy"
