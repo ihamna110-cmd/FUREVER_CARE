@@ -3584,8 +3584,8 @@ function App() {
     className: "btn-sky-primary",
     onClick: () => setGroomingModalOpen(true)
   }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-plus"
-  }), " Book Grooming Session (Modal)")), /*#__PURE__*/React.createElement("div", {
+    className: "fa-solid fa-scissors"
+  }), " Book Grooming Session")), /*#__PURE__*/React.createElement("div", {
     className: "hero-grid",
     style: {
       alignItems: 'start',
@@ -3678,91 +3678,97 @@ function App() {
   }), " Send Reminder"))))), /*#__PURE__*/React.createElement("div", {
     className: "glass-panel",
     style: {
+      padding: '0',
+      overflow: 'hidden',
+      borderRadius: 'var(--radius-lg)',
+      position: 'relative',
+      minHeight: '380px'
+    }
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=800&q=80",
+    alt: "Premium Pet Grooming Spa",
+    style: {
+      width: '100%',
+      height: '100%',
+      minHeight: '380px',
+      objectFit: 'cover',
+      display: 'block'
+    },
+    onError: e => {
+      e.target.src = 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800&q=80';
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      position: 'absolute',
+      inset: 0,
+      background: 'linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.3) 55%, transparent 100%)',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'flex-end',
       padding: '28px'
     }
-  }, /*#__PURE__*/React.createElement("h4", null, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-calendar-plus",
+  }, /*#__PURE__*/React.createElement("span", {
     style: {
-      color: 'var(--primary-500)',
-      marginRight: '8px'
+      display: 'inline-block',
+      background: 'var(--primary-500)',
+      color: '#fff',
+      padding: '4px 14px',
+      borderRadius: 'var(--radius-full)',
+      fontSize: '0.75rem',
+      fontWeight: '700',
+      marginBottom: '10px',
+      width: 'fit-content'
     }
-  }), " Book New Grooming Session"), /*#__PURE__*/React.createElement("p", {
+  }, "Premium Spa Services"), /*#__PURE__*/React.createElement("h3", {
     style: {
-      color: 'var(--text-muted)',
+      color: '#fff',
+      margin: '0 0 6px',
+      fontSize: '1.35rem',
+      fontWeight: '800',
+      textShadow: '0 2px 8px rgba(0,0,0,0.4)'
+    }
+  }, "Luxury Pet Grooming & Spa"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      color: 'rgba(255,255,255,0.82)',
       fontSize: '0.85rem',
+      margin: '0 0 18px',
+      lineHeight: '1.5'
+    }
+  }, "Professional bath, breed styling, deshedding, nail care, ear cleanse & more \u2014 booked with one click."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      gap: '10px',
+      flexWrap: 'wrap',
       marginBottom: '18px'
     }
-  }, "Select treatment, preferred groomer, and date."), /*#__PURE__*/React.createElement("div", {
-    className: "form-group-custom"
-  }, /*#__PURE__*/React.createElement("label", {
-    className: "form-label-custom"
-  }, "Select Grooming Treatment"), /*#__PURE__*/React.createElement("select", {
-    className: "input-sky",
-    value: groomingForm.service,
-    onChange: e => setGroomingForm({
-      ...groomingForm,
-      service: e.target.value
-    })
-  }, /*#__PURE__*/React.createElement("option", null, "Full Luxury Spa, Deshedding & Hydro-Bath ($65)"), /*#__PURE__*/React.createElement("option", null, "Breed Styling Haircut & Fluff Dry ($55)"), /*#__PURE__*/React.createElement("option", null, "Gentle Oatmeal Bath & Blowdry ($40)"), /*#__PURE__*/React.createElement("option", null, "Nail Grinding, Ear Cleanse & Paw Pad Balm ($28)"), /*#__PURE__*/React.createElement("option", null, "Ultrasonic Teeth Cleaning & Breath Polish ($30)"))), /*#__PURE__*/React.createElement("div", {
-    className: "form-group-custom"
-  }, /*#__PURE__*/React.createElement("label", {
-    className: "form-label-custom"
-  }, "Preferred Grooming Salon / Specialist"), /*#__PURE__*/React.createElement("select", {
-    className: "input-sky",
-    value: groomingForm.groomer,
-    onChange: e => setGroomingForm({
-      ...groomingForm,
-      groomer: e.target.value
-    })
-  }, /*#__PURE__*/React.createElement("option", null, "Paws & Bubbles Master Spa Salon"), /*#__PURE__*/React.createElement("option", null, "Bella Pet Styling Studio"), /*#__PURE__*/React.createElement("option", null, "FurEver Mobile Grooming Van (At-Home Service)"))), /*#__PURE__*/React.createElement("div", {
+  }, ['Luxury Bath', 'Breed Styling', 'Nail Grinding', 'Teeth Polish', 'Oatmeal Spa'].map(tag => /*#__PURE__*/React.createElement("span", {
+    key: tag,
     style: {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gap: '14px'
+      background: 'rgba(255,255,255,0.18)',
+      backdropFilter: 'blur(6px)',
+      color: '#fff',
+      padding: '4px 12px',
+      borderRadius: 'var(--radius-full)',
+      fontSize: '0.75rem',
+      fontWeight: '600',
+      border: '1px solid rgba(255,255,255,0.25)'
     }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "form-group-custom"
-  }, /*#__PURE__*/React.createElement("label", {
-    className: "form-label-custom"
-  }, "Preferred Date"), /*#__PURE__*/React.createElement("input", {
-    type: "date",
-    className: "input-sky",
-    value: groomingForm.date,
-    onChange: e => setGroomingForm({
-      ...groomingForm,
-      date: e.target.value
-    })
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "form-group-custom"
-  }, /*#__PURE__*/React.createElement("label", {
-    className: "form-label-custom"
-  }, "Preferred Time"), /*#__PURE__*/React.createElement("select", {
-    className: "input-sky",
-    value: groomingForm.time,
-    onChange: e => setGroomingForm({
-      ...groomingForm,
-      time: e.target.value
-    })
-  }, /*#__PURE__*/React.createElement("option", null, "09:30 AM"), /*#__PURE__*/React.createElement("option", null, "11:00 AM"), /*#__PURE__*/React.createElement("option", null, "01:30 PM"), /*#__PURE__*/React.createElement("option", null, "03:00 PM"), /*#__PURE__*/React.createElement("option", null, "04:30 PM")))), /*#__PURE__*/React.createElement("button", {
+  }, tag))), /*#__PURE__*/React.createElement("button", {
     className: "btn-sky-primary",
     style: {
-      width: '100%'
+      alignSelf: 'flex-start',
+      padding: '10px 24px',
+      fontWeight: '700',
+      fontSize: '0.92rem',
+      boxShadow: '0 4px 16px rgba(14,165,233,0.45)'
     },
     onClick: () => {
-      const newBooking = {
-        id: `GRM-${500 + groomingBookings.length + 1}`,
-        service: groomingForm.service.split('(')[0].trim(),
-        groomer: groomingForm.groomer,
-        date: groomingForm.date || 'Sept 05, 2026',
-        time: groomingForm.time,
-        price: groomingForm.service.includes('$') ? '$' + groomingForm.service.split('$')[1].replace(')', '') : '$50.00',
-        status: 'Upcoming'
-      };
-      setGroomingBookings([newBooking, ...groomingBookings]);
-      if (window.SoundEngine) window.SoundEngine.playChime();
-      addToast(`Booked ${newBooking.service} for ${petForm.name}!`, 'fa-circle-check');
+      setGroomingModalOpen(true);
+      if (window.SoundEngine) window.SoundEngine.playClicker();
     }
-  }, "Confirm Grooming Booking")))), petOwnerSubTab === 'tips' && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-scissors"
+  }), " Book Grooming Session"))))), petOwnerSubTab === 'tips' && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "hero-grid",
     style: {
       alignItems: 'start',
@@ -4503,50 +4509,6 @@ function App() {
       setSelectedProductCategory('All');
     }
   }, "Reset Filters"))), activeTab === 'vet' && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      marginBottom: '16px',
-      flexWrap: 'wrap',
-      gap: '12px'
-    }
-  }, /*#__PURE__*/React.createElement("button", {
-    className: "btn-sky-outline",
-    style: {
-      padding: '8px 20px',
-      fontSize: '0.88rem',
-      fontWeight: '700',
-      borderRadius: 'var(--radius-full)',
-      display: 'inline-flex',
-      alignItems: 'center',
-      gap: '8px',
-      cursor: 'pointer',
-      background: 'rgba(14,165,233,0.08)',
-      boxShadow: 'var(--shadow-sm)'
-    },
-    onClick: () => {
-      setActiveTab('pet-owner');
-      setPetOwnerSubTab('vet-appts');
-      if (window.SoundEngine) window.SoundEngine.playClicker();
-      addToast('Returned to Pet Owner Dashboard', 'fa-arrow-left');
-    }
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-arrow-left"
-  }), " Back to Pet Owner Profile"), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      alignItems: 'center',
-      gap: '8px'
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "badge-sky",
-    style: {
-      fontSize: '0.78rem'
-    }
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-paw"
-  }), " Active Pet: ", /*#__PURE__*/React.createElement("strong", null, petForm.name)))), /*#__PURE__*/React.createElement("div", {
     className: "section-header-wrap"
   }, /*#__PURE__*/React.createElement("div", {
     className: "section-title-box"

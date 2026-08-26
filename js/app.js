@@ -2396,7 +2396,7 @@ function App() {
                     <p style={{ color: 'var(--text-muted)' }}>Manage professional bath, deshedding, haircut styling, and dental polishing appointments.</p>
                   </div>
                   <button className="btn-sky-primary" onClick={() => setGroomingModalOpen(true)}>
-                    <i className="fa-solid fa-plus"></i> Book Grooming Session (Modal)
+                    <i className="fa-solid fa-scissors"></i> Book Grooming Session
                   </button>
                 </div>
 
@@ -2439,64 +2439,44 @@ function App() {
                     </div>
                   </div>
 
-                  {/* Book New Grooming Session Form */}
-                  <div className="glass-panel" style={{ padding: '28px' }}>
-                    <h4><i className="fa-solid fa-calendar-plus" style={{ color: 'var(--primary-500)', marginRight: '8px' }}></i> Book New Grooming Session</h4>
-                    <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '18px' }}>Select treatment, preferred groomer, and date.</p>
-
-                    <div className="form-group-custom">
-                      <label className="form-label-custom">Select Grooming Treatment</label>
-                      <select className="input-sky" value={groomingForm.service} onChange={(e) => setGroomingForm({ ...groomingForm, service: e.target.value })}>
-                        <option>Full Luxury Spa, Deshedding & Hydro-Bath ($65)</option>
-                        <option>Breed Styling Haircut & Fluff Dry ($55)</option>
-                        <option>Gentle Oatmeal Bath & Blowdry ($40)</option>
-                        <option>Nail Grinding, Ear Cleanse & Paw Pad Balm ($28)</option>
-                        <option>Ultrasonic Teeth Cleaning & Breath Polish ($30)</option>
-                      </select>
-                    </div>
-
-                    <div className="form-group-custom">
-                      <label className="form-label-custom">Preferred Grooming Salon / Specialist</label>
-                      <select className="input-sky" value={groomingForm.groomer} onChange={(e) => setGroomingForm({ ...groomingForm, groomer: e.target.value })}>
-                        <option>Paws & Bubbles Master Spa Salon</option>
-                        <option>Bella Pet Styling Studio</option>
-                        <option>FurEver Mobile Grooming Van (At-Home Service)</option>
-                      </select>
-                    </div>
-
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
-                      <div className="form-group-custom">
-                        <label className="form-label-custom">Preferred Date</label>
-                        <input type="date" className="input-sky" value={groomingForm.date} onChange={(e) => setGroomingForm({ ...groomingForm, date: e.target.value })} />
-                      </div>
-                      <div className="form-group-custom">
-                        <label className="form-label-custom">Preferred Time</label>
-                        <select className="input-sky" value={groomingForm.time} onChange={(e) => setGroomingForm({ ...groomingForm, time: e.target.value })}>
-                          <option>09:30 AM</option>
-                          <option>11:00 AM</option>
-                          <option>01:30 PM</option>
-                          <option>03:00 PM</option>
-                          <option>04:30 PM</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <button className="btn-sky-primary" style={{ width: '100%' }} onClick={() => {
-                      const newBooking = {
-                        id: `GRM-${500 + groomingBookings.length + 1}`,
-                        service: groomingForm.service.split('(')[0].trim(),
-                        groomer: groomingForm.groomer,
-                        date: groomingForm.date || 'Sept 05, 2026',
-                        time: groomingForm.time,
-                        price: groomingForm.service.includes('$') ? '$' + groomingForm.service.split('$')[1].replace(')', '') : '$50.00',
-                        status: 'Upcoming'
-                      };
-                      setGroomingBookings([newBooking, ...groomingBookings]);
-                      if (window.SoundEngine) window.SoundEngine.playChime();
-                      addToast(`Booked ${newBooking.service} for ${petForm.name}!`, 'fa-circle-check');
+                  {/* Grooming Spa Promo Panel */}
+                  <div className="glass-panel" style={{ padding: '0', overflow: 'hidden', borderRadius: 'var(--radius-lg)', position: 'relative', minHeight: '380px' }}>
+                    <img
+                      src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=800&q=80"
+                      alt="Premium Pet Grooming Spa"
+                      style={{ width: '100%', height: '100%', minHeight: '380px', objectFit: 'cover', display: 'block' }}
+                      onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800&q=80'; }}
+                    />
+                    <div style={{
+                      position: 'absolute', inset: 0,
+                      background: 'linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.3) 55%, transparent 100%)',
+                      display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
+                      padding: '28px'
                     }}>
-                      Confirm Grooming Booking
-                    </button>
+                      <span style={{ display: 'inline-block', background: 'var(--primary-500)', color: '#fff', padding: '4px 14px', borderRadius: 'var(--radius-full)', fontSize: '0.75rem', fontWeight: '700', marginBottom: '10px', width: 'fit-content' }}>
+                        Premium Spa Services
+                      </span>
+                      <h3 style={{ color: '#fff', margin: '0 0 6px', fontSize: '1.35rem', fontWeight: '800', textShadow: '0 2px 8px rgba(0,0,0,0.4)' }}>
+                        Luxury Pet Grooming &amp; Spa
+                      </h3>
+                      <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: '0.85rem', margin: '0 0 18px', lineHeight: '1.5' }}>
+                        Professional bath, breed styling, deshedding, nail care, ear cleanse &amp; more — booked with one click.
+                      </p>
+                      <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '18px' }}>
+                        {['Luxury Bath', 'Breed Styling', 'Nail Grinding', 'Teeth Polish', 'Oatmeal Spa'].map(tag => (
+                          <span key={tag} style={{ background: 'rgba(255,255,255,0.18)', backdropFilter: 'blur(6px)', color: '#fff', padding: '4px 12px', borderRadius: 'var(--radius-full)', fontSize: '0.75rem', fontWeight: '600', border: '1px solid rgba(255,255,255,0.25)' }}>
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <button
+                        className="btn-sky-primary"
+                        style={{ alignSelf: 'flex-start', padding: '10px 24px', fontWeight: '700', fontSize: '0.92rem', boxShadow: '0 4px 16px rgba(14,165,233,0.45)' }}
+                        onClick={() => { setGroomingModalOpen(true); if (window.SoundEngine) window.SoundEngine.playClicker(); }}
+                      >
+                        <i className="fa-solid fa-scissors"></i> Book Grooming Session
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -2866,28 +2846,6 @@ function App() {
             ================================================================== */}
         {activeTab === 'vet' && (
           <div>
-            {/* Quick Navigation Back to Pet Owner Profile */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '12px' }}>
-              <button 
-                className="btn-sky-outline" 
-                style={{ padding: '8px 20px', fontSize: '0.88rem', fontWeight: '700', borderRadius: 'var(--radius-full)', display: 'inline-flex', alignItems: 'center', gap: '8px', cursor: 'pointer', background: 'rgba(14,165,233,0.08)', boxShadow: 'var(--shadow-sm)' }}
-                onClick={() => {
-                  setActiveTab('pet-owner');
-                  setPetOwnerSubTab('vet-appts');
-                  if (window.SoundEngine) window.SoundEngine.playClicker();
-                  addToast('Returned to Pet Owner Dashboard', 'fa-arrow-left');
-                }}
-              >
-                <i className="fa-solid fa-arrow-left"></i> Back to Pet Owner Profile
-              </button>
-
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span className="badge-sky" style={{ fontSize: '0.78rem' }}>
-                  <i className="fa-solid fa-paw"></i> Active Pet: <strong>{petForm.name}</strong>
-                </span>
-              </div>
-            </div>
-
             <div className="section-header-wrap">
               <div className="section-title-box">
                 <span className="badge-sky">Certified Clinical Network (15 Specialists)</span>
