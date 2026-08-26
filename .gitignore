@@ -1,13 +1,7 @@
-# Dependencies
-node_modules/
-package-lock.json
-
-# WhatsApp session data & logs
-whatsapp_session/
-*.log
-
 # Temporary and IDE files
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
+whatsapp_session/
+*.log

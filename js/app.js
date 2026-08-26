@@ -3246,12 +3246,23 @@ function App() {
               </div>
             </div>
 
-            {/* Adoptable Pets Gallery */}
-            <div className="shelter-pets-grid" style={{ marginBottom: '48px' }}>
-              {filteredShelterPets.map(pet => (
+            {/* Adoptable Pets Gallery: 3 cards per category */}
+            {(() => {
+              const SHELTER_CATEGORIES = [
+                { key: 'dog',    label: 'Rescued Dogs & Puppies',   icon: 'fa-dog' },
+                { key: 'cat',    label: 'Adoptable Cats & Kittens', icon: 'fa-cat' },
+                { key: 'rabbit', label: 'Fluffy Rabbits & Bunnies', icon: 'fa-carrot' },
+                { key: 'bird',   label: 'Colorful Birds & Parrots', icon: 'fa-dove' }
+              ];
+
+              const renderPetCard = (pet) => (
                 <div key={pet.id} className="adopt-card">
                   <div className="adopt-img-wrap">
-                    <img src={pet.image} alt={pet.name} />
+                    <img 
+                      src={pet.image} 
+                      alt={pet.name} 
+                      onError={(e) => { e.target.src='https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=600&q=80'; }}
+                    />
                     <span className="adopt-badge-pill">{pet.badge}</span>
                   </div>
 
@@ -3273,8 +3284,51 @@ function App() {
                     </button>
                   </div>
                 </div>
-              ))}
-            </div>
+              );
+
+              // Single category selected -> 3 cards
+              if (petFilter !== 'all') {
+                const pets = adoptablePets.filter(p => p.type === petFilter).slice(0, 3);
+                return (
+                  <div className="shelter-pets-grid" style={{ marginBottom: '48px' }}>
+                    {pets.map(pet => renderPetCard(pet))}
+                  </div>
+                );
+              }
+
+              // All selected -> Grouped sections, 3 cards each
+              return (
+                <div style={{ marginBottom: '48px' }}>
+                  {SHELTER_CATEGORIES.map(cat => {
+                    const pets = adoptablePets.filter(p => p.type === cat.key).slice(0, 3);
+                    if (pets.length === 0) return null;
+                    return (
+                      <div key={cat.key} style={{ marginBottom: '40px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px', paddingBottom: '10px', borderBottom: '2px solid var(--border-glass)' }}>
+                          <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: 'linear-gradient(135deg, var(--primary-500), var(--primary-700))', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '1rem' }}>
+                            <i className={`fa-solid ${cat.icon}`}></i>
+                          </div>
+                          <div>
+                            <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: '800', color: 'var(--text-primary)' }}>{cat.label}</h3>
+                            <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Top 3 Available for Adoption</span>
+                          </div>
+                          <button
+                            style={{ marginLeft: 'auto', cursor: 'pointer', border: '1px solid rgba(14,165,233,0.3)', background: 'rgba(14,165,233,0.08)', padding: '4px 14px', borderRadius: '20px', fontSize: '0.78rem', fontWeight: '700', color: 'var(--primary-600)' }}
+                            onClick={() => { setPetFilter(cat.key); if (window.SoundEngine) window.SoundEngine.playClicker(); }}
+                          >
+                            View All {cat.label.split(' ')[1]} →
+                          </button>
+                        </div>
+
+                        <div className="shelter-pets-grid">
+                          {pets.map(pet => renderPetCard(pet))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })()}
 
             {/* Adoption Success Stories & Before/After Showcase */}
             <div className="glass-panel" style={{ padding: '32px', marginBottom: '40px' }}>

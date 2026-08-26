@@ -5124,77 +5124,174 @@ function App() {
     style: {
       marginRight: '6px'
     }
-  }), flt.label)))), /*#__PURE__*/React.createElement("div", {
-    className: "shelter-pets-grid",
-    style: {
-      marginBottom: '48px'
+  }), flt.label)))), (() => {
+    const SHELTER_CATEGORIES = [{
+      key: 'dog',
+      label: 'Rescued Dogs & Puppies',
+      icon: 'fa-dog'
+    }, {
+      key: 'cat',
+      label: 'Adoptable Cats & Kittens',
+      icon: 'fa-cat'
+    }, {
+      key: 'rabbit',
+      label: 'Fluffy Rabbits & Bunnies',
+      icon: 'fa-carrot'
+    }, {
+      key: 'bird',
+      label: 'Colorful Birds & Parrots',
+      icon: 'fa-dove'
+    }];
+    const renderPetCard = pet => /*#__PURE__*/React.createElement("div", {
+      key: pet.id,
+      className: "adopt-card"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "adopt-img-wrap"
+    }, /*#__PURE__*/React.createElement("img", {
+      src: pet.image,
+      alt: pet.name,
+      onError: e => {
+        e.target.src = 'https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=600&q=80';
+      }
+    }), /*#__PURE__*/React.createElement("span", {
+      className: "adopt-badge-pill"
+    }, pet.badge)), /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: '20px',
+        display: 'flex',
+        flexDirection: 'column',
+        flex: 1
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: '4px'
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      className: "product-category-lbl",
+      style: {
+        margin: 0
+      }
+    }, pet.breed), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: '0.78rem',
+        color: 'var(--text-light)'
+      }
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fa-solid fa-clock"
+    }), " ", pet.age)), /*#__PURE__*/React.createElement("h3", {
+      style: {
+        fontSize: '1.25rem',
+        marginBottom: '8px'
+      }
+    }, pet.name), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontSize: '0.85rem',
+        color: 'var(--text-muted)',
+        marginBottom: '14px',
+        flex: 1
+      }
+    }, pet.description), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: '0.8rem',
+        color: '#10b981',
+        fontWeight: '600',
+        marginBottom: '14px'
+      }
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fa-solid fa-shield-heart"
+    }), " ", pet.healthStatus), /*#__PURE__*/React.createElement("button", {
+      className: "btn-sky-primary",
+      style: {
+        width: '100%'
+      },
+      onClick: () => setActiveAdoptModal(pet)
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fa-solid fa-heart"
+    }), " Apply to Adopt ", pet.name.split(' ')[0])));
+
+    // Single category selected -> 3 cards
+    if (petFilter !== 'all') {
+      const pets = adoptablePets.filter(p => p.type === petFilter).slice(0, 3);
+      return /*#__PURE__*/React.createElement("div", {
+        className: "shelter-pets-grid",
+        style: {
+          marginBottom: '48px'
+        }
+      }, pets.map(pet => renderPetCard(pet)));
     }
-  }, filteredShelterPets.map(pet => /*#__PURE__*/React.createElement("div", {
-    key: pet.id,
-    className: "adopt-card"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "adopt-img-wrap"
-  }, /*#__PURE__*/React.createElement("img", {
-    src: pet.image,
-    alt: pet.name
-  }), /*#__PURE__*/React.createElement("span", {
-    className: "adopt-badge-pill"
-  }, pet.badge)), /*#__PURE__*/React.createElement("div", {
-    style: {
-      padding: '20px',
-      display: 'flex',
-      flexDirection: 'column',
-      flex: 1
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: 'flex',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      marginBottom: '4px'
-    }
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "product-category-lbl",
-    style: {
-      margin: 0
-    }
-  }, pet.breed), /*#__PURE__*/React.createElement("span", {
-    style: {
-      fontSize: '0.78rem',
-      color: 'var(--text-light)'
-    }
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-clock"
-  }), " ", pet.age)), /*#__PURE__*/React.createElement("h3", {
-    style: {
-      fontSize: '1.25rem',
-      marginBottom: '8px'
-    }
-  }, pet.name), /*#__PURE__*/React.createElement("p", {
-    style: {
-      fontSize: '0.85rem',
-      color: 'var(--text-muted)',
-      marginBottom: '14px',
-      flex: 1
-    }
-  }, pet.description), /*#__PURE__*/React.createElement("div", {
-    style: {
-      fontSize: '0.8rem',
-      color: '#10b981',
-      fontWeight: '600',
-      marginBottom: '14px'
-    }
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-shield-heart"
-  }), " ", pet.healthStatus), /*#__PURE__*/React.createElement("button", {
-    className: "btn-sky-primary",
-    style: {
-      width: '100%'
-    },
-    onClick: () => setActiveAdoptModal(pet)
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-heart"
-  }), " Apply to Adopt ", pet.name.split(' ')[0]))))), /*#__PURE__*/React.createElement("div", {
+
+    // All selected -> Grouped sections, 3 cards each
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: '48px'
+      }
+    }, SHELTER_CATEGORIES.map(cat => {
+      const pets = adoptablePets.filter(p => p.type === cat.key).slice(0, 3);
+      if (pets.length === 0) return null;
+      return /*#__PURE__*/React.createElement("div", {
+        key: cat.key,
+        style: {
+          marginBottom: '40px'
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: 'flex',
+          alignItems: 'center',
+          gap: '12px',
+          marginBottom: '16px',
+          paddingBottom: '10px',
+          borderBottom: '2px solid var(--border-glass)'
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          width: '36px',
+          height: '36px',
+          borderRadius: '10px',
+          background: 'linear-gradient(135deg, var(--primary-500), var(--primary-700))',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#fff',
+          fontSize: '1rem'
+        }
+      }, /*#__PURE__*/React.createElement("i", {
+        className: `fa-solid ${cat.icon}`
+      })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", {
+        style: {
+          margin: 0,
+          fontSize: '1.1rem',
+          fontWeight: '800',
+          color: 'var(--text-primary)'
+        }
+      }, cat.label), /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: '0.78rem',
+          color: 'var(--text-muted)'
+        }
+      }, "Top 3 Available for Adoption")), /*#__PURE__*/React.createElement("button", {
+        style: {
+          marginLeft: 'auto',
+          cursor: 'pointer',
+          border: '1px solid rgba(14,165,233,0.3)',
+          background: 'rgba(14,165,233,0.08)',
+          padding: '4px 14px',
+          borderRadius: '20px',
+          fontSize: '0.78rem',
+          fontWeight: '700',
+          color: 'var(--primary-600)'
+        },
+        onClick: () => {
+          setPetFilter(cat.key);
+          if (window.SoundEngine) window.SoundEngine.playClicker();
+        }
+      }, "View All ", cat.label.split(' ')[1], " \u2192")), /*#__PURE__*/React.createElement("div", {
+        className: "shelter-pets-grid"
+      }, pets.map(pet => renderPetCard(pet))));
+    }));
+  })(), /*#__PURE__*/React.createElement("div", {
     className: "glass-panel",
     style: {
       padding: '32px',
