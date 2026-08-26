@@ -141,6 +141,17 @@ function App() {
   });
   const [addPetModalOpen, setAddPetModalOpen] = useState(false);
   const [profileUpdateSuccess, setProfileUpdateSuccess] = useState(false);
+  const [contactForm, setContactForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    inquiryType: 'Veterinary Doctor Consultation',
+    priority: 'Standard',
+    message: ''
+  });
+  const [contactSuccessModal, setContactSuccessModal] = useState(false);
+  const [contactSuccessData, setContactSuccessData] = useState(null);
+  const [contactErrors, setContactErrors] = useState({});
 
   // Adoption Success Confirmation Modal
   const [adoptSuccessData, setAdoptSuccessData] = useState(null);
@@ -1573,7 +1584,15 @@ function App() {
     onClick: () => setActiveTab('about')
   }, /*#__PURE__*/React.createElement("i", {
     className: "fa-solid fa-circle-info"
-  }), " About Us")), /*#__PURE__*/React.createElement("div", {
+  }), " About Us"), /*#__PURE__*/React.createElement("button", {
+    className: `nav-btn ${activeTab === 'contact' ? 'active' : ''}`,
+    onClick: () => {
+      setActiveTab('contact');
+      if (window.SoundEngine) window.SoundEngine.playClicker();
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-headset"
+  }), " Contact Us")), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       alignItems: 'center',
@@ -1619,192 +1638,224 @@ function App() {
   }))))), /*#__PURE__*/React.createElement("main", {
     className: "app-container"
   }, activeTab === 'home' && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("section", {
-    className: "hero-section petcare-hero-wrapper"
+    className: "hero-section hero-mockup-layout"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "petcare-hero-grid"
+    className: "hero-grid"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "petcare-hero-left"
+    className: "hero-text-content"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "petcare-trust-badge"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "petcare-trust-badge-dot"
-  }), /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-shield-halved"
-  }), /*#__PURE__*/React.createElement("span", null, window.FurEverDB?.heroPetcare?.badge || 'Trusted PetCare Platform')), /*#__PURE__*/React.createElement("h1", {
-    className: "petcare-hero-title"
-  }, "Better Care for ", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
-    className: "petcare-highlight-text"
-  }, "Happier Pets")), /*#__PURE__*/React.createElement("p", {
-    className: "petcare-hero-desc"
-  }, window.FurEverDB?.heroPetcare?.subheading || 'Your all-in-one veterinary and companion wellness ecosystem. From accredited specialist clinics and gentle grooming salons to transparent adoptions and emergency rescue dispatch.'), /*#__PURE__*/React.createElement("div", {
-    className: "petcare-cta-row"
-  }, /*#__PURE__*/React.createElement("button", {
-    className: "btn-petcare-primary",
-    onClick: () => {
-      setActiveTab('shelter');
-      if (window.SoundEngine) window.SoundEngine.playClicker();
-      addToast('Exploring adoptable pets & companion gallery', 'fa-paw');
-    }
-  }, /*#__PURE__*/React.createElement("span", null, "Explore PetCare"), /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-arrow-right"
-  })), /*#__PURE__*/React.createElement("button", {
-    className: "btn-petcare-secondary",
-    onClick: () => {
-      setActiveTab('vet');
-      setVetViewMode('directory');
-      if (window.SoundEngine) window.SoundEngine.playClicker();
-      addToast('Browsing verified veterinary specialists', 'fa-user-doctor');
-    }
+    className: "hero-badge-glow"
   }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-stethoscope",
+    className: "fa-solid fa-crown",
     style: {
-      color: '#0ea5e9'
+      color: '#f59e0b'
     }
-  }), /*#__PURE__*/React.createElement("span", null, "Find a Veterinarian"))), /*#__PURE__*/React.createElement("div", {
-    className: "petcare-stats-strip"
-  }, (window.FurEverDB?.heroPetcare?.trustStats || [{
-    value: '15+',
-    label: 'Verified Specialists',
-    icon: 'fa-user-doctor',
-    color: '#0ea5e9'
-  }, {
-    value: '4.9★',
-    label: 'Client Trust Rating',
-    icon: 'fa-shield-heart',
-    color: '#10b981'
-  }, {
-    value: '24/7',
-    label: 'Emergency SOS Desk',
-    icon: 'fa-truck-medical',
-    color: '#ef4444'
-  }]).map((stat, sIdx) => /*#__PURE__*/React.createElement("div", {
-    key: sIdx,
-    className: "petcare-stat-item"
+  }), /*#__PURE__*/React.createElement("span", null, "#1 Unified Companion Care Platform")), /*#__PURE__*/React.createElement("h1", {
+    className: "hero-title-mockup"
+  }, "They Deserve ", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
+    className: "hero-title-sky"
+  }, "Forever Love"), " ", /*#__PURE__*/React.createElement("br", null), "& World-Class Care."), /*#__PURE__*/React.createElement("p", {
+    className: "hero-subtitle-mockup"
+  }, "Because every wag, purr and chirp tells a story \u2014 give them the healthy, happy and safe life they deserve."), /*#__PURE__*/React.createElement("div", {
+    className: "hero-features-chips-row"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "petcare-stat-icon-wrap",
-    style: {
-      color: stat.color
-    }
-  }, /*#__PURE__*/React.createElement("i", {
-    className: 'fa-solid ' + stat.icon
-  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    className: "petcare-stat-val"
-  }, stat.value), /*#__PURE__*/React.createElement("div", {
-    className: "petcare-stat-lbl"
-  }, stat.label)))))), /*#__PURE__*/React.createElement("div", {
-    className: "petcare-hero-right"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "petcare-composition-container"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "petcare-glow-orb-main"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "petcare-glow-ring"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "petcare-paw-float petcare-paw-1"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-paw"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "petcare-paw-float petcare-paw-2"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-paw"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "petcare-paw-float petcare-paw-3"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-paw"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "petcare-paw-float petcare-paw-4"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-paw"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "petcare-pet-card petcare-pet-dog"
-  }, /*#__PURE__*/React.createElement("img", {
-    src: "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=500&q=80",
-    alt: "Buddy - Golden Retriever",
-    className: "petcare-pet-img"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "petcare-pet-tag"
+    className: "hero-chip-item"
   }, /*#__PURE__*/React.createElement("span", {
-    className: "petcare-pet-name"
-  }, "Buddy"), /*#__PURE__*/React.createElement("span", {
-    className: "petcare-pet-badge"
-  }, "\uD83D\uDC36 Dog"))), /*#__PURE__*/React.createElement("div", {
-    className: "petcare-pet-card petcare-pet-cat"
-  }, /*#__PURE__*/React.createElement("img", {
-    src: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=500&q=80",
-    alt: "Luna - British Shorthair Cat",
-    className: "petcare-pet-img"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "petcare-pet-tag"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "petcare-pet-name"
-  }, "Luna"), /*#__PURE__*/React.createElement("span", {
-    className: "petcare-pet-badge"
-  }, "\uD83D\uDC31 Cat"))), /*#__PURE__*/React.createElement("div", {
-    className: "petcare-pet-card petcare-pet-rabbit"
-  }, /*#__PURE__*/React.createElement("img", {
-    src: "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?auto=format&fit=crop&w=500&q=80",
-    alt: "Coco - Holland Lop Bunny",
-    className: "petcare-pet-img"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "petcare-pet-tag"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "petcare-pet-name"
-  }, "Coco"), /*#__PURE__*/React.createElement("span", {
-    className: "petcare-pet-badge"
-  }, "\uD83D\uDC30 Bunny"))), /*#__PURE__*/React.createElement("div", {
-    className: "petcare-feature-card card-top-left",
-    onClick: () => {
-      setActiveTab('vet');
-      setVetViewMode('directory');
-      if (window.SoundEngine) window.SoundEngine.playClicker();
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "petcare-feature-icon-box",
-    style: {
-      background: 'linear-gradient(135deg, #0ea5e9, #0284c7)'
-    }
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-stethoscope"
-  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    className: "petcare-feature-title"
-  }, "Veterinary Care"), /*#__PURE__*/React.createElement("div", {
-    className: "petcare-feature-desc"
-  }, "Professional health support"))), /*#__PURE__*/React.createElement("div", {
-    className: "petcare-feature-card card-top-right",
-    onClick: () => {
-      setActiveTab('shelter');
-      if (window.SoundEngine) window.SoundEngine.playClicker();
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "petcare-feature-icon-box",
-    style: {
-      background: 'linear-gradient(135deg, #38bdf8, #0ea5e9)'
-    }
+    className: "chip-icon-circle chip-blue"
   }, /*#__PURE__*/React.createElement("i", {
     className: "fa-solid fa-heart"
-  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    className: "petcare-feature-title"
-  }, "Pet Adoption"), /*#__PURE__*/React.createElement("div", {
-    className: "petcare-feature-desc"
-  }, "Find a loving companion"))), /*#__PURE__*/React.createElement("div", {
-    className: "petcare-feature-card card-bottom-right",
+  })), /*#__PURE__*/React.createElement("span", null, "Verified Veterinarians")), /*#__PURE__*/React.createElement("div", {
+    className: "hero-chip-item"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "chip-icon-circle chip-sky"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-regular fa-clock"
+  })), /*#__PURE__*/React.createElement("span", null, "24/7 Emergency Helpline")), /*#__PURE__*/React.createElement("div", {
+    className: "hero-chip-item"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "chip-icon-circle chip-cyan"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-paw"
+  })), /*#__PURE__*/React.createElement("span", null, "Happy Adoptions")), /*#__PURE__*/React.createElement("div", {
+    className: "hero-chip-item"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "chip-icon-circle chip-indigo"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-bag-shopping"
+  })), /*#__PURE__*/React.createElement("span", null, "Premium Pet Supplies"))), /*#__PURE__*/React.createElement("form", {
+    onSubmit: handleHeroSearchSubmit,
+    className: "hero-search-bar-mockup"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-magnifying-glass search-lens-icon"
+  }), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    placeholder: "Search pets, products, vets...",
+    value: heroSearchQuery,
+    onChange: e => setHeroSearchQuery(e.target.value),
+    className: "search-input-field"
+  }), /*#__PURE__*/React.createElement("button", {
+    type: "submit",
+    className: "search-portal-btn"
+  }, "Search Portal ", /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-arrow-right"
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "hero-action-cards-grid"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "hero-action-card active-action-card",
     onClick: () => {
-      setActiveTab('pet-owner');
-      setPetOwnerSubTab('grooming-appts');
+      setActiveTab('shelter');
       if (window.SoundEngine) window.SoundEngine.playClicker();
     }
   }, /*#__PURE__*/React.createElement("div", {
-    className: "petcare-feature-icon-box",
-    style: {
-      background: 'linear-gradient(135deg, #6366f1, #0ea5e9)'
-    }
+    className: "action-card-icon-wrap"
   }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-scissors"
+    className: "fa-solid fa-paw"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "action-card-text"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "action-card-title"
+  }, "Find Your Pet ", /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-arrow-right card-arrow"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "action-card-sub"
+  }, "Adopt a Companion"))), /*#__PURE__*/React.createElement("div", {
+    className: "hero-action-card",
+    onClick: () => {
+      setActiveTab('vet');
+      if (window.SoundEngine) window.SoundEngine.playClicker();
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "action-card-icon-wrap"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-stethoscope"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "action-card-text"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "action-card-title"
+  }, "Book a Vet ", /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-arrow-right card-arrow"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "action-card-sub"
+  }, "Expert Care Near You"))), /*#__PURE__*/React.createElement("div", {
+    className: "hero-action-card",
+    onClick: () => {
+      setActiveTab('products');
+      if (window.SoundEngine) window.SoundEngine.playClicker();
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "action-card-icon-wrap"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-bag-shopping"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "action-card-text"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "action-card-title"
+  }, "Pet Store ", /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-arrow-right card-arrow"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "action-card-sub"
+  }, "Quality Products"))))), /*#__PURE__*/React.createElement("div", {
+    className: "hero-visual-showcase-mockup"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "heart-doodle heart-doodle-1"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-regular fa-heart"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "heart-doodle heart-doodle-2"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-regular fa-heart"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "hero-mockup-img-container"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "assets/hero_puppy_kitten.jpg",
+    alt: "Golden Retriever Puppy and Fluffy Kitten Cuddling",
+    className: "hero-mockup-main-img"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "hero-mockup-bottom-fade"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "floating-stat-mockup-card"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "floating-stat-icon"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-heart"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "floating-stat-number"
+  }, "4,850+"), /*#__PURE__*/React.createElement("div", {
+    className: "floating-stat-label"
+  }, "Happy Adoptions"), /*#__PURE__*/React.createElement("div", {
+    className: "floating-avatar-stack"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=100&q=80",
+    alt: "Adopted Pet",
+    className: "stack-avatar"
+  }), /*#__PURE__*/React.createElement("img", {
+    src: "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=100&q=80",
+    alt: "Adopted Pet",
+    className: "stack-avatar"
+  }), /*#__PURE__*/React.createElement("img", {
+    src: "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=100&q=80",
+    alt: "Adopted Pet",
+    className: "stack-avatar"
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "floating-quote-mockup-card"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "quote-paw-icon"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-paw"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "quote-text"
+  }, "\"Pets make our lives kinder, happier and whole.\" ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: '#f43f5e'
+    }
+  }, "\u2764\uFE0F"))))), /*#__PURE__*/React.createElement("div", {
+    className: "hero-bottom-trust-banner"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "trust-banner-item trust-highlight-item"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "trust-shield-icon"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-shield-halved"
   })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    className: "petcare-feature-title"
-  }, "Grooming"), /*#__PURE__*/React.createElement("div", {
-    className: "petcare-feature-desc"
-  }, "Healthy & happy pets"))))))), /*#__PURE__*/React.createElement("section", {
+    className: "trust-bold-title"
+  }, "Trusted by"), /*#__PURE__*/React.createElement("div", {
+    className: "trust-sub-title"
+  }, "Pet Lovers Worldwide"))), /*#__PURE__*/React.createElement("div", {
+    className: "trust-divider"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "trust-banner-item"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "trust-stat-number"
+  }, "50K+"), /*#__PURE__*/React.createElement("div", {
+    className: "trust-stat-label"
+  }, "Happy Pet Parents")), /*#__PURE__*/React.createElement("div", {
+    className: "trust-divider"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "trust-banner-item"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "trust-stat-number"
+  }, "10K+"), /*#__PURE__*/React.createElement("div", {
+    className: "trust-stat-label"
+  }, "Certified Vets")), /*#__PURE__*/React.createElement("div", {
+    className: "trust-divider"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "trust-banner-item"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "trust-stat-number"
+  }, "120K+"), /*#__PURE__*/React.createElement("div", {
+    className: "trust-stat-label"
+  }, "Pet Products")), /*#__PURE__*/React.createElement("div", {
+    className: "trust-divider"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "trust-banner-item"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "trust-stat-number",
+    style: {
+      color: '#38bdf8'
+    }
+  }, "24/7"), /*#__PURE__*/React.createElement("div", {
+    className: "trust-stat-label"
+  }, "Care & Support")))), /*#__PURE__*/React.createElement("section", {
     id: "pet-wellness-hub",
     style: {
       marginTop: '50px'
@@ -8481,6 +8532,765 @@ function App() {
     }, /*#__PURE__*/React.createElement("i", {
       className: "fa-solid fa-stethoscope"
     }), " Meet Our Vets")))));
+  })(), activeTab === 'contact' && (() => {
+    return /*#__PURE__*/React.createElement("div", {
+      className: "contact-page-wrapper",
+      style: {
+        animation: 'fadeIn 0.4s ease'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "section-header-wrap",
+      style: {
+        textAlign: 'center',
+        justifyContent: 'center',
+        marginBottom: '40px'
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+      className: "badge-sky",
+      style: {
+        padding: '6px 18px',
+        fontSize: '0.85rem'
+      }
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fa-solid fa-headset",
+      style: {
+        marginRight: '6px'
+      }
+    }), " 24/7 VIP Global Support Desk"), /*#__PURE__*/React.createElement("h2", {
+      style: {
+        fontSize: '2.6rem',
+        marginTop: '12px',
+        fontWeight: '900'
+      }
+    }, "Connect with ", /*#__PURE__*/React.createElement("span", {
+      className: "gradient-text"
+    }, "FurEver Care VIP Desk")), /*#__PURE__*/React.createElement("p", {
+      style: {
+        maxWidth: '680px',
+        margin: '10px auto 0',
+        color: 'var(--text-muted)',
+        fontSize: '1.02rem',
+        lineHeight: '1.6'
+      }
+    }, "Have questions about specialist veterinary consultations, pet adoption drives, nutrition plans, or emergency dispatch? Our dedicated triage coordinators are here for you 24/7."))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+        gap: '20px',
+        marginBottom: '44px'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "glass-panel glass-card-hover",
+      style: {
+        padding: '26px 22px',
+        borderRadius: '22px',
+        border: '1.5px solid var(--border-glass)'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: '52px',
+        height: '52px',
+        borderRadius: '16px',
+        background: 'linear-gradient(135deg, #0ea5e9, #0284c7)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: '#fff',
+        fontSize: '1.3rem',
+        marginBottom: '16px',
+        boxShadow: '0 6px 18px rgba(14,165,233,0.35)'
+      }
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fa-solid fa-phone-volume"
+    })), /*#__PURE__*/React.createElement("h3", {
+      style: {
+        fontSize: '1.15rem',
+        margin: '0 0 6px',
+        fontWeight: '800'
+      }
+    }, "Emergency & Helpline"), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontSize: '0.84rem',
+        color: 'var(--text-muted)',
+        margin: '0 0 14px'
+      }
+    }, "Instant 24/7 live veterinary doctor helpline."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontWeight: '800',
+        fontSize: '0.98rem',
+        color: 'var(--primary-600)'
+      }
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fa-solid fa-phone",
+      style: {
+        marginRight: '6px'
+      }
+    }), " +1 (800) 426-4435"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: '0.82rem',
+        color: 'var(--text-muted)',
+        marginTop: '4px'
+      }
+    }, "Toll-Free \u2022 24/7 Active")), /*#__PURE__*/React.createElement("div", {
+      className: "glass-panel glass-card-hover",
+      style: {
+        padding: '26px 22px',
+        borderRadius: '22px',
+        border: '1.5px solid var(--border-glass)'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: '52px',
+        height: '52px',
+        borderRadius: '16px',
+        background: 'linear-gradient(135deg, #25D366, #128C7E)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: '#fff',
+        fontSize: '1.4rem',
+        marginBottom: '16px',
+        boxShadow: '0 6px 18px rgba(37,211,102,0.35)'
+      }
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fa-brands fa-whatsapp"
+    })), /*#__PURE__*/React.createElement("h3", {
+      style: {
+        fontSize: '1.15rem',
+        margin: '0 0 6px',
+        fontWeight: '800'
+      }
+    }, "WhatsApp VIP Desk"), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontSize: '0.84rem',
+        color: 'var(--text-muted)',
+        margin: '0 0 14px'
+      }
+    }, "Chat directly with animal care specialists."), /*#__PURE__*/React.createElement("a", {
+      href: "https://wa.me/923001234567?text=Assalam-o-Alaikum%20FurEver%20Care%20VIP%20Support",
+      target: "_blank",
+      rel: "noopener noreferrer",
+      style: {
+        fontWeight: '800',
+        fontSize: '0.98rem',
+        color: '#16a34a',
+        textDecoration: 'none',
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '6px'
+      }
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fa-brands fa-whatsapp"
+    }), " +92 300 1234567"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: '0.82rem',
+        color: 'var(--text-muted)',
+        marginTop: '4px'
+      }
+    }, "Instant Chat \u2022 Fast Reply")), /*#__PURE__*/React.createElement("div", {
+      className: "glass-panel glass-card-hover",
+      style: {
+        padding: '26px 22px',
+        borderRadius: '22px',
+        border: '1.5px solid var(--border-glass)'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: '52px',
+        height: '52px',
+        borderRadius: '16px',
+        background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: '#fff',
+        fontSize: '1.3rem',
+        marginBottom: '16px',
+        boxShadow: '0 6px 18px rgba(99,102,241,0.35)'
+      }
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fa-solid fa-envelope-open-text"
+    })), /*#__PURE__*/React.createElement("h3", {
+      style: {
+        fontSize: '1.15rem',
+        margin: '0 0 6px',
+        fontWeight: '800'
+      }
+    }, "Official Email Desk"), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontSize: '0.84rem',
+        color: 'var(--text-muted)',
+        margin: '0 0 14px'
+      }
+    }, "Detailed adoption, partnership & care queries."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontWeight: '800',
+        fontSize: '0.92rem',
+        color: '#4f46e5'
+      }
+    }, "support@furevercare.org"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: '0.82rem',
+        color: 'var(--text-muted)',
+        marginTop: '4px'
+      }
+    }, "Avg Response: < 15 Mins")), /*#__PURE__*/React.createElement("div", {
+      className: "glass-panel glass-card-hover",
+      style: {
+        padding: '26px 22px',
+        borderRadius: '22px',
+        border: '1.5px solid var(--border-glass)'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: '52px',
+        height: '52px',
+        borderRadius: '16px',
+        background: 'linear-gradient(135deg, #f59e0b, #d97706)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: '#fff',
+        fontSize: '1.3rem',
+        marginBottom: '16px',
+        boxShadow: '0 6px 18px rgba(245,158,11,0.35)'
+      }
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fa-solid fa-location-dot"
+    })), /*#__PURE__*/React.createElement("h3", {
+      style: {
+        fontSize: '1.15rem',
+        margin: '0 0 6px',
+        fontWeight: '800'
+      }
+    }, "Care HQ Sanctuary"), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontSize: '0.84rem',
+        color: 'var(--text-muted)',
+        margin: '0 0 14px'
+      }
+    }, "Visit our modern adoption sanctuary."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontWeight: '700',
+        fontSize: '0.88rem',
+        color: 'var(--text-main)'
+      }
+    }, "FurEver Plaza, Suite 400"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: '0.82rem',
+        color: 'var(--text-muted)',
+        marginTop: '4px'
+      }
+    }, "Mon - Sun \u2022 8 AM - 10 PM"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'grid',
+        gridTemplateColumns: '1.2fr 0.8fr',
+        gap: '32px',
+        alignItems: 'start',
+        marginBottom: '50px'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "glass-panel",
+      style: {
+        padding: '36px 32px',
+        borderRadius: '26px',
+        border: '2px solid rgba(14,165,233,0.25)',
+        boxShadow: '0 16px 40px rgba(14,165,233,0.12)'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: '20px'
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("span", {
+      className: "badge-sky",
+      style: {
+        fontSize: '0.78rem'
+      }
+    }, "VIP Ticket & Callback"), /*#__PURE__*/React.createElement("h3", {
+      style: {
+        fontSize: '1.45rem',
+        marginTop: '6px',
+        fontWeight: '900'
+      }
+    }, "Send a VIP Message")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: '42px',
+        height: '42px',
+        borderRadius: '50%',
+        background: 'rgba(14,165,233,0.1)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: '#0ea5e9'
+      }
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fa-solid fa-paper-plane"
+    }))), /*#__PURE__*/React.createElement("form", {
+      noValidate: true,
+      onSubmit: e => {
+        e.preventDefault();
+        const errs = {};
+        if (!contactForm.name.trim()) errs.name = 'Please enter your full name';
+        if (!contactForm.email.trim() || !contactForm.email.includes('@')) errs.email = 'Please enter a valid email address';
+        if (!contactForm.phone.trim()) errs.phone = 'Please enter your contact number';
+        if (!contactForm.message.trim()) errs.message = 'Please provide details about your inquiry';
+        setContactErrors(errs);
+        if (Object.keys(errs).length > 0) {
+          if (window.SoundEngine) window.SoundEngine.playBeep();
+          addToast('Please fill out all required fields', 'fa-triangle-exclamation', 'warning');
+          return;
+        }
+        const ticketNumber = 'TICK-' + Math.floor(100000 + Math.random() * 900000);
+        const successPayload = {
+          ticket: ticketNumber,
+          name: contactForm.name,
+          email: contactForm.email,
+          phone: contactForm.phone,
+          type: contactForm.inquiryType,
+          priority: contactForm.priority,
+          message: contactForm.message
+        };
+        setContactSuccessData(successPayload);
+        setContactSuccessModal(true);
+        setContactForm({
+          name: '',
+          email: '',
+          phone: '',
+          inquiryType: 'Veterinary Doctor Consultation',
+          priority: 'Standard',
+          message: ''
+        });
+        setContactErrors({});
+        if (window.SoundEngine) window.SoundEngine.playChime();
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: '16px',
+        marginBottom: '16px'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "form-group-custom"
+    }, /*#__PURE__*/React.createElement("label", {
+      className: "form-label-custom",
+      style: {
+        fontWeight: '700'
+      }
+    }, "Your Full Name *"), /*#__PURE__*/React.createElement("input", {
+      type: "text",
+      className: "input-sky",
+      placeholder: "e.g. Hamna Khan",
+      value: contactForm.name,
+      onChange: e => {
+        setContactForm({
+          ...contactForm,
+          name: e.target.value
+        });
+        setContactErrors({
+          ...contactErrors,
+          name: ''
+        });
+      },
+      style: {
+        border: contactErrors.name ? '2px solid #ef4444' : ''
+      }
+    }), contactErrors.name && /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: '#ef4444',
+        fontSize: '0.74rem',
+        marginTop: '4px'
+      }
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fa-solid fa-circle-exclamation"
+    }), " ", contactErrors.name)), /*#__PURE__*/React.createElement("div", {
+      className: "form-group-custom"
+    }, /*#__PURE__*/React.createElement("label", {
+      className: "form-label-custom",
+      style: {
+        fontWeight: '700'
+      }
+    }, "Email Address *"), /*#__PURE__*/React.createElement("input", {
+      type: "email",
+      className: "input-sky",
+      placeholder: "hamna@example.com",
+      value: contactForm.email,
+      onChange: e => {
+        setContactForm({
+          ...contactForm,
+          email: e.target.value
+        });
+        setContactErrors({
+          ...contactErrors,
+          email: ''
+        });
+      },
+      style: {
+        border: contactErrors.email ? '2px solid #ef4444' : ''
+      }
+    }), contactErrors.email && /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: '#ef4444',
+        fontSize: '0.74rem',
+        marginTop: '4px'
+      }
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fa-solid fa-circle-exclamation"
+    }), " ", contactErrors.email))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: '16px',
+        marginBottom: '16px'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "form-group-custom"
+    }, /*#__PURE__*/React.createElement("label", {
+      className: "form-label-custom",
+      style: {
+        fontWeight: '700'
+      }
+    }, "Phone / WhatsApp *"), /*#__PURE__*/React.createElement("input", {
+      type: "text",
+      className: "input-sky",
+      placeholder: "+92 300 1234567",
+      value: contactForm.phone,
+      onChange: e => {
+        setContactForm({
+          ...contactForm,
+          phone: e.target.value
+        });
+        setContactErrors({
+          ...contactErrors,
+          phone: ''
+        });
+      },
+      style: {
+        border: contactErrors.phone ? '2px solid #ef4444' : ''
+      }
+    }), contactErrors.phone && /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: '#ef4444',
+        fontSize: '0.74rem',
+        marginTop: '4px'
+      }
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fa-solid fa-circle-exclamation"
+    }), " ", contactErrors.phone)), /*#__PURE__*/React.createElement("div", {
+      className: "form-group-custom"
+    }, /*#__PURE__*/React.createElement("label", {
+      className: "form-label-custom",
+      style: {
+        fontWeight: '700'
+      }
+    }, "Inquiry Department"), /*#__PURE__*/React.createElement("select", {
+      className: "input-sky",
+      value: contactForm.inquiryType,
+      onChange: e => setContactForm({
+        ...contactForm,
+        inquiryType: e.target.value
+      })
+    }, /*#__PURE__*/React.createElement("option", null, "Veterinary Doctor Consultation"), /*#__PURE__*/React.createElement("option", null, "Pet Adoption & Foster Guidance"), /*#__PURE__*/React.createElement("option", null, "Grooming & Spa Care Inquiry"), /*#__PURE__*/React.createElement("option", null, "Shelter Volunteer & Partnership"), /*#__PURE__*/React.createElement("option", null, "General Support & Feedback")))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: '18px'
+      }
+    }, /*#__PURE__*/React.createElement("label", {
+      className: "form-label-custom",
+      style: {
+        fontWeight: '700',
+        marginBottom: '8px',
+        display: 'block'
+      }
+    }, "Response Priority"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 1fr)',
+        gap: '10px'
+      }
+    }, [{
+      id: 'Standard',
+      label: '🟢 Standard',
+      time: 'Within 24 Hours'
+    }, {
+      id: 'High',
+      label: '🟡 High Priority',
+      time: 'Within 2 Hours'
+    }, {
+      id: 'Emergency',
+      label: '🔴 Urgent Triage',
+      time: 'Immediate Callback'
+    }].map(p => /*#__PURE__*/React.createElement("div", {
+      key: p.id,
+      onClick: () => setContactForm({
+        ...contactForm,
+        priority: p.id
+      }),
+      style: {
+        padding: '10px',
+        borderRadius: '12px',
+        textAlign: 'center',
+        cursor: 'pointer',
+        border: contactForm.priority === p.id ? '2px solid #0ea5e9' : '1px solid var(--border-glass)',
+        background: contactForm.priority === p.id ? 'rgba(14,165,233,0.12)' : 'var(--bg-surface)',
+        transition: 'all 0.2s'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontWeight: '800',
+        fontSize: '0.85rem',
+        color: contactForm.priority === p.id ? '#0284c7' : 'var(--text-main)'
+      }
+    }, p.label), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: '0.7rem',
+        color: 'var(--text-muted)'
+      }
+    }, p.time))))), /*#__PURE__*/React.createElement("div", {
+      className: "form-group-custom",
+      style: {
+        marginBottom: '22px'
+      }
+    }, /*#__PURE__*/React.createElement("label", {
+      className: "form-label-custom",
+      style: {
+        fontWeight: '700'
+      }
+    }, "Your Message / Care Details *"), /*#__PURE__*/React.createElement("textarea", {
+      rows: "4",
+      className: "input-sky",
+      placeholder: "Please describe how our veterinary specialists or adoption team can assist you...",
+      value: contactForm.message,
+      onChange: e => {
+        setContactForm({
+          ...contactForm,
+          message: e.target.value
+        });
+        setContactErrors({
+          ...contactErrors,
+          message: ''
+        });
+      },
+      style: {
+        border: contactErrors.message ? '2px solid #ef4444' : '',
+        resize: 'vertical'
+      }
+    }), contactErrors.message && /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: '#ef4444',
+        fontSize: '0.74rem',
+        marginTop: '4px'
+      }
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fa-solid fa-circle-exclamation"
+    }), " ", contactErrors.message)), /*#__PURE__*/React.createElement("button", {
+      type: "submit",
+      className: "btn-sky-primary",
+      style: {
+        width: '100%',
+        padding: '14px',
+        fontSize: '1.02rem',
+        fontWeight: '800',
+        borderRadius: '14px',
+        boxShadow: '0 6px 20px rgba(14,165,233,0.38)'
+      }
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fa-solid fa-paper-plane",
+      style: {
+        marginRight: '8px'
+      }
+    }), " Submit VIP Request & Dispatch"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '20px'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "glass-panel",
+      style: {
+        padding: '26px',
+        borderRadius: '24px',
+        border: '1.5px solid var(--border-glass)'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '12px',
+        marginBottom: '14px'
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        width: '12px',
+        height: '12px',
+        borderRadius: '50%',
+        background: '#10b981',
+        boxShadow: '0 0 10px #10b981',
+        animation: 'petcarePulseDot 2s infinite'
+      }
+    }), /*#__PURE__*/React.createElement("strong", {
+      style: {
+        fontSize: '1rem',
+        color: 'var(--text-main)'
+      }
+    }, "Live Support Desk Status: ONLINE")), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontSize: '0.86rem',
+        color: 'var(--text-muted)',
+        lineHeight: '1.6',
+        margin: '0 0 16px'
+      }
+    }, "Our clinical triage team is currently active. Average wait time for VIP inquiries is under ", /*#__PURE__*/React.createElement("strong", null, "4 minutes"), "."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        gap: '10px'
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      className: "btn-sky-primary",
+      style: {
+        flex: 1,
+        padding: '10px',
+        fontSize: '0.86rem',
+        fontWeight: '700',
+        borderRadius: '10px'
+      },
+      onClick: () => addToast('Dialing Emergency Hospital Desk: (888) 426-4435', 'fa-phone', 'warning')
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fa-solid fa-phone"
+    }), " Call Hospital Desk"), /*#__PURE__*/React.createElement("a", {
+      href: "https://wa.me/923001234567",
+      target: "_blank",
+      rel: "noopener noreferrer",
+      className: "btn-sky-outline",
+      style: {
+        padding: '10px 16px',
+        fontSize: '0.86rem',
+        fontWeight: '700',
+        borderRadius: '10px',
+        textDecoration: 'none',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '6px'
+      }
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fa-brands fa-whatsapp",
+      style: {
+        color: '#25D366'
+      }
+    }), " WhatsApp"))), /*#__PURE__*/React.createElement("div", {
+      className: "glass-panel",
+      style: {
+        padding: '26px',
+        borderRadius: '24px',
+        border: '1.5px solid var(--border-glass)'
+      }
+    }, /*#__PURE__*/React.createElement("h4", {
+      style: {
+        margin: '0 0 14px',
+        fontSize: '1.1rem',
+        fontWeight: '800'
+      }
+    }, /*#__PURE__*/React.createElement("i", {
+      className: "fa-solid fa-clock",
+      style: {
+        color: 'var(--primary-500)',
+        marginRight: '8px'
+      }
+    }), "Operating & Clinic Hours"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '10px',
+        fontSize: '0.86rem'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        paddingBottom: '8px',
+        borderBottom: '1px solid var(--border-glass)'
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: 'var(--text-muted)'
+      }
+    }, "Emergency Trauma Center"), /*#__PURE__*/React.createElement("strong", {
+      style: {
+        color: '#0ea5e9'
+      }
+    }, "24 Hours / 7 Days")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        paddingBottom: '8px',
+        borderBottom: '1px solid var(--border-glass)'
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: 'var(--text-muted)'
+      }
+    }, "Veterinary Specialist Clinics"), /*#__PURE__*/React.createElement("strong", null, "08:00 AM \u2013 10:00 PM")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        paddingBottom: '8px',
+        borderBottom: '1px solid var(--border-glass)'
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: 'var(--text-muted)'
+      }
+    }, "Adoption Hub & Foster Desk"), /*#__PURE__*/React.createElement("strong", null, "09:00 AM \u2013 08:00 PM")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        justifyContent: 'space-between'
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: 'var(--text-muted)'
+      }
+    }, "Grooming Spa & Hydro-Bath"), /*#__PURE__*/React.createElement("strong", null, "09:30 AM \u2013 06:30 PM")))), /*#__PURE__*/React.createElement("div", {
+      className: "glass-panel",
+      style: {
+        padding: '0',
+        overflow: 'hidden',
+        borderRadius: '24px',
+        position: 'relative',
+        minHeight: '190px',
+        border: '1.5px solid var(--border-glass)'
+      }
+    }, /*#__PURE__*/React.createElement("img", {
+      src: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80",
+      alt: "FurEver Care Center Headquarters",
+      style: {
+        width: '100%',
+        height: '190px',
+        objectFit: 'cover'
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: 'absolute',
+        inset: 0,
+        background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%)',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        padding: '18px'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: '#fff',
+        fontWeight: '800',
+        fontSize: '0.95rem'
+      }
+    }, "FurEver Care Central Sanctuary"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: 'rgba(255,255,255,0.8)',
+        fontSize: '0.78rem'
+      }
+    }, "742 Evergreen Blvd, Suite 400 \u2022 Free Visitor Parking"))))));
   })()), /*#__PURE__*/React.createElement("button", {
     className: "ai-bot-toggle-btn",
     onClick: () => setAiChatOpen(!aiChatOpen),
@@ -13149,6 +13959,147 @@ function App() {
     },
     onClick: () => {
       setReminderSuccess(false);
+      if (window.SoundEngine) window.SoundEngine.playClicker();
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-check",
+    style: {
+      marginRight: '8px'
+    }
+  }), " Done"))), contactSuccessModal && contactSuccessData && /*#__PURE__*/React.createElement("div", {
+    className: "modal-overlay",
+    style: {
+      background: 'rgba(15, 23, 42, 0.78)',
+      backdropFilter: 'blur(10px)',
+      zIndex: 99999
+    },
+    onClick: () => setContactSuccessModal(false)
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "modal-dialog-content",
+    onClick: e => e.stopPropagation(),
+    style: {
+      background: 'var(--bg-card, #ffffff)',
+      borderRadius: '26px',
+      padding: '38px 32px',
+      textAlign: 'center',
+      maxWidth: '440px',
+      width: '92%',
+      boxShadow: '0 25px 70px rgba(14, 165, 233, 0.4)',
+      border: '2px solid rgba(14, 165, 233, 0.3)',
+      animation: 'scaleUp 0.3s ease'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: '84px',
+      height: '84px',
+      borderRadius: '50%',
+      background: 'linear-gradient(135deg, #0ea5e9 0%, #38bdf8 50%, #6366f1 100%)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      margin: '0 auto 20px',
+      boxShadow: '0 8px 30px rgba(14, 165, 233, 0.5)'
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-paper-plane",
+    style: {
+      color: '#ffffff',
+      fontSize: '2.4rem'
+    }
+  })), /*#__PURE__*/React.createElement("span", {
+    className: "badge-sky",
+    style: {
+      fontSize: '0.8rem',
+      padding: '5px 16px',
+      marginBottom: '8px',
+      display: 'inline-block'
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-circle-check"
+  }), " VIP Dispatch Confirmed"), /*#__PURE__*/React.createElement("h2", {
+    style: {
+      fontSize: '1.55rem',
+      fontWeight: '900',
+      color: 'var(--text-main, #0f172a)',
+      margin: '8px 0 10px'
+    }
+  }, "Message Dispatched!"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      color: 'var(--text-muted, #475569)',
+      fontSize: '0.92rem',
+      lineHeight: '1.6',
+      margin: '0 0 16px'
+    }
+  }, "Thank you, ", /*#__PURE__*/React.createElement("strong", {
+    style: {
+      color: 'var(--primary-500, #0ea5e9)'
+    }
+  }, contactSuccessData.name), "! Your inquiry has been routed to our certified care coordinators."), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '14px 18px',
+      background: 'linear-gradient(135deg, rgba(14, 165, 233, 0.08) 0%, rgba(99, 102, 241, 0.08) 100%)',
+      borderRadius: '16px',
+      border: '1.5px solid rgba(14, 165, 233, 0.2)',
+      marginBottom: '20px',
+      textAlign: 'left'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      marginBottom: '6px',
+      fontSize: '0.85rem'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: 'var(--text-muted)'
+    }
+  }, "Ticket Reference:"), /*#__PURE__*/React.createElement("strong", {
+    style: {
+      color: '#0ea5e9'
+    }
+  }, contactSuccessData.ticket)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      marginBottom: '6px',
+      fontSize: '0.85rem'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: 'var(--text-muted)'
+    }
+  }, "Department:"), /*#__PURE__*/React.createElement("strong", {
+    style: {
+      color: 'var(--text-main)'
+    }
+  }, contactSuccessData.type)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      fontSize: '0.85rem'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: 'var(--text-muted)'
+    }
+  }, "Priority Level:"), /*#__PURE__*/React.createElement("strong", {
+    style: {
+      color: '#16a34a'
+    }
+  }, contactSuccessData.priority))), /*#__PURE__*/React.createElement("button", {
+    className: "btn-sky-primary",
+    style: {
+      width: '100%',
+      padding: '13px',
+      fontWeight: '800',
+      fontSize: '1rem',
+      borderRadius: '14px',
+      background: 'linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%)',
+      boxShadow: '0 6px 20px rgba(14, 165, 233, 0.4)'
+    },
+    onClick: () => {
+      setContactSuccessModal(false);
       if (window.SoundEngine) window.SoundEngine.playClicker();
     }
   }, /*#__PURE__*/React.createElement("i", {
