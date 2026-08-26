@@ -189,7 +189,7 @@
     "size": "Small Aviary",
     "location": "Tropical Aviary Wing",
     "vaccinated": true,
-    "image": "https://images.unsplash.com/photo-1552728089-57bdde30beb3?auto=format&fit=crop&w=600&q=80",
+    "image": "images/blue-macaw.jpg",
     "badge": "Cheery Whistlers",
     "description": "Vibrant plumage, mimics cheerful household melodies, eats fresh fruit skewers and loves head scratches.",
     "healthStatus": "Avian Vet Checked & Beak Scaled"
@@ -204,7 +204,7 @@
     "size": "Small",
     "location": "Foster Aviary 3",
     "vaccinated": true,
-    "image": "https://images.unsplash.com/photo-1612024782955-49fae79e42bb?auto=format&fit=crop&w=600&q=80",
+    "image": "images/blue-macaw.jpg",
     "badge": "Tame Whistle Artist",
     "description": "Whistles cheerful ringtones, steps onto fingers gently, loves millet spray and shoulder perching.",
     "healthStatus": "Avian Certified Healthy"
@@ -219,7 +219,7 @@
     "size": "Medium",
     "location": "Sanctuary Palm House",
     "vaccinated": true,
-    "image": "https://images.unsplash.com/photo-1544943910-4c1dc44a0b27?auto=format&fit=crop&w=600&q=80",
+    "image": "images/blue-macaw.jpg",
     "badge": "Intelligent Companions",
     "description": "Social and bright personalities, loves puzzle toys, cracked walnuts, and learning new vocal phrases.",
     "healthStatus": "Full Blood Panel & Feather Checked"
