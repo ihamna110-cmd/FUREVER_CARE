@@ -1658,111 +1658,224 @@ function App() {
   }))))), /*#__PURE__*/React.createElement("main", {
     className: "app-container"
   }, activeTab === 'home' && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("section", {
-    className: "hero-section video-hero-container",
-    onMouseMove: e => {
-      const rect = e.currentTarget.getBoundingClientRect();
-      const mouseX = e.clientX - rect.left;
-      const mouseY = e.clientY - rect.top;
-      const ratioX = Math.max(0, Math.min(1, mouseX / rect.width));
-
-      // Map mouse X to cat animation frame (0 to 76)
-      const targetFrame = Math.floor(ratioX * 76);
-      setCatFrameIndex(targetFrame);
-      setFishCursorPos({
-        x: mouseX,
-        y: mouseY,
-        visible: true
-      });
-    },
-    onMouseLeave: () => {
-      setFishCursorPos(prev => ({
-        ...prev,
-        visible: false
-      }));
-    }
-  }, fishCursorPos && fishCursorPos.visible && /*#__PURE__*/React.createElement("div", {
-    className: "hero-fish-toy-cursor",
-    style: {
-      left: `${fishCursorPos.x}px`,
-      top: `${fishCursorPos.y}px`
-    }
-  }, /*#__PURE__*/React.createElement("img", {
-    src: "https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/external-fish-toy-cat-accessories-flaticons-lineal-color-flat-icons.png",
-    alt: "Fish Toy",
-    style: {
-      width: '42px',
-      height: '42px',
-      display: 'block',
-      filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.25))'
-    },
-    onError: e => {
-      e.target.style.display = 'none';
-      e.target.parentElement.innerHTML = '🐟';
-    }
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "video-cat-bg-wrapper"
-  }, /*#__PURE__*/React.createElement("img", {
-    src: `assets/cat_sequence/cat_${String(catFrameIndex || 0).padStart(2, '0')}.jpg`,
-    alt: "Interactive Ragdoll Cat",
-    className: "video-cat-bg-img",
-    onError: e => {
-      e.target.src = 'assets/hero_video_cat_exact.jpg';
-    }
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "video-hero-paw paw-pos-1"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-paw"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "video-hero-paw paw-pos-2"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-paw"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "video-hero-paw paw-pos-3"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-paw"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "video-hero-paw paw-pos-4"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-paw"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "video-hero-left-content"
+    className: "hero-section hero-mockup-layout"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "video-hero-badge"
+    className: "hero-grid"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "hero-text-content"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "hero-badge-glow"
   }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-paw",
+    className: "fa-solid fa-crown",
     style: {
-      color: '#8C6E5F'
+      color: '#f59e0b'
     }
-  }), /*#__PURE__*/React.createElement("span", null, "Made for Cats. Loved by Cat People."), /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-heart",
-    style: {
-      color: '#f43f5e',
-      fontSize: '0.75rem',
-      marginLeft: '4px'
-    }
-  })), /*#__PURE__*/React.createElement("h1", {
-    className: "video-hero-title"
-  }, "Everything Your ", /*#__PURE__*/React.createElement("br", null), "Cat Deserves."), /*#__PURE__*/React.createElement("p", {
-    className: "video-hero-desc"
-  }, "Thoughtfully chosen essentials, irresistible toys, cozy spaces, and little luxuries made for cats who rule the house."), /*#__PURE__*/React.createElement("div", {
-    className: "video-hero-cta-row"
-  }, /*#__PURE__*/React.createElement("button", {
-    className: "btn-video-primary",
-    onClick: () => {
-      setActiveTab('products');
-      if (window.SoundEngine) window.SoundEngine.playClicker();
-      addToast('Exploring Pet Products & Luxuries', 'fa-bag-shopping');
-    }
-  }, /*#__PURE__*/React.createElement("span", null, "Shop for Cats"), /*#__PURE__*/React.createElement("i", {
+  }), /*#__PURE__*/React.createElement("span", null, "#1 Unified Companion Care Platform")), /*#__PURE__*/React.createElement("h1", {
+    className: "hero-title-mockup"
+  }, "They Deserve ", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
+    className: "hero-title-sky"
+  }, "Forever Love"), " ", /*#__PURE__*/React.createElement("br", null), "& World-Class Care."), /*#__PURE__*/React.createElement("p", {
+    className: "hero-subtitle-mockup"
+  }, "Because every wag, purr and chirp tells a story \u2014 give them the healthy, happy and safe life they deserve."), /*#__PURE__*/React.createElement("div", {
+    className: "hero-features-chips-row"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "hero-chip-item"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "chip-icon-circle chip-blue"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-heart"
+  })), /*#__PURE__*/React.createElement("span", null, "Verified Veterinarians")), /*#__PURE__*/React.createElement("div", {
+    className: "hero-chip-item"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "chip-icon-circle chip-sky"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-regular fa-clock"
+  })), /*#__PURE__*/React.createElement("span", null, "24/7 Emergency Helpline")), /*#__PURE__*/React.createElement("div", {
+    className: "hero-chip-item"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "chip-icon-circle chip-cyan"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-paw"
+  })), /*#__PURE__*/React.createElement("span", null, "Happy Adoptions")), /*#__PURE__*/React.createElement("div", {
+    className: "hero-chip-item"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "chip-icon-circle chip-indigo"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-bag-shopping"
+  })), /*#__PURE__*/React.createElement("span", null, "Premium Pet Supplies"))), /*#__PURE__*/React.createElement("form", {
+    onSubmit: handleHeroSearchSubmit,
+    className: "hero-search-bar-mockup"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-magnifying-glass search-lens-icon"
+  }), /*#__PURE__*/React.createElement("input", {
+    type: "text",
+    placeholder: "Search pets, products, vets...",
+    value: heroSearchQuery,
+    onChange: e => setHeroSearchQuery(e.target.value),
+    className: "search-input-field"
+  }), /*#__PURE__*/React.createElement("button", {
+    type: "submit",
+    className: "search-portal-btn"
+  }, "Search Portal ", /*#__PURE__*/React.createElement("i", {
     className: "fa-solid fa-arrow-right"
-  })), /*#__PURE__*/React.createElement("button", {
-    className: "btn-video-secondary",
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "hero-action-cards-grid"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "hero-action-card active-action-card",
     onClick: () => {
       setActiveTab('shelter');
       if (window.SoundEngine) window.SoundEngine.playClicker();
-      addToast('Browsing Companion Breeds & Adoptions', 'fa-paw');
     }
-  }, /*#__PURE__*/React.createElement("span", null, "Explore Cat Breeds"))))), /*#__PURE__*/React.createElement("section", {
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "action-card-icon-wrap"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-paw"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "action-card-text"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "action-card-title"
+  }, "Find Your Pet ", /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-arrow-right card-arrow"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "action-card-sub"
+  }, "Adopt a Companion"))), /*#__PURE__*/React.createElement("div", {
+    className: "hero-action-card",
+    onClick: () => {
+      setActiveTab('vet');
+      if (window.SoundEngine) window.SoundEngine.playClicker();
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "action-card-icon-wrap"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-stethoscope"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "action-card-text"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "action-card-title"
+  }, "Book a Vet ", /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-arrow-right card-arrow"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "action-card-sub"
+  }, "Expert Care Near You"))), /*#__PURE__*/React.createElement("div", {
+    className: "hero-action-card",
+    onClick: () => {
+      setActiveTab('products');
+      if (window.SoundEngine) window.SoundEngine.playClicker();
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "action-card-icon-wrap"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-bag-shopping"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "action-card-text"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "action-card-title"
+  }, "Pet Store ", /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-arrow-right card-arrow"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "action-card-sub"
+  }, "Quality Products"))))), /*#__PURE__*/React.createElement("div", {
+    className: "hero-visual-showcase-mockup"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "heart-doodle heart-doodle-1"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-regular fa-heart"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "heart-doodle heart-doodle-2"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-regular fa-heart"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "hero-mockup-img-container"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "assets/hero_puppy_kitten.jpg",
+    alt: "Golden Retriever Puppy and Fluffy Kitten Cuddling",
+    className: "hero-mockup-main-img"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "hero-mockup-bottom-fade"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "floating-stat-mockup-card"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "floating-stat-icon"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-heart"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "floating-stat-number"
+  }, "4,850+"), /*#__PURE__*/React.createElement("div", {
+    className: "floating-stat-label"
+  }, "Happy Adoptions"), /*#__PURE__*/React.createElement("div", {
+    className: "floating-avatar-stack"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=100&q=80",
+    alt: "Adopted Pet",
+    className: "stack-avatar"
+  }), /*#__PURE__*/React.createElement("img", {
+    src: "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=100&q=80",
+    alt: "Adopted Pet",
+    className: "stack-avatar"
+  }), /*#__PURE__*/React.createElement("img", {
+    src: "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=100&q=80",
+    alt: "Adopted Pet",
+    className: "stack-avatar"
+  }))), /*#__PURE__*/React.createElement("div", {
+    className: "floating-quote-mockup-card"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "quote-paw-icon"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-paw"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "quote-text"
+  }, "\"Pets make our lives kinder, happier and whole.\" ", /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: '#f43f5e'
+    }
+  }, "\u2764\uFE0F"))))), /*#__PURE__*/React.createElement("div", {
+    className: "hero-bottom-trust-banner"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "trust-banner-item trust-highlight-item"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "trust-shield-icon"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-shield-halved"
+  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "trust-bold-title"
+  }, "Trusted by"), /*#__PURE__*/React.createElement("div", {
+    className: "trust-sub-title"
+  }, "Pet Lovers Worldwide"))), /*#__PURE__*/React.createElement("div", {
+    className: "trust-divider"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "trust-banner-item"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "trust-stat-number"
+  }, "50K+"), /*#__PURE__*/React.createElement("div", {
+    className: "trust-stat-label"
+  }, "Happy Pet Parents")), /*#__PURE__*/React.createElement("div", {
+    className: "trust-divider"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "trust-banner-item"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "trust-stat-number"
+  }, "10K+"), /*#__PURE__*/React.createElement("div", {
+    className: "trust-stat-label"
+  }, "Certified Vets")), /*#__PURE__*/React.createElement("div", {
+    className: "trust-divider"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "trust-banner-item"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "trust-stat-number"
+  }, "120K+"), /*#__PURE__*/React.createElement("div", {
+    className: "trust-stat-label"
+  }, "Pet Products")), /*#__PURE__*/React.createElement("div", {
+    className: "trust-divider"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "trust-banner-item"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "trust-stat-number",
+    style: {
+      color: '#38bdf8'
+    }
+  }, "24/7"), /*#__PURE__*/React.createElement("div", {
+    className: "trust-stat-label"
+  }, "Care & Support")))), /*#__PURE__*/React.createElement("section", {
     id: "pet-wellness-hub",
     style: {
       marginTop: '50px'
