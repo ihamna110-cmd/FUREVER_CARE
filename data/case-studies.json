@@ -1,0 +1,66 @@
+[
+  {
+    "id": "case-101",
+    "patientName": "Archie (Golden Retriever, 4 yrs)",
+    "ownerName": "Dr. Sarah Jenkins",
+    "caseTitle": "Bilateral Hip Dysplasia & Successful Stem-Cell PRP Therapy",
+    "date": "August 12, 2026",
+    "condition": "Severe lameness in hind legs, difficulty rising, graded Stage 3 osteoarthritis.",
+    "diagnosis": "Canine Hip Dysplasia confirmed via orthogonal radiographic imaging showing 45% joint laxity.",
+    "treatment": "Ultrasound-guided Platelet-Rich Plasma (PRP) autologous injection combined with 6-week underwater treadmill hydrotherapy and low-impact laser sessions.",
+    "outcome": "95% restoration of pain-free range of motion. Patient running without NSAID dependency after 8 weeks.",
+    "metrics": {
+      "mobilityScore": "94/100 (+52%)",
+      "painIndex": "0.5/10 (down from 8/10)",
+      "followUp": "6-Month Re-evaluation Scheduled"
+    }
+  },
+  {
+    "id": "case-102",
+    "patientName": "Simba (Persian Cat, 6 yrs)",
+    "ownerName": "Marcus Vance",
+    "caseTitle": "Emergency Management of Feline Lower Urinary Tract Disease (FLUTD)",
+    "date": "July 28, 2026",
+    "condition": "Acute stranguria, hematuria, vocal distress, and partial urethral obstruction.",
+    "diagnosis": "Struvite crystal urolithiasis with inflammatory urethral spasm identified by abdominal ultrasound and urinalysis (pH 7.8).",
+    "treatment": "Emergency sterile retrograde urethral hydropropulsion, 48-hr indwelling urinary catheter, urinary acidifier dietary transition (c/d Multicare), and buprenorphine analgesia.",
+    "outcome": "Obstruction fully relieved. Urinalysis normalized to pH 6.4 within 14 days without surgical perineal urethrostomy.",
+    "metrics": {
+      "urinaryPH": "6.4 (Normal)",
+      "crystalClearance": "100%",
+      "followUp": "Quarterly Screening"
+    }
+  },
+  {
+    "id": "case-103",
+    "patientName": "Kiko (Parrotlet, 2 yrs)",
+    "ownerName": "Elena Rostova",
+    "caseTitle": "Avian Respiratory Aspergillosis Micro-Nebulization Cure",
+    "date": "June 19, 2026",
+    "condition": "Tail bobbing, open-mouth dyspnea, lethargy, and loss of vocalization.",
+    "diagnosis": "Fungal granuloma in caudal thoracic air sac visualized through micro-endoscopy.",
+    "treatment": "Daily closed-chamber Voriconazole micro-nebulization therapy coupled with systemic antifungal amphotericin B and vitamin A nutritional supplementation.",
+    "outcome": "Granuloma completely resolved on follow-up radiography. Full vocal agility and flying endurance restored.",
+    "metrics": {
+      "respiratoryRate": "44 bpm (Stable)",
+      "airSacClarity": "Grade A Clear",
+      "followUp": "Completed"
+    }
+  },
+  {
+    "id": "case-104",
+    "patientName": "Pepper (French Bulldog, 3 yrs)",
+    "ownerName": "Liam Gallagher",
+    "caseTitle": "Minimally Invasive Soft Palate Coblation for BOAS",
+    "date": "May 04, 2026",
+    "condition": "Severe inspiratory stridor, exercise intolerance, and nocturnal obstructive sleep apnea.",
+    "diagnosis": "Brachycephalic Obstructive Airway Syndrome (Elongated soft palate & stenotic nares).",
+    "treatment": "Radiofrequency coblation staphylectomy (shortening soft palate) and laser alar fold resection under total intravenous anesthesia.",
+    "outcome": "Airway resistance reduced by 78%. Snoring eliminated; patient successfully participated in standard 30-minute outdoor walks in summer temperatures.",
+    "metrics": {
+      "airflowEfficiency": "+78% Gain",
+      "sleepApneaScore": "Zero Incidents",
+      "followUp": "Annual Wellness Visit"
+    }
+  }
+]

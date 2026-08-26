@@ -1,0 +1,56 @@
+[
+  {
+    "category": "Pet Adoption",
+    "icon": "fa-solid fa-house-heart",
+    "question": "How can I adopt a pet through Forever Care?",
+    "answer": "You can browse available pets in our Shelter & Adoption portal, view detailed profiles (age, breed, temperament, vaccination status), and click 'Apply to Adopt'. Our partnered shelters review applications within 24-48 hours and coordinate meet-and-greets."
+  },
+  {
+    "category": "Pet Adoption",
+    "icon": "fa-solid fa-file-signature",
+    "question": "Are all adoptable pets vaccinated and health-checked?",
+    "answer": "Yes, 100%! Every pet listed on Forever Care undergoes comprehensive health screening, deworming, microchipping, and core immunizations (Rabies, DHPP for dogs, FVRCP for cats) before placement."
+  },
+  {
+    "category": "Veterinarians",
+    "icon": "fa-solid fa-user-doctor",
+    "question": "How do I book a consultation with one of the specialist doctors?",
+    "answer": "Navigate to our Veterinarian Portal, search by specialty (Surgery, Cardiology, Dentistry, etc.) or city, select your preferred veterinarian, choose an open time slot, and confirm your appointment with instant SMS/Email reminder confirmation."
+  },
+  {
+    "category": "Veterinarians",
+    "icon": "fa-solid fa-shield-heart",
+    "question": "What if I experience a pet emergency outside clinic hours?",
+    "answer": "Use our 24/7 Emergency SOS Hotline or AI PetBot triage widget located at the bottom-right corner of any page for immediate first-aid protocols, poison control emergency steps, and direct routing to on-call trauma centers."
+  },
+  {
+    "category": "Pet Products",
+    "icon": "fa-solid fa-bag-shopping",
+    "question": "What payment methods are supported for Pet Store purchases?",
+    "answer": "We support Credit/Debit Cards (Visa, Mastercard with 256-bit SSL encryption), Cash on Delivery (COD at your doorstep), and Apple/Google Digital Pay with guaranteed 24-48 hour pet-safe express dispatch."
+  },
+  {
+    "category": "Pet Products",
+    "icon": "fa-solid fa-rotate-left",
+    "question": "What is your return and satisfaction policy on products?",
+    "answer": "We offer a 30-day hassle-free money-back guarantee on all unopened food, bedding, grooming gear, and pet toys if your companion is not completely satisfied."
+  },
+  {
+    "category": "Pet Care & Services",
+    "icon": "fa-solid fa-paw",
+    "question": "Can I manage multiple pets and their medical records in my profile?",
+    "answer": "Yes! In your Pet Owner Dashboard, you can register multiple pets, switch between profiles, track vaccine booster due dates, view veterinary clinical diagnoses, and manage professional spa grooming appointments."
+  },
+  {
+    "category": "Community",
+    "icon": "fa-solid fa-users",
+    "question": "How do I share stories or ask questions in the Community hub?",
+    "answer": "Simply visit the Community page, scroll to 'Share Your Story', fill out the post form with your pet's photo and story, select a category, and click 'Publish Post'. It will appear immediately for fellow pet lovers to read, like, and comment on."
+  },
+  {
+    "category": "Website Services",
+    "icon": "fa-solid fa-circle-info",
+    "question": "Is Forever Care Pets accessible on mobile and tablet devices?",
+    "answer": "Yes, our web application is built with modern responsive styling, optimized touch controls, dark/light luxury theme switcher, custom paw cursor animations on desktop, and native touch responsiveness on mobile."
+  }
+]

@@ -1,0 +1,140 @@
+/* ==========================================================================
+   FurEver Care - Responsive Design & Media Queries
+   ========================================================================== */
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-300);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-500);
+}
+
+/* Tablet & Smaller Screens (< 1024px) */
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 2.8rem;
+  }
+
+  .hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-stats-row {
+    justify-content: center;
+  }
+
+  .hero-visual-card {
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  .role-selector-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header-container {
+    padding: 12px 16px;
+  }
+
+  .nav-links {
+    display: none; /* Collapsible or subnav controlled */
+  }
+
+  .nav-mobile-toggle {
+    display: flex !important;
+  }
+}
+
+/* Mobile Screens (< 768px) */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .app-container {
+    padding: 16px 12px;
+  }
+
+  .ticker-bar {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+  }
+
+  .ticker-content {
+    gap: 14px;
+  }
+
+  .floating-widget {
+    display: none; /* Reduce visual clutter on small screens */
+  }
+
+  .hero-main-img {
+    height: 300px;
+  }
+
+  .chat-modal-window {
+    width: calc(100vw - 32px);
+    left: 16px;
+    right: 16px;
+    bottom: 84px;
+    height: 480px;
+  }
+
+  .sos-floating-btn {
+    padding: 10px 16px;
+    font-size: 0.82rem;
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .ai-bot-toggle-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 1.2rem;
+    bottom: 16px;
+    left: 16px;
+  }
+
+  .products-grid, .shelter-pets-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .onboarding-container {
+    padding: 24px 18px;
+  }
+}
+
+/* Extra small devices (< 480px) */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.85rem;
+  }
+
+  .hero-stats-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}

@@ -1,0 +1,1640 @@
+[
+  {
+    "id": "vet-1",
+    "name": "Dr. Sarah Jenkins, DVM, DACVS",
+    "specialization": "Orthopedic & Joint Surgery",
+    "experience": "14+ Years Clinical Practice",
+    "clinic": "FurEver Central Advanced Surgical Hospital",
+    "city": "New York, NY",
+    "contact": "s.jenkins@furevervets.org | (555) 912-3849",
+    "rating": 4.9,
+    "reviews": 218,
+    "consultationFee": 85,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80",
+    "bio": "Board-certified orthopedic surgeon specializing in canine cruciate ligament repair (TPLO), fracture fixation, and hip dysplasia management.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:00 AM - 09:45 AM",
+        "patient": "Archie (Checkup)",
+        "status": "booked"
+      },
+      {
+        "id": 2,
+        "time": "10:00 AM - 10:45 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "11:15 AM - 12:00 PM",
+        "patient": "Bella (Vaccine Booster)",
+        "status": "booked"
+      },
+      {
+        "id": 4,
+        "time": "01:30 PM - 02:15 PM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 5,
+        "time": "02:30 PM - 03:15 PM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 6,
+        "time": "03:45 PM - 04:30 PM",
+        "patient": "Milo (Review)",
+        "status": "booked"
+      }
+    ],
+    "category": "Surgery"
+  },
+  {
+    "id": "vet-2",
+    "name": "Dr. Alexander Ross, BVSc, MRCVS",
+    "specialization": "Emergency & Critical Trauma Care",
+    "experience": "12+ Years Emergency ICU",
+    "clinic": "St. Jude 24/7 Pet Emergency Trauma Hospital",
+    "city": "Chicago, IL",
+    "contact": "a.ross@stjudepet.org | (555) 304-8821",
+    "rating": 4.9,
+    "reviews": 194,
+    "consultationFee": 95,
+    "availability": "24/7 ICU On-Call",
+    "image": "assets/vet_emergency_card1.jpg",
+    "bio": "Specializes in acute trauma stabilization, toxicological emergencies, gastric dilatation-volvulus (GDV), and blood transfusions.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "08:00 AM - 08:45 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "time": "09:00 AM - 09:45 AM",
+        "patient": "Emergency ICU Hold",
+        "status": "booked"
+      },
+      {
+        "id": 3,
+        "time": "10:30 AM - 11:15 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 4,
+        "time": "01:00 PM - 01:45 PM",
+        "patient": "Max (Post-op Trauma)",
+        "status": "booked"
+      }
+    ],
+    "category": "Emergency"
+  },
+  {
+    "id": "vet-3",
+    "name": "Dr. Ayesha Malik, DVM, MS",
+    "specialization": "Feline Internal Medicine & Geriatrics",
+    "experience": "11+ Years Feline Practice",
+    "clinic": "Purrfect Care Cat Specialty Clinic",
+    "city": "San Francisco, CA",
+    "contact": "a.malik@purrfectcare.vet | (555) 472-9102",
+    "rating": 5,
+    "reviews": 312,
+    "consultationFee": 75,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1594824813590-78929949666f?auto=format&fit=crop&w=600&q=80",
+    "bio": "Certified feline practitioner focusing on chronic kidney disease (CKD), feline diabetes mellitus, hyperthyroidism, and low-stress handling.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:30 AM - 10:15 AM",
+        "patient": "Oliver (Kidney Panel)",
+        "status": "booked"
+      },
+      {
+        "id": 2,
+        "time": "10:30 AM - 11:15 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "02:00 PM - 02:45 PM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 4,
+        "time": "03:30 PM - 04:15 PM",
+        "patient": "Luna (Senior Wellness)",
+        "status": "booked"
+      }
+    ],
+    "category": "Feline & Internal"
+  },
+  {
+    "id": "vet-4",
+    "name": "Dr. Marcus Vance, DACVIM (Cardiology)",
+    "specialization": "Canine & Feline Cardiology",
+    "experience": "16+ Years Cardiology",
+    "clinic": "Apex Veterinary Specialty Cardiology Centre",
+    "city": "Boston, MA",
+    "contact": "m.vance@apexpetcardio.com | (555) 618-4490",
+    "rating": 4.9,
+    "reviews": 165,
+    "consultationFee": 110,
+    "availability": "Slots Open",
+    "image": "assets/vet_cardio_card1.jpg",
+    "bio": "Expertise in echocardiography, Holter monitoring, congenital heart defect repairs, and congestive heart failure therapy.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:00 AM - 09:45 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "time": "10:30 AM - 11:30 AM",
+        "patient": "Cooper (Echo Study)",
+        "status": "booked"
+      },
+      {
+        "id": 3,
+        "time": "01:30 PM - 02:15 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ],
+    "category": "Cardiology"
+  },
+  {
+    "id": "vet-5",
+    "name": "Dr. Elena Rostova, DVM, PhD",
+    "specialization": "Veterinary Dermatology & Allergy Care",
+    "experience": "13+ Years Dermatology",
+    "clinic": "Skin & Coat Specialty Veterinary Institute",
+    "city": "Seattle, WA",
+    "contact": "e.rostova@skinvets.org | (555) 782-3319",
+    "rating": 4.8,
+    "reviews": 142,
+    "consultationFee": 70,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=600&q=80",
+    "bio": "Dedicated to resolving chronic atopic dermatitis, autoimmune skin diseases, intradermal allergen testing, and otitis externa.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "08:30 AM - 09:15 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "time": "10:00 AM - 10:45 AM",
+        "patient": "Rocky (Skin Scraping)",
+        "status": "booked"
+      },
+      {
+        "id": 3,
+        "time": "11:30 AM - 12:15 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ],
+    "category": "Feline & Internal"
+  },
+  {
+    "id": "vet-6",
+    "name": "Dr. David Thorne, DVM, ABVP (Avian)",
+    "specialization": "Exotic Pets, Avian & Reptile Medicine",
+    "experience": "15+ Years Exotic Care",
+    "clinic": "Avian & Exotic Wildcare Medical Hospital",
+    "city": "Austin, TX",
+    "contact": "d.thorne@wildcarevets.com | (555) 890-1234",
+    "rating": 4.9,
+    "reviews": 188,
+    "consultationFee": 80,
+    "availability": "Slots Open",
+    "image": "https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&w=600&q=80",
+    "bio": "Board-certified avian specialist treating parrots, raptors, exotic reptiles, rabbits, and small pocket pets with advanced microsurgery.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:00 AM - 09:45 AM",
+        "patient": "Rio (Beak Trimming)",
+        "status": "booked"
+      },
+      {
+        "id": 2,
+        "time": "10:30 AM - 11:15 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "02:00 PM - 02:45 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-7",
+    "name": "Dr. Rachel Kim, DVM, DAVDC",
+    "specialization": "Veterinary Dentistry & Oral Care",
+    "experience": "10+ Years Oral Surgery",
+    "clinic": "FurEver Dental & Maxillofacial Care",
+    "city": "Los Angeles, CA",
+    "contact": "r.kim@fureverdental.org | (555) 671-8899",
+    "rating": 4.9,
+    "reviews": 230,
+    "consultationFee": 75,
+    "availability": "Available Today",
+    "image": "assets/vet_dentistry_card1.jpg",
+    "bio": "Performs root canals, restorative dentistry, feline tooth resorption treatments, and jaw fracture management using advanced dental radiography.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:00 AM - 10:00 AM",
+        "patient": "Simba (Dental Scaling)",
+        "status": "booked"
+      },
+      {
+        "id": 2,
+        "time": "10:30 AM - 11:15 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "01:30 PM - 02:15 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ],
+    "category": "Dentistry"
+  },
+  {
+    "id": "vet-8",
+    "name": "Dr. Benjamin Carter, DVM, DACVO",
+    "specialization": "Veterinary Ophthalmology & Eye Surgery",
+    "experience": "17+ Years Eye Care",
+    "clinic": "Visionary Pet Eye Specialty Care",
+    "city": "Denver, CO",
+    "contact": "b.carter@visionarypet.org | (555) 431-7700",
+    "rating": 5,
+    "reviews": 275,
+    "consultationFee": 90,
+    "availability": "Slots Open",
+    "image": "assets/vet_surgery_card2.jpg",
+    "bio": "Pioneer in phacoemulsification cataract extraction, corneal graft surgery, and glaucoma management for dogs and cats.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "08:30 AM - 09:15 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "time": "09:45 AM - 10:30 AM",
+        "patient": "Daisy (Cataract Eval)",
+        "status": "booked"
+      },
+      {
+        "id": 3,
+        "time": "11:00 AM - 11:45 AM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ],
+    "category": "Surgery"
+  },
+  {
+    "id": "vet-9",
+    "name": "Dr. Sophia Martinez, DVM, DACVIM (Oncology)",
+    "specialization": "Medical Oncology & Cancer Therapy",
+    "experience": "12+ Years Oncology",
+    "clinic": "Hope Pet Cancer & Immunotherapy Center",
+    "city": "Miami, FL",
+    "contact": "s.martinez@hopepetcancer.com | (555) 902-1144",
+    "rating": 4.9,
+    "reviews": 156,
+    "consultationFee": 105,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80",
+    "bio": "Compassionate cancer diagnostics, targeted chemotherapy, electrochemotherapy, and palliative comfort plans for beloved companion animals.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "10:00 AM - 11:00 AM",
+        "patient": "Buddy (Chemo Cycle 3)",
+        "status": "booked"
+      },
+      {
+        "id": 2,
+        "time": "01:30 PM - 02:15 PM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "03:00 PM - 03:45 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ],
+    "category": "Feline & Internal"
+  },
+  {
+    "id": "vet-10",
+    "name": "Dr. Tariq Al-Mansoor, DVM, DACVIM (Neurology)",
+    "specialization": "Veterinary Dentistry & Endodontics",
+    "experience": "14+ Years Neurology",
+    "clinic": "NeuroPet Brain & Spine Institute",
+    "city": "Houston, TX",
+    "contact": "t.mansoor@neuropet.org | (555) 819-2033",
+    "rating": 4.9,
+    "reviews": 182,
+    "consultationFee": 115,
+    "availability": "Slots Open",
+    "image": "assets/vet_dentistry_card2.jpg",
+    "bio": "Specialist in intervertebral disc disease (IVDD) hemilaminectomy, idiopathic epilepsy management, and neurological MRI diagnostics.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:00 AM - 09:45 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "time": "10:30 AM - 11:15 AM",
+        "patient": "Zeus (IVDD Post-Op)",
+        "status": "booked"
+      },
+      {
+        "id": 3,
+        "time": "02:00 PM - 02:45 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ],
+    "category": "Dentistry"
+  },
+  {
+    "id": "vet-11",
+    "name": "Dr. Chloe Dubois, DVM, CVA",
+    "specialization": "Advanced Periodontics & Oral Hygiene",
+    "experience": "9+ Years Holistic Care",
+    "clinic": "Vitality Pet Wellness & Hydrotherapy",
+    "city": "Portland, OR",
+    "contact": "c.dubois@vitalityvets.com | (555) 554-1290",
+    "rating": 4.8,
+    "reviews": 139,
+    "consultationFee": 65,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1550831107-1553da8c8464?auto=format&fit=crop&w=600&q=80",
+    "bio": "Integrates electro-acupuncture, underwater treadmill hydrotherapy, class IV laser therapy, and mobility support for senior pets.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:00 AM - 09:45 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "time": "10:00 AM - 10:45 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "11:15 AM - 12:00 PM",
+        "patient": "Rusty (Laser Therapy)",
+        "status": "booked"
+      }
+    ],
+    "category": "Dentistry"
+  },
+  {
+    "id": "vet-12",
+    "name": "Dr. Nathan Wright, DVM, DACVN",
+    "specialization": "Clinical Veterinary Nutrition",
+    "experience": "11+ Years Nutrition",
+    "clinic": "NutriPet Clinical Diet Formulation Hub",
+    "city": "Atlanta, GA",
+    "contact": "n.wright@nutripet.org | (555) 321-9988",
+    "rating": 4.9,
+    "reviews": 160,
+    "consultationFee": 70,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1584467735871-8e85353a8413?auto=format&fit=crop&w=600&q=80",
+    "bio": "Formulates customized raw, home-cooked, and therapeutic diet prescriptions for renal, hepatic, diabetic, and obese pets.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:30 AM - 10:15 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "time": "11:00 AM - 11:45 AM",
+        "patient": "Bruno (Renal Diet Plan)",
+        "status": "booked"
+      },
+      {
+        "id": 3,
+        "time": "02:00 PM - 02:45 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-13",
+    "name": "Dr. Isabella Rossi, DVM",
+    "specialization": "Preventative Medicine & Vaccinations",
+    "experience": "8+ Years Family Practice",
+    "clinic": "FurEver Community Wellness Hospital",
+    "city": "Philadelphia, PA",
+    "contact": "i.rossi@fureverwellness.org | (555) 765-4321",
+    "rating": 4.9,
+    "reviews": 245,
+    "consultationFee": 55,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&w=600&q=80",
+    "bio": "Focuses on puppy and kitten wellness protocols, microchipping, parasite control, and annual comprehensive geriatric health screenings.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "08:30 AM - 09:15 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "time": "09:30 AM - 10:15 AM",
+        "patient": "Coco (Puppy Core Vaccine)",
+        "status": "booked"
+      },
+      {
+        "id": 3,
+        "time": "10:45 AM - 11:30 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 4,
+        "time": "01:30 PM - 02:15 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-14",
+    "name": "Dr. Samuel O'Connor, MVB, MRCVS",
+    "specialization": "Soft Tissue & Reconstructive Surgery",
+    "experience": "15+ Years Surgical Practice",
+    "clinic": "Metropolitan Surgical Referral Centre",
+    "city": "Toronto, ON",
+    "contact": "s.oconnor@metrosurg.vet | (555) 889-6012",
+    "rating": 4.9,
+    "reviews": 204,
+    "consultationFee": 95,
+    "availability": "Slots Open",
+    "image": "assets/vet_surgery_card2.jpg",
+    "bio": "Specialized in laparoscopic spay/neuter, gastrointestinal foreign body removals, cystotomy, and wound flap reconstructions.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "08:00 AM - 09:00 AM",
+        "patient": "Teddy (Laparoscopic Lap)",
+        "status": "booked"
+      },
+      {
+        "id": 2,
+        "time": "10:30 AM - 11:15 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "02:00 PM - 02:45 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ],
+    "category": "Surgery"
+  },
+  {
+    "id": "vet-15",
+    "name": "Dr. Fatima Zahra, DVM, DACVB",
+    "specialization": "Veterinary Behavioral Medicine",
+    "experience": "10+ Years Behavioral Therapy",
+    "clinic": "Harmony Companion Pet Behavioral Center",
+    "city": "London, UK",
+    "contact": "f.zahra@harmonypet.co.uk | +44 20 7946 0912",
+    "rating": 5,
+    "reviews": 289,
+    "consultationFee": 80,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80",
+    "bio": "Treats severe canine separation anxiety, aggressive reactivity, feline house soiling, and thunderstorm/noise phobias scientifically.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "10:00 AM - 11:00 AM",
+        "patient": "Thor (Anxiety Therapy)",
+        "status": "booked"
+      },
+      {
+        "id": 2,
+        "time": "01:00 PM - 02:00 PM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "03:30 PM - 04:30 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-16",
+    "name": "Dr. Lucas Tremblay, DVM, DACVR",
+    "specialization": "Diagnostic Imaging (CT, MRI & Ultrasound)",
+    "experience": "13+ Years Radiology",
+    "clinic": "Precision Pet Diagnostic Imaging Centre",
+    "city": "Montreal, QC",
+    "contact": "l.tremblay@precisionpet.ca | (555) 438-9901",
+    "rating": 4.8,
+    "reviews": 115,
+    "consultationFee": 100,
+    "availability": "Slots Open",
+    "image": "https://images.unsplash.com/photo-1580281657557-2a69d37a9426?auto=format&fit=crop&w=600&q=80",
+    "bio": "High-resolution abdominal ultrasound, thoracic CT interpretation, fluoroscopy, and ultrasound-guided biopsy procedures.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:00 AM - 10:00 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "time": "10:30 AM - 11:30 AM",
+        "patient": "Stella (Abdominal US)",
+        "status": "booked"
+      },
+      {
+        "id": 3,
+        "time": "01:30 PM - 02:30 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-17",
+    "name": "Dr. Hannah Schmidt, DVM, DACVAA",
+    "specialization": "Veterinary Anesthesia & Pain Management",
+    "experience": "12+ Years Anesthesiology",
+    "clinic": "SafeSurg Anesthesia & Pain Specialty Clinic",
+    "city": "Berlin, DE",
+    "contact": "h.schmidt@safesurg.de | +49 30 209567",
+    "rating": 4.9,
+    "reviews": 140,
+    "consultationFee": 85,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=600&q=80",
+    "bio": "Customized multimodal pain management protocols, nerve blocks, epidurals, and high-risk critical anesthesia monitoring.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "08:30 AM - 09:15 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "time": "10:00 AM - 10:45 AM",
+        "patient": "Oskar (Pre-Op Pain Eval)",
+        "status": "booked"
+      },
+      {
+        "id": 3,
+        "time": "02:00 PM - 02:45 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-18",
+    "name": "Dr. Kieran Patel, BVSc, MS",
+    "specialization": "Shelter Medicine & Infectious Disease",
+    "experience": "14+ Years Shelter Care",
+    "clinic": "FurEver Community Rescue Hospital",
+    "city": "Dallas, TX",
+    "contact": "k.patel@fureverrescue.org | (555) 714-8832",
+    "rating": 5,
+    "reviews": 340,
+    "consultationFee": 45,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80",
+    "bio": "Lead veterinarian for shelter population health, Parvovirus outbreak containment, mass spay/neuter drives, and rescue triage.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:00 AM - 09:45 AM",
+        "patient": "Rescue Litter A (Intake)",
+        "status": "booked"
+      },
+      {
+        "id": 2,
+        "time": "10:00 AM - 10:45 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "11:00 AM - 11:45 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 4,
+        "time": "02:00 PM - 02:45 PM",
+        "patient": "Barnaby (Adoption Check)",
+        "status": "booked"
+      }
+    ]
+  },
+  {
+    "id": "vet-19",
+    "name": "Dr. Gabriel Santos, DVM",
+    "specialization": "Canine Sports Medicine & Conditioning",
+    "experience": "9+ Years Working Dogs",
+    "clinic": "K9 Elite Athletic & Agility Vet Clinic",
+    "city": "San Diego, CA",
+    "contact": "g.santos@k9elitevet.com | (555) 619-3320",
+    "rating": 4.8,
+    "reviews": 128,
+    "consultationFee": 75,
+    "availability": "Slots Open",
+    "image": "https://images.unsplash.com/photo-1651008376811-b90baee60c1f?auto=format&fit=crop&w=600&q=80",
+    "bio": "Focuses on working police K9s, agility athletes, muscle strain diagnostics, tendonitis rehab, and performance stamina optimization.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:30 AM - 10:15 AM",
+        "patient": "Rex (Iliopsoas Strain)",
+        "status": "booked"
+      },
+      {
+        "id": 2,
+        "time": "11:00 AM - 11:45 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "01:30 PM - 02:15 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-20",
+    "name": "Dr. Maya Lin, DVM, MS",
+    "specialization": "Avian Orthopedics & Feather Pathology",
+    "experience": "13+ Years Avian Specialty",
+    "clinic": "FeatherCare Exotic Bird Hospital",
+    "city": "Vancouver, BC",
+    "contact": "m.lin@feathercare.ca | (555) 604-8819",
+    "rating": 4.9,
+    "reviews": 172,
+    "consultationFee": 85,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=600&q=80",
+    "bio": "Expertise in parrot feather destructive behavior, wing fracture pin fixation, psittacine beak and feather disease (PBFD), and nutrition.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "08:45 AM - 09:30 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "time": "10:00 AM - 10:45 AM",
+        "patient": "Kiwi (Macaw Wing Splint)",
+        "status": "booked"
+      },
+      {
+        "id": 3,
+        "time": "02:00 PM - 02:45 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-21",
+    "name": "Dr. Thomas Becker, DVM, DACVIM",
+    "specialization": "Gastroenterology & Endoscopy",
+    "experience": "16+ Years GI Specialty",
+    "clinic": "GastroPet Advanced Endoscopy Clinic",
+    "city": "Minneapolis, MN",
+    "contact": "t.becker@gastropet.org | (555) 612-4402",
+    "rating": 4.9,
+    "reviews": 190,
+    "consultationFee": 95,
+    "availability": "Slots Open",
+    "image": "https://images.unsplash.com/photo-1579165466741-7f35e4755660?auto=format&fit=crop&w=600&q=80",
+    "bio": "Performs minimally invasive upper and lower GI endoscopy, foreign body retrievals, inflammatory bowel disease (IBD) biopsies, and liver shunts.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:00 AM - 10:00 AM",
+        "patient": "Mocha (Endoscopy Biopsy)",
+        "status": "booked"
+      },
+      {
+        "id": 2,
+        "time": "10:30 AM - 11:15 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "01:30 PM - 02:15 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-22",
+    "name": "Dr. Olivia Bennett, DVM, DABVP",
+    "specialization": "Rabbit & Small Mammal Medicine",
+    "experience": "10+ Years Exotic Mammals",
+    "clinic": "Bunny & Pocket Pet Care Sanctuary",
+    "city": "Seattle, WA",
+    "contact": "o.bennett@bunnypetcare.com | (555) 206-8834",
+    "rating": 5,
+    "reviews": 260,
+    "consultationFee": 65,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&w=600&q=80",
+    "bio": "Specialized in rabbit GI stasis reversal, dental molar spur burring, guinea pig scurvy therapy, and ferret adrenal disease implants.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:15 AM - 10:00 AM",
+        "patient": "Thumper (Molar Trimming)",
+        "status": "booked"
+      },
+      {
+        "id": 2,
+        "time": "10:30 AM - 11:15 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "02:00 PM - 02:45 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-23",
+    "name": "Dr. Christopher Lee, DVM, DACVR",
+    "specialization": "Radiation Oncology & CyberKnife",
+    "experience": "15+ Years Radiation Therapy",
+    "clinic": "Summit Pet Cancer & Radiotherapy Centre",
+    "city": "Salt Lake City, UT",
+    "contact": "c.lee@summitpetcancer.org | (555) 801-4411",
+    "rating": 4.9,
+    "reviews": 147,
+    "consultationFee": 120,
+    "availability": "Slots Open",
+    "image": "https://images.unsplash.com/photo-1536064479547-7ee40b74b807?auto=format&fit=crop&w=600&q=80",
+    "bio": "Stereotactic radiation therapy (SRT), mast cell tumor targeted irradiation, and brain tumor radiosurgery for dogs and cats.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:00 AM - 09:45 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "time": "10:30 AM - 11:30 AM",
+        "patient": "Sammy (SRT Session)",
+        "status": "booked"
+      },
+      {
+        "id": 3,
+        "time": "02:00 PM - 02:45 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-24",
+    "name": "Dr. Yasmin Qureshi, DVM, MS",
+    "specialization": "Feline Nephrology & Urology",
+    "experience": "11+ Years Feline Renal Care",
+    "clinic": "Metro Feline Renal & Dialysis Clinic",
+    "city": "Karachi Central, PK",
+    "contact": "y.qureshi@metropetcare.pk | +92 21 3589 1100",
+    "rating": 4.9,
+    "reviews": 215,
+    "consultationFee": 50,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1622253694242-abeb37a33e97?auto=format&fit=crop&w=600&q=80",
+    "bio": "Pioneering feline subcutaneous ureteral bypass (SUB), feline idiopathic cystitis management, and hemodialysis therapy for acute kidney injury.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "10:00 AM - 10:45 AM",
+        "patient": "Mani (Urethral Unblocking)",
+        "status": "booked"
+      },
+      {
+        "id": 2,
+        "time": "11:30 AM - 12:15 PM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "02:30 PM - 03:15 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-25",
+    "name": "Dr. Arthur Pendelton, DVM, DACVS",
+    "specialization": "Minimally Invasive Arthroscopic Surgery",
+    "experience": "18+ Years Joint Surgery",
+    "clinic": "Orthopedic & Arthroscopy Surgical Institute",
+    "city": "Phoenix, AZ",
+    "contact": "a.pendelton@orthopetsurg.com | (555) 602-7722",
+    "rating": 5,
+    "reviews": 310,
+    "consultationFee": 110,
+    "availability": "Slots Open",
+    "image": "https://images.unsplash.com/photo-1597764690523-15bea4c581c9?auto=format&fit=crop&w=600&q=80",
+    "bio": "Performs elbow and shoulder arthroscopy, fragmented coronoid process (FCP) removal, and total hip replacement implants.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "08:30 AM - 09:30 AM",
+        "patient": "Gunner (Elbow Scope)",
+        "status": "booked"
+      },
+      {
+        "id": 2,
+        "time": "10:15 AM - 11:00 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "01:30 PM - 02:15 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-26",
+    "name": "Dr. Natalie Wood, DVM, CCRT",
+    "specialization": "Hydrotherapy & Canine Kinesiology",
+    "experience": "8+ Years Physical Therapy",
+    "clinic": "Aquatic Paws Hydro & Mobility Center",
+    "city": "Orlando, FL",
+    "contact": "n.wood@aquaticpaws.com | (555) 407-6619",
+    "rating": 4.8,
+    "reviews": 150,
+    "consultationFee": 60,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80",
+    "bio": "Specialized in underwater treadmill gait re-education, neuromuscular stimulation (NMES), and therapeutic exercise for neurological dogs.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:00 AM - 09:45 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "time": "10:00 AM - 10:45 AM",
+        "patient": "Harley (Hydro Session)",
+        "status": "booked"
+      },
+      {
+        "id": 3,
+        "time": "11:30 AM - 12:15 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-27",
+    "name": "Dr. Tariq Mahmood, DVM, PhD",
+    "specialization": "Zoonotic & Infectious Diseases",
+    "experience": "17+ Years Epidemiology",
+    "clinic": "Global OneHealth Animal Medical Centre",
+    "city": "Dubai Healthcare City, UAE",
+    "contact": "t.mahmood@onehealthvets.ae | +971 4 391 8800",
+    "rating": 4.9,
+    "reviews": 195,
+    "consultationFee": 85,
+    "availability": "Slots Open",
+    "image": "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?auto=format&fit=crop&w=600&q=80",
+    "bio": "Consultant on international pet relocation health passports, rabies titer testing, leptospirosis, and tick-borne pathogen eradication.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:30 AM - 10:15 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "time": "11:00 AM - 11:45 AM",
+        "patient": "Prince (Relocation Titer)",
+        "status": "booked"
+      },
+      {
+        "id": 3,
+        "time": "02:00 PM - 02:45 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-28",
+    "name": "Dr. Jessica Hayes, DVM",
+    "specialization": "Pediatric Pet Care & Breed Genetics",
+    "experience": "9+ Years Puppy & Kitten",
+    "clinic": "FirstSteps Pediatric Pet Hospital",
+    "city": "Nashville, TN",
+    "contact": "j.hayes@firststepsvet.com | (555) 615-9923",
+    "rating": 4.9,
+    "reviews": 178,
+    "consultationFee": 60,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
+    "bio": "Early genetic disease screening, cleft palate neonatal nursing, puppy socialization coaching, and breed-specific health registries.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "08:30 AM - 09:15 AM",
+        "patient": "Litter Bella (Microchips)",
+        "status": "booked"
+      },
+      {
+        "id": 2,
+        "time": "09:45 AM - 10:30 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "01:30 PM - 02:15 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-29",
+    "name": "Dr. William Sterling, DVM, DACVECC",
+    "specialization": "Trauma Resuscitation & Mechanical Ventilation",
+    "experience": "16+ Years Critical Care",
+    "clinic": "Lifeline ICU & Advanced Trauma Hub",
+    "city": "Charlotte, NC",
+    "contact": "w.sterling@lifelinevets.org | (555) 704-5501",
+    "rating": 5,
+    "reviews": 230,
+    "consultationFee": 105,
+    "availability": "24/7 ICU On-Call",
+    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+    "bio": "Directs veterinary ICU life-support ventilator therapy, sepsis management, and point-of-care emergency ultrasound (POCUS).",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:00 AM - 09:45 AM",
+        "patient": "Emergency ICU Triage",
+        "status": "booked"
+      },
+      {
+        "id": 2,
+        "time": "10:30 AM - 11:15 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "02:00 PM - 02:45 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ],
+    "category": "Emergency"
+  },
+  {
+    "id": "vet-30",
+    "name": "Dr. Ananya Sen, BVSc, MVSc",
+    "specialization": "Canine Endocrinology (Thyroid & Diabetes)",
+    "experience": "12+ Years Endocrinology",
+    "clinic": "EndoPet Metabolic Specialty Clinic",
+    "city": "Calcutta / Global TeleHealth",
+    "contact": "a.sen@endopet.org | +91 33 2419 8820",
+    "rating": 4.8,
+    "reviews": 164,
+    "consultationFee": 65,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80",
+    "bio": "Specialist in Cushing's disease (Hyperadrenocorticism), Addison's crisis stabilization, continuous glucose monitoring (Freestyle Libre), and hypothyroidism.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:00 AM - 09:45 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "time": "10:15 AM - 11:00 AM",
+        "patient": "Rusty (Glucose Curve)",
+        "status": "booked"
+      },
+      {
+        "id": 3,
+        "time": "02:00 PM - 02:45 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-31",
+    "name": "Dr. Lucas Moreira, DVM",
+    "specialization": "Reptile & Amphibian Husbandry",
+    "experience": "11+ Years Herpetology",
+    "clinic": "HerpCare Reptile Specialist Hospital",
+    "city": "Las Vegas, NV",
+    "contact": "l.moreira@herpcarevets.com | (555) 702-8841",
+    "rating": 4.9,
+    "reviews": 137,
+    "consultationFee": 70,
+    "availability": "Slots Open",
+    "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80",
+    "bio": "Expertise in metabolic bone disease (MBD), follicular stasis egg-binding surgery, respiratory infections in chelonians and snakes.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:30 AM - 10:15 AM",
+        "patient": "Godzilla (Bearded Dragon X-ray)",
+        "status": "booked"
+      },
+      {
+        "id": 2,
+        "time": "11:00 AM - 11:45 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "01:30 PM - 02:15 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-32",
+    "name": "Dr. Claire Dupont, DVM, Dipl. ECVIM",
+    "specialization": "Canine Hematology & Transfusion Medicine",
+    "experience": "14+ Years Hematology",
+    "clinic": "HemaPet Blood Bank & Medical Referral",
+    "city": "Paris, FR",
+    "contact": "c.dupont@hemapet.fr | +33 1 42 68 55 00",
+    "rating": 5,
+    "reviews": 220,
+    "consultationFee": 90,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&q=80",
+    "bio": "Director of canine & feline volunteer blood donor program; treats immune-mediated hemolytic anemia (IMHA) and immune thrombocytopenia.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "08:45 AM - 09:30 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "time": "10:00 AM - 10:45 AM",
+        "patient": "Shadow (Packed RBC Crossmatch)",
+        "status": "booked"
+      },
+      {
+        "id": 3,
+        "time": "02:00 PM - 02:45 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-33",
+    "name": "Dr. Kevin Zhao, DVM, DACVIM",
+    "specialization": "Pulmonology & Respiratory Endoscopy",
+    "experience": "13+ Years Respiratory",
+    "clinic": "BreatheEasy Pet Pulmonary Institute",
+    "city": "San Jose, CA",
+    "contact": "k.zhao@breatheeasyvet.com | (555) 408-3390",
+    "rating": 4.9,
+    "reviews": 180,
+    "consultationFee": 85,
+    "availability": "Slots Open",
+    "image": "assets/vet_cardio_card2.jpg",
+    "bio": "Tracheal stent placement for collapsing trachea in toy breeds, bronchoalveolar lavage (BAL), and feline asthma nebulization protocols.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:00 AM - 09:45 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "time": "10:30 AM - 11:30 AM",
+        "patient": "Pippin (Tracheal Stent Check)",
+        "status": "booked"
+      },
+      {
+        "id": 3,
+        "time": "02:00 PM - 02:45 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ],
+    "category": "Cardiology"
+  },
+  {
+    "id": "vet-34",
+    "name": "Dr. Kimberly Adams, DVM, CVA",
+    "specialization": "Geriatric Palliative Care & Hospice",
+    "experience": "15+ Years End-of-Life Care",
+    "clinic": "GentleJourney Pet Hospice & Comfort Care",
+    "city": "Columbus, OH",
+    "contact": "k.adams@gentlejourneyvets.org | (555) 614-7721",
+    "rating": 5,
+    "reviews": 365,
+    "consultationFee": 75,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80",
+    "bio": "Specializes in home-based palliative comfort plans, chronic pain assessment scales (HHHHHMM scale), and peaceful home euthanasia.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "10:00 AM - 11:00 AM",
+        "patient": "Rusty (Quality of Life Consult)",
+        "status": "booked"
+      },
+      {
+        "id": 2,
+        "time": "01:30 PM - 02:30 PM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "03:30 PM - 04:30 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-35",
+    "name": "Dr. Sean MacIntyre, BVM&S, MRCVS",
+    "specialization": "Equine & Large Animal Veterinary Care",
+    "experience": "18+ Years Equine",
+    "clinic": "Highland Equine & Farm Veterinary Hospital",
+    "city": "Edinburgh, UK",
+    "contact": "s.macintyre@highlandequine.co.uk | +44 131 496 0800",
+    "rating": 4.9,
+    "reviews": 210,
+    "consultationFee": 95,
+    "availability": "Slots Open",
+    "image": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80",
+    "bio": "Field digital endoscopy, lameness examinations with equine nerve blocks, colic medical stabilization, and equine dental power floating.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "08:00 AM - 09:30 AM",
+        "patient": "Barnaby (Lameness Workup)",
+        "status": "booked"
+      },
+      {
+        "id": 2,
+        "time": "10:30 AM - 11:30 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "01:30 PM - 02:30 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-36",
+    "name": "Dr. Priya Ramanathan, DVM",
+    "specialization": "Integrative Herbal Medicine & TCVM",
+    "experience": "10+ Years Integrative Care",
+    "clinic": "AyurPet Integrative & Botanical Veterinary Care",
+    "city": "Bangalore / Global Consult",
+    "contact": "p.ramanathan@ayurpet.org | +91 80 2559 3301",
+    "rating": 4.8,
+    "reviews": 145,
+    "consultationFee": 55,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80",
+    "bio": "Combines Western veterinary diagnostics with standardized herbal supplements (milk thistle, turmeric, medicinal mushrooms) for chronic liver and joint health.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:00 AM - 09:45 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "time": "10:15 AM - 11:00 AM",
+        "patient": "Leo (Herbal Arthritic Plan)",
+        "status": "booked"
+      },
+      {
+        "id": 3,
+        "time": "02:00 PM - 02:45 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-37",
+    "name": "Dr. Anthony Russo, DVM, DACVS",
+    "specialization": "Cardiothoracic & Vascular Medicine",
+    "experience": "17+ Years Chest Surgery",
+    "clinic": "Atlantic Cardiothoracic Pet Surgical Centre",
+    "city": "Boston, MA",
+    "contact": "a.russo@atlanticpetsurg.com | (555) 617-8890",
+    "rating": 5,
+    "reviews": 198,
+    "consultationFee": 125,
+    "availability": "Slots Open",
+    "image": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80",
+    "bio": "Patent ductus arteriosus (PDA) surgical ligation, pericardiectomy for cardiac tamponade, and lung lobectomy for pulmonary neoplasms.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "08:30 AM - 09:30 AM",
+        "patient": "Apollo (PDA Post-Op)",
+        "status": "booked"
+      },
+      {
+        "id": 2,
+        "time": "10:30 AM - 11:15 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "02:00 PM - 02:45 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ],
+    "category": "Cardiology"
+  },
+  {
+    "id": "vet-38",
+    "name": "Dr. Leila Hosseini, DVM, PhD",
+    "specialization": "Microbiology & Antibiotic Stewardship",
+    "experience": "12+ Years Infectious Diagnostics",
+    "clinic": "PetPath Diagnostic Laboratories & Clinic",
+    "city": "Toronto, ON",
+    "contact": "l.hosseini@petpathlabs.ca | (555) 416-8902",
+    "rating": 4.9,
+    "reviews": 133,
+    "consultationFee": 75,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80",
+    "bio": "Targeted culture & susceptibility testing for multi-drug resistant (MRSP) skin infections and refractory urinary tract infections in pets.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:00 AM - 09:45 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "time": "10:30 AM - 11:15 AM",
+        "patient": "Bruno (Culture Review)",
+        "status": "booked"
+      },
+      {
+        "id": 3,
+        "time": "01:30 PM - 02:15 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-39",
+    "name": "Dr. Ryan Gallagher, DVM",
+    "specialization": "General Family Pet Care & Preventative Wellness",
+    "experience": "7+ Years Community Practice",
+    "clinic": "FurEver Neighborhood Pet Health Hub",
+    "city": "Indianapolis, IN",
+    "contact": "r.gallagher@fureverhealth.org | (555) 317-6623",
+    "rating": 4.9,
+    "reviews": 210,
+    "consultationFee": 50,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?auto=format&fit=crop&w=600&q=80",
+    "bio": "Passionate about routine health screens, gentle puppy training advice, dental prophylactic care, and affordable wellness packages.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "08:30 AM - 09:15 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "time": "09:30 AM - 10:15 AM",
+        "patient": "Ziggy (Annual Check)",
+        "status": "booked"
+      },
+      {
+        "id": 3,
+        "time": "11:00 AM - 11:45 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 4,
+        "time": "02:00 PM - 02:45 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-40",
+    "name": "Dr. Mei-Ling Chang, DVM, DACVO",
+    "specialization": "Corneal Microsurgery & Retinal Diseases",
+    "experience": "14+ Years Ophthalmology",
+    "clinic": "BrightEyes Veterinary Ophthalmic Hospital",
+    "city": "San Francisco, CA",
+    "contact": "m.chang@brighteyesvet.com | (555) 415-9981",
+    "rating": 5,
+    "reviews": 240,
+    "consultationFee": 95,
+    "availability": "Slots Open",
+    "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=600&q=80",
+    "bio": "Deep stromal ulcer corneal grafts, cherry eye tacking, progressive retinal atrophy (PRA) genetic mapping, and dry eye (KCS) therapy.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:00 AM - 09:45 AM",
+        "patient": "Chloe (Corneal Crosslinking)",
+        "status": "booked"
+      },
+      {
+        "id": 2,
+        "time": "10:30 AM - 11:15 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "01:30 PM - 02:15 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-41",
+    "name": "Dr. Dominic Howard, DVM, DACVP",
+    "specialization": "Veterinary Clinical Pathology & Biopsy",
+    "experience": "16+ Years Pathology",
+    "clinic": "BioVet Comprehensive Pet Pathology Labs",
+    "city": "Philadelphia, PA",
+    "contact": "d.howard@biovetlabs.org | (555) 215-8840",
+    "rating": 4.9,
+    "reviews": 118,
+    "consultationFee": 80,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
+    "bio": "Rapid fine needle aspirate (FNA) cytology, bone marrow biopsy interpretation, and lymph node flow cytometry for pet oncological staging.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:30 AM - 10:15 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "time": "11:00 AM - 11:45 AM",
+        "patient": "Buster (Lymph Node FNA)",
+        "status": "booked"
+      },
+      {
+        "id": 3,
+        "time": "02:00 PM - 02:45 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-42",
+    "name": "Dr. Serena Varma, DVM, MS",
+    "specialization": "Wildlife Rehabilitation & Conservation",
+    "experience": "11+ Years Wildlife Care",
+    "clinic": "WildRescue Wildlife & Avian Sanctuary",
+    "city": "Denver, CO",
+    "contact": "s.varma@wildrescue.org | (555) 303-9912",
+    "rating": 4.9,
+    "reviews": 162,
+    "consultationFee": 65,
+    "availability": "Slots Open",
+    "image": "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=600&q=80",
+    "bio": "Specializes in raptor wing orthopedics, owl eye trauma repair, squirrel and opossum neonatal care, and wildlife release conditioning.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:00 AM - 09:45 AM",
+        "patient": "Red-Tailed Hawk (X-Ray)",
+        "status": "booked"
+      },
+      {
+        "id": 2,
+        "time": "10:30 AM - 11:15 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "01:30 PM - 02:15 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-43",
+    "name": "Dr. Patrick O'Shea, DVM",
+    "specialization": "Senior Canine Cognitive Dysfunction & Arthritis",
+    "experience": "13+ Years Geriatric Pet Care",
+    "clinic": "SilverPaws Senior Dog Care Center",
+    "city": "Dublin, IE",
+    "contact": "p.oshea@silverpaws.ie | +353 1 496 1122",
+    "rating": 4.9,
+    "reviews": 185,
+    "consultationFee": 70,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1558222218-b7b54eede3f3?auto=format&fit=crop&w=600&q=80",
+    "bio": "Expertise in managing canine dementia, Librela (bedinvetmab) monoclonal antibody arthritis injections, and mobility harnesses.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:00 AM - 09:45 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "time": "10:00 AM - 10:45 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "11:30 AM - 12:15 PM",
+        "patient": "Barney (Librela Injection)",
+        "status": "booked"
+      }
+    ]
+  },
+  {
+    "id": "vet-44",
+    "name": "Dr. Nina Kowalska, DVM, PhD",
+    "specialization": "Immunology & Allergy Desensitization",
+    "experience": "12+ Years Immunotherapy",
+    "clinic": "AllergyFree Pet Immunology Center",
+    "city": "Warsaw, PL",
+    "contact": "n.kowalska@allergyfreepet.pl | +48 22 559 8811",
+    "rating": 4.8,
+    "reviews": 150,
+    "consultationFee": 75,
+    "availability": "Slots Open",
+    "image": "https://images.unsplash.com/photo-1548142813-c348350df52b?auto=format&fit=crop&w=600&q=80",
+    "bio": "Custom sublingual immunotherapy (SLIT) allergy drops, Apoquel and Cytopoint management, and hypoallergenic elimination food trials.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "09:30 AM - 10:15 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 2,
+        "time": "11:00 AM - 11:45 AM",
+        "patient": "Lola (Allergy Drop Formulation)",
+        "status": "booked"
+      },
+      {
+        "id": 3,
+        "time": "02:00 PM - 02:45 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ]
+  },
+  {
+    "id": "vet-45",
+    "name": "Dr. Henrik Lindqvist, DVM, DACVS",
+    "specialization": "Neurosurgical Spine & Spinal Trauma",
+    "experience": "19+ Years Neurosurgery",
+    "clinic": "Nordic Spine & Orthopedic Veterinary Referral",
+    "city": "Stockholm, SE",
+    "contact": "h.lindqvist@nordicspinevet.se | +46 8 559 1100",
+    "rating": 5,
+    "reviews": 320,
+    "consultationFee": 130,
+    "availability": "Available Today",
+    "image": "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=600&q=80",
+    "bio": "World-renowned specialist for atlantoaxial subluxation stabilization, lumbosacral stenosis decompressive surgery, and 3D printed custom titanium spinal implants.",
+    "timeSlots": [
+      {
+        "id": 1,
+        "time": "08:30 AM - 09:30 AM",
+        "patient": "Freja (Spinal CT Followup)",
+        "status": "booked"
+      },
+      {
+        "id": 2,
+        "time": "10:15 AM - 11:00 AM",
+        "patient": "Available",
+        "status": "available"
+      },
+      {
+        "id": 3,
+        "time": "01:30 PM - 02:15 PM",
+        "patient": "Available",
+        "status": "available"
+      }
+    ],
+    "category": "Emergency"
+  }
+]

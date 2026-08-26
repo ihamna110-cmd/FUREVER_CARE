@@ -1,0 +1,41 @@
+[
+  {
+    "id": "evt-1",
+    "title": "Grand Weekend Paws & Whiskers Mega Adoption Drive",
+    "date": "September 5, 2026",
+    "time": "10:00 AM - 4:00 PM",
+    "location": "Central Sunken Garden Park & Shelter Booth A",
+    "tag": "Adoption Drive",
+    "badgeColor": "bg-sky-500",
+    "image": "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=600&q=80",
+    "description": "Meet over 40+ rescued pups, playful kittens, and adorable bunnies looking for their forever homes. Free starter pet care kits for every successful adoption!",
+    "spotsLeft": 24,
+    "rsvpCount": 182
+  },
+  {
+    "id": "evt-2",
+    "title": "Community Free Rabies & DHPP Vaccination Camp",
+    "date": "September 12, 2026",
+    "time": "09:00 AM - 1:00 PM",
+    "location": "Northside FurEver Community Clinic Pavilion",
+    "tag": "Free Health Clinic",
+    "badgeColor": "bg-emerald-500",
+    "image": "https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&fit=crop&w=600&q=80",
+    "description": "Complimentary rabies vaccinations, tick-flea prevention topicals, and quick health examinations performed by licensed veterinary volunteers.",
+    "spotsLeft": 15,
+    "rsvpCount": 310
+  },
+  {
+    "id": "evt-3",
+    "title": "Puppy Socialization & Positive Clicker Training Workshop",
+    "date": "September 20, 2026",
+    "time": "02:00 PM - 5:00 PM",
+    "location": "Bark & Play Indoor Agility Arena",
+    "tag": "Workshop",
+    "badgeColor": "bg-indigo-500",
+    "image": "https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=600&q=80",
+    "description": "Learn force-free clicker training techniques, boundary setting, and leash walking from certified canine behavioral specialists.",
+    "spotsLeft": 8,
+    "rsvpCount": 95
+  }
+]

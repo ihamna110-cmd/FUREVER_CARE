@@ -1,0 +1,42 @@
+[
+  {
+    "id": "mem-1",
+    "name": "Sarah & Milo",
+    "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80",
+    "role": "Golden Retriever Mom & Volunteer",
+    "bio": "Passionate advocate for shelter dogs and positive reinforcement training techniques.",
+    "postsCount": 38,
+    "likesReceived": 420,
+    "badge": "Top Contributor"
+  },
+  {
+    "id": "mem-2",
+    "name": "Dr. Sarah Jenkins",
+    "avatar": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=200&q=80",
+    "role": "Chief Veterinary Consultant",
+    "bio": "Helping community members with evidence-based pet health, dental tips and nutritional advice.",
+    "postsCount": 54,
+    "likesReceived": 890,
+    "badge": "Verified Vet"
+  },
+  {
+    "id": "mem-3",
+    "name": "Hamza Tariq",
+    "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
+    "role": "Rescue Cat Enthusiast",
+    "bio": "Proud parent of 3 adopted rescue cats. Sharing daily feline enrichment and nutrition routines.",
+    "postsCount": 29,
+    "likesReceived": 310,
+    "badge": "Community Leader"
+  },
+  {
+    "id": "mem-4",
+    "name": "Bella Pet Care Rescue",
+    "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+    "role": "Shelter Partner Network",
+    "bio": "Nonprofit pet rescue dedicated to medical rehabilitation and happy foster-to-adopt matchmaking.",
+    "postsCount": 62,
+    "likesReceived": 980,
+    "badge": "Official Shelter"
+  }
+]

@@ -1,0 +1,228 @@
+{
+  "whatsappSupport": {
+    "number": "923001234567",
+    "displayNumber": "+92 300 1234567",
+    "country": "Pakistan",
+    "defaultGreeting": "Assalam-o-Alaikum! Welcome to FurEver Care Pet Support. How can we help your pet today?"
+  },
+  "emergencyHelplines": [
+    {
+      "name": "ASPCA National Animal Poison Control Center",
+      "phone": "(888) 426-4435",
+      "availability": "24/7 / 365 Days",
+      "type": "Toxicology & Poison Emergency",
+      "action": "Immediate Hotline"
+    },
+    {
+      "name": "Pet Poison Helpline (Global Critical Care)",
+      "phone": "(855) 764-7661",
+      "availability": "24/7 On-Call Toxicologists",
+      "type": "Chemical & Plant Ingestion",
+      "action": "Triage Hotline"
+    },
+    {
+      "name": "FurEver Emergency Trauma & Critical Care Vet Hospital",
+      "phone": "+1 (800) 555-PAWS (7297)",
+      "availability": "24/7 ER Intensive Care Unit",
+      "type": "Trauma, Surgery, Acute Distress",
+      "action": "Direct Ambulance"
+    },
+    {
+      "name": "Avian & Exotic Wildlife Emergency Line",
+      "phone": "+1 (800) 555-WING (9464)",
+      "availability": "24/7 Exotic Specialist On Duty",
+      "type": "Birds, Reptiles & Small Mammals",
+      "action": "Specialist Triage"
+    },
+    {
+      "name": "Disaster Animal Rescue & Lost Pet Dispatch",
+      "phone": "+1 (800) 555-HELP (4357)",
+      "availability": "24/7 Immediate Response",
+      "type": "Lost, Stranded or Injured Rescues",
+      "action": "Dispatch Team"
+    }
+  ],
+  "groomingVideos": [
+    {
+      "id": "vid-1",
+      "title": "Mastering Coat Brushing & Undercoat De-Shedding",
+      "duration": "6:45 Min",
+      "category": "Brushing",
+      "badge": "Beginner to Pro",
+      "thumbnail": "images/cat-brushing-thumbnail.jpg",
+      "videoUrl": "https://www.youtube.com/embed/J1FdJsju4QY",
+      "description": "Learn professional brushing techniques for double coats, long furs, and curly hair. Avoid painful hair pulling while boosting natural sheen.",
+      "steps": ["Choose slicker vs pin brush", "Start from lower flanks upwards", "Gentle strokes along coat grain", "Finish with de-shedding rake"]
+    },
+    {
+      "id": "vid-2",
+      "title": "Stress-Free Gentle Pet Bathing & Skin Care Routine",
+      "duration": "8:20 Min",
+      "category": "Bathing",
+      "badge": "Essential Care",
+      "thumbnail": "https://img.youtube.com/vi/qu0qJb_KOAQ/maxresdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/qu0qJb_KOAQ",
+      "description": "Keep bath time calm and soothing. Covers water temperature calibration, tearless shampoo application, ear protection, and fluff drying.",
+      "steps": ["Warm water test (37°C / 98°F)", "Protect inner ears with cotton", "Lather oatmeal formula gently", "Blow dry on cool setting"]
+    },
+    {
+      "id": "vid-3",
+      "title": "Safe Nail Trimming & Paw Care for Dogs & Cats",
+      "duration": "5:15 Min",
+      "category": "Trimming",
+      "badge": "Safety First",
+      "thumbnail": "https://img.youtube.com/vi/jjUA95mNRFQ/maxresdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/jjUA95mNRFQ",
+      "description": "How to identify the quick, use safety-stop clippers or rotary grinders, and keep your furry companion completely calm with positive reinforcement.",
+      "steps": ["Locate the pink blood vessel quick", "Cut at 45-degree angle", "Smooth rough edges with rotary file", "Reward with favorite treat"]
+    },
+    {
+      "id": "vid-4",
+      "title": "Canine & Feline Dental Hygiene & Tooth Brushing",
+      "duration": "4:50 Min",
+      "category": "Dental",
+      "badge": "Oral Wellness",
+      "thumbnail": "https://img.youtube.com/vi/NXlKCTNWMHU/maxresdefault.jpg",
+      "videoUrl": "https://www.youtube.com/embed/NXlKCTNWMHU",
+      "description": "Prevent periodontal disease and freshen pet breath with enzymatic poultry/malt toothpaste and finger-brush introduction methods.",
+      "steps": ["Introduce enzymatic paste on finger", "Gently lift lip at 45 degrees", "Circular motions on molars", "Never use human fluoride paste"]
+    }
+  ],
+  "healthTips": [
+    {
+      "id": "health-1",
+      "title": "Oral Care & Periodontal Prevention",
+      "category": "Dental Care",
+      "format": "Audio & Video",
+      "audioDuration": "2:30",
+      "summary": "80% of dogs show signs of periodontal disease by age 3. Daily enzymatic brushing and dental chews can extend pet lifespan by up to 3-5 years.",
+      "checklist": ["Inspect gums weekly for redness", "Provide veterinary-approved dental chews", "Schedule yearly ultrasonic scale & polish"]
+    },
+    {
+      "id": "health-2",
+      "title": "Weight Management & Body Condition Scoring",
+      "category": "Nutrition & Fitness",
+      "format": "Interactive Calculator",
+      "audioDuration": "3:15",
+      "summary": "Maintaining an ideal Body Condition Score (4-5 on a 9-point scale) prevents chronic osteoarthritis, feline diabetes, and cardiac stress.",
+      "checklist": ["Feel ribs easily without excess fat layer", "Visible waistline when viewed from above", "Measure exact daily kibble grams"]
+    },
+    {
+      "id": "health-3",
+      "title": "Recognizing Early Warning Signs of Illness",
+      "category": "Preventative Health",
+      "format": "Audio Guide",
+      "audioDuration": "4:10",
+      "summary": "Pets instinctively mask pain. Learn the subtle behavioral shifts such as litter box avoidance, excessive water drinking, or subtle gait imbalances.",
+      "checklist": ["Track daily water bowl consumption", "Note changes in grooming frequency", "Check gum color (should be healthy salmon pink)"]
+    }
+  ],
+  "trainingTips": [
+    {
+      "id": "train-1",
+      "title": "Positive Reinforcement & Clicker Foundation",
+      "type": "Audio + Interactive Guide",
+      "soundType": "clicker",
+      "description": "Timing is everything. Pair the distinct 'click' sound within 0.8 seconds of the desired behavior followed immediately by a high-value treat.",
+      "steps": ["Click when pet offers eye contact", "Deliver treat within 1 second", "Repeat 15 times per session", "Introduce cue word after behavior is consistent"]
+    },
+    {
+      "id": "train-2",
+      "title": "Mastering Loose Leash Walking",
+      "type": "Voice Guide + Diagrams",
+      "soundType": "whistle",
+      "description": "Transform stressful lunging walks into peaceful bonding strolls with the 'Red Light / Green Light' reverse direction technique.",
+      "steps": ["Freeze immediately when leash tightens", "Walk forward the instant leash goes slack", "Reward heel position next to your leg", "Use 6-ft standard nylon leash (never retractable)"]
+    },
+    {
+      "id": "train-3",
+      "title": "Foolproof Potty Training & Crate Conditioning",
+      "type": "Step-by-Step Schedule",
+      "soundType": "chime",
+      "description": "Establish clear 2-hour biological rhythms. The crate is never a punishment—it is a safe, cozy den that mirrors natural instincts.",
+      "steps": ["Take puppy outside 15 min after eating", "Use consistent cue 'Go Potty'", "Praise enthusiastically upon success", "Never scold accidents after the fact"]
+    },
+    {
+      "id": "train-4",
+      "title": "Desensitization & Calming Anxious Pets",
+      "type": "Sound Therapy + Guide",
+      "soundType": "ambient",
+      "description": "Help pets overcome fear of thunder, fireworks, or doorbells through low-volume acoustic counter-conditioning.",
+      "steps": ["Play trigger sounds at very low volume", "Feed favorite snacks during sound playback", "Gradually raise volume over 2 weeks", "Keep your own energy calm and grounded"]
+    }
+  ],
+  "adoptionSuccessStories": [
+    {
+      "id": "story-1",
+      "petName": "Copper (Formerly Stray -> Agility Champ)",
+      "adopter": "The Henderson Family",
+      "photoBefore": "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=600&q=80",
+      "photoAfter": "https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=600&q=80",
+      "story": "Found emaciated in an industrial yard with severe mange. Today, Copper is a healthy, certified therapy dog and reigning champion in our local agility cup!",
+      "quote": "FurEver Care made the adoption process so transparent and supportive. Copper brought joy and energy back to our entire home."
+    },
+    {
+      "id": "story-2",
+      "petName": "Mochi & Hazel (Orphaned Kittens)",
+      "adopter": "Maya Lin & Dave Ross",
+      "photoBefore": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=80",
+      "photoAfter": "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&w=600&q=80",
+      "story": "Bottle-fed from 2 weeks old in our neonatal nursery. They were adopted together as a bonded pair and now rule their sunny apartment with endless purrs.",
+      "quote": "Adopting bonded siblings was the best decision we ever made. They play together and sleep side-by-side every single night."
+    }
+  ],
+  "feedingGuideMatrix": {
+    "puppy": {
+      "title": "Puppies & Kittens (0 - 12 Months)",
+      "calorieMultiplier": "High Energy (50-70 kcal/lb)",
+      "mealsPerDay": "3 to 4 Meals",
+      "proteinTarget": "28 - 34%",
+      "waterGuideline": "½ cup per pound of body weight daily",
+      "notes": "Rich in DHA for brain and retinal development. Maintain strict meal times to aid house-training."
+    },
+    "adult": {
+      "title": "Adult Pets (1 - 7 Years)",
+      "calorieMultiplier": "Balanced Maintenance (30-40 kcal/lb)",
+      "mealsPerDay": "2 Meals",
+      "proteinTarget": "22 - 26%",
+      "waterGuideline": "1 ounce of water per pound of body weight daily",
+      "notes": "Prevent obesity by measuring portions accurately. Combine dry kibble with quality wet food for hydration."
+    },
+    "senior": {
+      "title": "Senior & Gentle Elders (7+ Years)",
+      "calorieMultiplier": "Gentle Digestion (20-28 kcal/lb)",
+      "mealsPerDay": "2 Small Easily Digestible Meals",
+      "proteinTarget": "24 - 28% (High Bioavailability)",
+      "waterGuideline": "Plentiful accessible fresh water fountains",
+      "notes": "Fortified with Glucosamine, Chondroitin, and Omega-3 fatty acids for joint and cognitive health."
+    }
+  },
+  "aboutTeam": [
+    {
+      "name": "Dr. Victoria Sterling, DVM",
+      "role": "Chief Veterinary Officer & Founder",
+      "image": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80",
+      "bio": "Over 16 years of clinical surgical excellence with a passion for holistic preventive companion animal health."
+    },
+    {
+      "name": "Marcus Vance",
+      "role": "Director of Rescue & Shelter Relations",
+      "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+      "bio": "Devoted animal welfare activist who has successfully facilitated over 4,500 forever-home adoptions."
+    },
+    {
+      "name": "Aria Chen",
+      "role": "Lead Animal Behavioral Specialist",
+      "image": "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80",
+      "bio": "Certified CPDT-KA canine & feline trainer specializing in fear-free positive reinforcement techniques."
+    }
+  ],
+  "contactDetails": {
+    "address": "FurEver Care Innovation Campus, 742 Companion Way, Metro Animal District, Suite 400",
+    "phone": "+1 (800) 555-FUREVER (387-3837)",
+    "emergencyPhone": "+1 (800) 555-PAWS (24/7 Hotline)",
+    "email": "support@furevercare.org",
+    "hours": "Mon - Sun: Open 24/7 for ER & Online Services",
+    "coordinates": "40.7128° N, 74.0060° W"
+  }
+}

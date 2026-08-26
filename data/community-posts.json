@@ -1,0 +1,89 @@
+[
+  {
+    "id": "post-1",
+    "userName": "Ayesha Khan",
+    "userAvatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+    "date": "2 hours ago",
+    "category": "Adoption",
+    "title": "My First Day With My Adopted Puppy 🐶",
+    "content": "Today marks one week since I brought my little friend home. Adoption has been one of the most beautiful experiences of my life! Seeing him sleep peacefully in his new bed makes every moment worthwhile.",
+    "petImage": "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=800&q=80",
+    "likes": 42,
+    "commentsCount": 8,
+    "comments": [
+      { "id": "c-1", "user": "Hamza Tariq", "text": "He looks so happy and loved! Congratulations!" },
+      { "id": "c-2", "user": "Dr. Sarah Jenkins", "text": "Remember to schedule his booster vaccination at 8 weeks. Beautiful pup!" }
+    ]
+  },
+  {
+    "id": "post-2",
+    "userName": "Dr. Farhan Siddiqui",
+    "userAvatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+    "date": "5 hours ago",
+    "category": "Health",
+    "title": "Tips for Keeping Your Cat Healthy 🐱",
+    "content": "Here are some simple everyday habits that can help keep your cat happy and healthy: 1) Ensure multiple freshwater bowls, 2) Brush their coat weekly to prevent hairballs, and 3) Schedule annual checkups!",
+    "petImage": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=800&q=80",
+    "likes": 68,
+    "commentsCount": 14,
+    "comments": [
+      { "id": "c-3", "user": "Zainab Malik", "text": "Great advice! The water fountain tip worked wonders for my Persian cat." }
+    ]
+  },
+  {
+    "id": "post-3",
+    "userName": "Hope Animal Shelter",
+    "userAvatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80",
+    "date": "1 day ago",
+    "category": "Adoption",
+    "title": "Looking for a Loving Home ❤️",
+    "content": "A lovely rescued golden retriever mix 'Bella' is looking for a caring forever family. She is 2 years old, fully vaccinated, spayed, and loves playing fetch in the garden.",
+    "petImage": "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=800&q=80",
+    "likes": 95,
+    "commentsCount": 21,
+    "comments": [
+      { "id": "c-4", "user": "Bilal Ahmed", "text": "Submitted our adoption application! Hope we get to meet Bella soon." }
+    ]
+  },
+  {
+    "id": "post-4",
+    "userName": "FurEver Community Desk",
+    "userAvatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
+    "date": "2 days ago",
+    "category": "Pet Stories",
+    "title": "Pet Parents, Share Your Story!",
+    "content": "Tell us how your pet became a special part of your family. Share your heartwarming adoption stories, quirky habits, or favorite memories with our growing community!",
+    "petImage": "https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?auto=format&fit=crop&w=800&q=80",
+    "likes": 128,
+    "commentsCount": 35,
+    "comments": [
+      { "id": "c-5", "user": "Mahnoor Raza", "text": "My cat Leo saved me during lockdown. Forever grateful to him!" }
+    ]
+  },
+  {
+    "id": "post-5",
+    "userName": "Usman Sheikh",
+    "userAvatar": "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=200&q=80",
+    "date": "3 days ago",
+    "category": "Tips & Advice",
+    "title": "Easy DIY Summer Frozen Treats for Dogs 🍧",
+    "content": "Mix pureed peanut butter (xylitol-free) with unsweetened Greek yogurt and banana slices. Freeze in silicone paw molds for 3 hours. My lab Archie goes crazy for these during hot afternoons!",
+    "petImage": "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80",
+    "likes": 53,
+    "commentsCount": 9,
+    "comments": []
+  },
+  {
+    "id": "post-6",
+    "userName": "FurEver Events Team",
+    "userAvatar": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80",
+    "date": "4 days ago",
+    "category": "Events",
+    "title": "Annual Paws in the Park Meetup This Saturday! 🎪",
+    "content": "Join over 200 pet families at Central Park Pavilions for free microchipping, fun agility courses, best-dressed pet contest, and complimentary vet consultations.",
+    "petImage": "https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=800&q=80",
+    "likes": 110,
+    "commentsCount": 27,
+    "comments": []
+  }
+]
