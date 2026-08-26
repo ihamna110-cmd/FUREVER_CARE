@@ -380,6 +380,13 @@ function App() {
   // 2. LIFECYCLE, REALTIME CLOCK & DATA LOADING
   // ------------------------------------------------------------------------
   useEffect(() => {
+    /* GSAP Hero Animation Trigger */
+    if (typeof window !== 'undefined' && window.gsap) {
+      try {
+        window.gsap.from('.petcare-hero-left', { opacity: 0, y: 25, duration: 0.8, ease: 'power2.out' });
+        window.gsap.from('.petcare-composition-container', { opacity: 0, scale: 0.94, duration: 1, ease: 'power2.out', delay: 0.15 });
+      } catch (e) {}
+    }
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('furever_theme', theme);
   }, [theme]);
@@ -1256,210 +1263,194 @@ function App() {
             ================================================================== */}
         {activeTab === 'home' && (
           <div>
-            {/* ── LUXURY MOCKUP HERO SECTION ── */}
-            <section className="hero-section hero-mockup-layout">
-              <div className="hero-grid">
+            {/* ══════════ PREMIUM SKY BLUE PETCARE HERO SECTION (GSAP + REACT + JSON) ══════════ */}
+            <section className="hero-section petcare-hero-wrapper">
+              <div className="petcare-hero-grid">
                 
-                {/* LEFT COLUMN: Main Hero Info, Search & 3 Action Cards */}
-                <div className="hero-text-content">
+                {/* ── LEFT COLUMN: Text Content & Actions ── */}
+                <div className="petcare-hero-left">
                   
-                  {/* Glowing Platform Badge */}
-                  <div className="hero-badge-glow">
-                    <i className="fa-solid fa-crown" style={{ color: '#f59e0b' }}></i>
-                    <span>#1 Unified Companion Care Platform</span>
+                  {/* Small Badge: Trusted PetCare Platform */}
+                  <div className="petcare-trust-badge">
+                    <span className="petcare-trust-badge-dot"></span>
+                    <i className="fa-solid fa-shield-halved"></i>
+                    <span>{(window.FurEverDB?.heroPetcare?.badge) || 'Trusted PetCare Platform'}</span>
                   </div>
 
-                  {/* High Impact Headline */}
-                  <h1 className="hero-title-mockup">
-                    They Deserve <br />
-                    <span className="hero-title-sky">Forever Love</span> <br />
-                    & World-Class Care.
+                  {/* Large Heading */}
+                  <h1 className="petcare-hero-title">
+                    Better Care for <br />
+                    <span className="petcare-highlight-text">Happier Pets</span>
                   </h1>
 
-                  {/* Elegant Emotional Subtitle */}
-                  <p className="hero-subtitle-mockup">
-                    Because every wag, purr and chirp tells a story — give them the healthy, happy and safe life they deserve.
+                  {/* Short Professional Description */}
+                  <p className="petcare-hero-desc">
+                    {(window.FurEverDB?.heroPetcare?.subheading) || 'Your all-in-one veterinary and companion wellness ecosystem. From accredited specialist clinics and gentle grooming salons to transparent adoptions and emergency rescue dispatch.'}
                   </p>
 
-                  {/* 4 Micro-Features Pills */}
-                  <div className="hero-features-chips-row">
-                    <div className="hero-chip-item">
-                      <span className="chip-icon-circle chip-blue"><i className="fa-solid fa-heart"></i></span>
-                      <span>Verified Veterinarians</span>
-                    </div>
-                    <div className="hero-chip-item">
-                      <span className="chip-icon-circle chip-sky"><i className="fa-regular fa-clock"></i></span>
-                      <span>24/7 Emergency Helpline</span>
-                    </div>
-                    <div className="hero-chip-item">
-                      <span className="chip-icon-circle chip-cyan"><i className="fa-solid fa-paw"></i></span>
-                      <span>Happy Adoptions</span>
-                    </div>
-                    <div className="hero-chip-item">
-                      <span className="chip-icon-circle chip-indigo"><i className="fa-solid fa-bag-shopping"></i></span>
-                      <span>Premium Pet Supplies</span>
-                    </div>
+                  {/* CTA Action Buttons */}
+                  <div className="petcare-cta-row">
+                    <button 
+                      className="btn-petcare-primary"
+                      onClick={() => {
+                        setActiveTab('shelter');
+                        if (window.SoundEngine) window.SoundEngine.playClicker();
+                        addToast('Exploring adoptable pets & companion gallery', 'fa-paw');
+                      }}
+                    >
+                      <span>Explore PetCare</span>
+                      <i className="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                    <button 
+                      className="btn-petcare-secondary"
+                      onClick={() => {
+                        setActiveTab('vet');
+                        setVetViewMode('directory');
+                        if (window.SoundEngine) window.SoundEngine.playClicker();
+                        addToast('Browsing verified veterinary specialists', 'fa-user-doctor');
+                      }}
+                    >
+                      <i className="fa-solid fa-stethoscope" style={{ color: '#0ea5e9' }}></i>
+                      <span>Find a Veterinarian</span>
+                    </button>
                   </div>
 
-                  {/* Universal Glass Search Bar */}
-                  <form onSubmit={handleHeroSearchSubmit} className="hero-search-bar-mockup">
-                    <i className="fa-solid fa-magnifying-glass search-lens-icon"></i>
-                    <input 
-                      type="text" 
-                      placeholder="Search pets, products, vets..." 
-                      value={heroSearchQuery}
-                      onChange={(e) => setHeroSearchQuery(e.target.value)}
-                      className="search-input-field"
-                    />
-                    <button type="submit" className="search-portal-btn">
-                      Search Portal <i className="fa-solid fa-arrow-right"></i>
-                    </button>
-                  </form>
+                  {/* Small Trust Indicators / Statistics */}
+                  <div className="petcare-stats-strip">
+                    {((window.FurEverDB?.heroPetcare?.trustStats) || [
+                      { value: '15+', label: 'Verified Specialists', icon: 'fa-user-doctor', color: '#0ea5e9' },
+                      { value: '4.9★', label: 'Client Trust Rating', icon: 'fa-shield-heart', color: '#10b981' },
+                      { value: '24/7', label: 'Emergency SOS Desk', icon: 'fa-truck-medical', color: '#ef4444' }
+                    ]).map((stat, sIdx) => (
+                      <div key={sIdx} className="petcare-stat-item">
+                        <div className="petcare-stat-icon-wrap" style={{ color: stat.color }}>
+                          <i className={'fa-solid ' + stat.icon}></i>
+                        </div>
+                        <div>
+                          <div className="petcare-stat-val">{stat.value}</div>
+                          <div className="petcare-stat-lbl">{stat.label}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
 
-                  {/* 3 Quick Action Cards Row */}
-                  <div className="hero-action-cards-grid">
+                </div>
+
+                {/* ── RIGHT COLUMN: Animated Pet Composition & Floating Feature Cards ── */}
+                <div className="petcare-hero-right">
+                  <div className="petcare-composition-container">
                     
-                    {/* Card 1: Find Your Pet */}
+                    {/* Glowing Ambient Aura & Orbit Ring */}
+                    <div className="petcare-glow-orb-main"></div>
+                    <div className="petcare-glow-ring"></div>
+
+                    {/* Subtle Floating Background Paw Prints */}
+                    <div className="petcare-paw-float petcare-paw-1"><i className="fa-solid fa-paw"></i></div>
+                    <div className="petcare-paw-float petcare-paw-2"><i className="fa-solid fa-paw"></i></div>
+                    <div className="petcare-paw-float petcare-paw-3"><i className="fa-solid fa-paw"></i></div>
+                    <div className="petcare-paw-float petcare-paw-4"><i className="fa-solid fa-paw"></i></div>
+
+                    {/* ── 3 ANIMATED PETS (Dog, Cat, Rabbit) ── */}
+
+                    {/* 🐶 Pet 1: Dog (Buddy - Golden Retriever) */}
+                    <div className="petcare-pet-card petcare-pet-dog">
+                      <img 
+                        src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=500&q=80" 
+                        alt="Buddy - Golden Retriever" 
+                        className="petcare-pet-img" 
+                      />
+                      <div className="petcare-pet-tag">
+                        <span className="petcare-pet-name">Buddy</span>
+                        <span className="petcare-pet-badge">🐶 Dog</span>
+                      </div>
+                    </div>
+
+                    {/* 🐱 Pet 2: Cat (Luna - British Shorthair) */}
+                    <div className="petcare-pet-card petcare-pet-cat">
+                      <img 
+                        src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=500&q=80" 
+                        alt="Luna - British Shorthair Cat" 
+                        className="petcare-pet-img" 
+                      />
+                      <div className="petcare-pet-tag">
+                        <span className="petcare-pet-name">Luna</span>
+                        <span className="petcare-pet-badge">🐱 Cat</span>
+                      </div>
+                    </div>
+
+                    {/* 🐰 Pet 3: Rabbit (Coco - Holland Lop) */}
+                    <div className="petcare-pet-card petcare-pet-rabbit">
+                      <img 
+                        src="https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?auto=format&fit=crop&w=500&q=80" 
+                        alt="Coco - Holland Lop Bunny" 
+                        className="petcare-pet-img" 
+                      />
+                      <div className="petcare-pet-tag">
+                        <span className="petcare-pet-name">Coco</span>
+                        <span className="petcare-pet-badge">🐰 Bunny</span>
+                      </div>
+                    </div>
+
+                    {/* ── 3 FLOATING FEATURE CARDS (Dynamically Rendered) ── */}
+
+                    {/* Feature 1: Veterinary Care */}
                     <div 
-                      className="hero-action-card active-action-card" 
+                      className="petcare-feature-card card-top-left"
+                      onClick={() => {
+                        setActiveTab('vet');
+                        setVetViewMode('directory');
+                        if (window.SoundEngine) window.SoundEngine.playClicker();
+                      }}
+                    >
+                      <div className="petcare-feature-icon-box" style={{ background: 'linear-gradient(135deg, #0ea5e9, #0284c7)' }}>
+                        <i className="fa-solid fa-stethoscope"></i>
+                      </div>
+                      <div>
+                        <div className="petcare-feature-title">Veterinary Care</div>
+                        <div className="petcare-feature-desc">Professional health support</div>
+                      </div>
+                    </div>
+
+                    {/* Feature 2: Pet Adoption */}
+                    <div 
+                      className="petcare-feature-card card-top-right"
                       onClick={() => {
                         setActiveTab('shelter');
                         if (window.SoundEngine) window.SoundEngine.playClicker();
                       }}
                     >
-                      <div className="action-card-icon-wrap">
-                        <i className="fa-solid fa-paw"></i>
+                      <div className="petcare-feature-icon-box" style={{ background: 'linear-gradient(135deg, #38bdf8, #0ea5e9)' }}>
+                        <i className="fa-solid fa-heart"></i>
                       </div>
-                      <div className="action-card-text">
-                        <div className="action-card-title">
-                          Find Your Pet <i className="fa-solid fa-arrow-right card-arrow"></i>
-                        </div>
-                        <div className="action-card-sub">Adopt a Companion</div>
+                      <div>
+                        <div className="petcare-feature-title">Pet Adoption</div>
+                        <div className="petcare-feature-desc">Find a loving companion</div>
                       </div>
                     </div>
 
-                    {/* Card 2: Book a Vet */}
+                    {/* Feature 3: Grooming */}
                     <div 
-                      className="hero-action-card" 
+                      className="petcare-feature-card card-bottom-right"
                       onClick={() => {
-                        setActiveTab('vet');
+                        setActiveTab('pet-owner');
+                        setPetOwnerSubTab('grooming-appts');
                         if (window.SoundEngine) window.SoundEngine.playClicker();
                       }}
                     >
-                      <div className="action-card-icon-wrap">
-                        <i className="fa-solid fa-stethoscope"></i>
+                      <div className="petcare-feature-icon-box" style={{ background: 'linear-gradient(135deg, #6366f1, #0ea5e9)' }}>
+                        <i className="fa-solid fa-scissors"></i>
                       </div>
-                      <div className="action-card-text">
-                        <div className="action-card-title">
-                          Book a Vet <i className="fa-solid fa-arrow-right card-arrow"></i>
-                        </div>
-                        <div className="action-card-sub">Expert Care Near You</div>
-                      </div>
-                    </div>
-
-                    {/* Card 3: Pet Store */}
-                    <div 
-                      className="hero-action-card" 
-                      onClick={() => {
-                        setActiveTab('products');
-                        if (window.SoundEngine) window.SoundEngine.playClicker();
-                      }}
-                    >
-                      <div className="action-card-icon-wrap">
-                        <i className="fa-solid fa-bag-shopping"></i>
-                      </div>
-                      <div className="action-card-text">
-                        <div className="action-card-title">
-                          Pet Store <i className="fa-solid fa-arrow-right card-arrow"></i>
-                        </div>
-                        <div className="action-card-sub">Quality Products</div>
+                      <div>
+                        <div className="petcare-feature-title">Grooming</div>
+                        <div className="petcare-feature-desc">Healthy &amp; happy pets</div>
                       </div>
                     </div>
 
                   </div>
-
-                </div>
-
-                {/* RIGHT COLUMN: Golden Retriever Puppy & Kitten Visual Showcase */}
-                <div className="hero-visual-showcase-mockup">
-                  
-                  {/* Glowing Neon Heart Doodles in Background */}
-                  <div className="heart-doodle heart-doodle-1"><i className="fa-regular fa-heart"></i></div>
-                  <div className="heart-doodle heart-doodle-2"><i className="fa-regular fa-heart"></i></div>
-
-                  {/* Main Puppy & Kitten Image Container */}
-                  <div className="hero-mockup-img-container">
-                    <img 
-                      src="assets/hero_puppy_kitten.jpg" 
-                      alt="Golden Retriever Puppy and Fluffy Kitten Cuddling" 
-                      className="hero-mockup-main-img"
-                    />
-                    <div className="hero-mockup-bottom-fade"></div>
-                  </div>
-
-                  {/* Floating Widget Top-Right: Happy Adoptions with Avatars */}
-                  <div className="floating-stat-mockup-card">
-                    <div className="floating-stat-icon"><i className="fa-solid fa-heart"></i></div>
-                    <div className="floating-stat-number">4,850+</div>
-                    <div className="floating-stat-label">Happy Adoptions</div>
-                    <div className="floating-avatar-stack">
-                      <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=100&q=80" alt="Adopted Pet" className="stack-avatar" />
-                      <img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=100&q=80" alt="Adopted Pet" className="stack-avatar" />
-                      <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=100&q=80" alt="Adopted Pet" className="stack-avatar" />
-                    </div>
-                  </div>
-
-                  {/* Floating Widget Bottom-Right: Quote Box */}
-                  <div className="floating-quote-mockup-card">
-                    <div className="quote-paw-icon"><i className="fa-solid fa-paw"></i></div>
-                    <div className="quote-text">
-                      "Pets make our lives kinder, happier and whole." <span style={{ color: '#f43f5e' }}>❤️</span>
-                    </div>
-                  </div>
-
                 </div>
 
               </div>
-
-              {/* BOTTOM TRUST STATS BANNER */}
-              <div className="hero-bottom-trust-banner">
-                <div className="trust-banner-item trust-highlight-item">
-                  <div className="trust-shield-icon"><i className="fa-solid fa-shield-halved"></i></div>
-                  <div>
-                    <div className="trust-bold-title">Trusted by</div>
-                    <div className="trust-sub-title">Pet Lovers Worldwide</div>
-                  </div>
-                </div>
-
-                <div className="trust-divider"></div>
-
-                <div className="trust-banner-item">
-                  <div className="trust-stat-number">50K+</div>
-                  <div className="trust-stat-label">Happy Pet Parents</div>
-                </div>
-
-                <div className="trust-divider"></div>
-
-                <div className="trust-banner-item">
-                  <div className="trust-stat-number">10K+</div>
-                  <div className="trust-stat-label">Certified Vets</div>
-                </div>
-
-                <div className="trust-divider"></div>
-
-                <div className="trust-banner-item">
-                  <div className="trust-stat-number">120K+</div>
-                  <div className="trust-stat-label">Pet Products</div>
-                </div>
-
-                <div className="trust-divider"></div>
-
-                <div className="trust-banner-item">
-                  <div className="trust-stat-number" style={{ color: '#38bdf8' }}>24/7</div>
-                  <div className="trust-stat-label">Care & Support</div>
-                </div>
-              </div>
-
             </section>
 
             {/* ── NEW FEATURE: INTERACTIVE PET WELLNESS & LIFESTYLE MATCH HUB ── */}

@@ -1,0 +1,97 @@
+{
+  "badge": "Trusted PetCare Platform",
+  "heading": "Better Care for Happier Pets",
+  "headingHighlight": "Happier Pets",
+  "subheading": "Your all-in-one veterinary and companion wellness ecosystem. From accredited specialist clinics and gentle grooming salons to transparent adoptions and emergency rescue dispatch.",
+  "primaryCta": {
+    "text": "Explore PetCare",
+    "icon": "fa-arrow-right",
+    "targetTab": "shelter"
+  },
+  "secondaryCta": {
+    "text": "Find a Veterinarian",
+    "icon": "fa-stethoscope",
+    "targetTab": "vet"
+  },
+  "trustStats": [
+    {
+      "value": "15+",
+      "label": "Verified Specialists",
+      "icon": "fa-user-doctor",
+      "color": "#0ea5e9"
+    },
+    {
+      "value": "4.9★",
+      "label": "Client Trust Rating",
+      "icon": "fa-shield-heart",
+      "color": "#10b981"
+    },
+    {
+      "value": "24/7",
+      "label": "Emergency SOS Desk",
+      "icon": "fa-truck-medical",
+      "color": "#ef4444"
+    }
+  ],
+  "pets": [
+    {
+      "id": "dog-buddy",
+      "type": "dog",
+      "name": "Buddy",
+      "breed": "Golden Retriever",
+      "badge": "Loyal Companion",
+      "animation": "subtle-float-breathe",
+      "photo": "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "cat-luna",
+      "type": "cat",
+      "name": "Luna",
+      "breed": "British Shorthair",
+      "badge": "Playful Purr",
+      "animation": "gentle-sway-wag",
+      "photo": "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      "id": "rabbit-coco",
+      "type": "rabbit",
+      "name": "Coco",
+      "breed": "Holland Lop Bunny",
+      "badge": "Gentle Fluff",
+      "animation": "soft-ear-bounce",
+      "photo": "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?auto=format&fit=crop&w=500&q=80"
+    }
+  ],
+  "features": [
+    {
+      "id": "feature-vet",
+      "title": "Veterinary Care",
+      "description": "Professional health support",
+      "icon": "fa-stethoscope",
+      "badge": "Clinical",
+      "color": "#0ea5e9",
+      "position": "card-top-left",
+      "targetTab": "vet"
+    },
+    {
+      "id": "feature-adopt",
+      "title": "Pet Adoption",
+      "description": "Find a loving companion",
+      "icon": "fa-heart",
+      "badge": "Ethical",
+      "color": "#38bdf8",
+      "position": "card-top-right",
+      "targetTab": "shelter"
+    },
+    {
+      "id": "feature-groom",
+      "title": "Grooming",
+      "description": "Healthy & happy pets",
+      "icon": "fa-scissors",
+      "badge": "Spa Care",
+      "color": "#6366f1",
+      "position": "card-bottom-right",
+      "targetTab": "pet-owner"
+    }
+  ]
+}

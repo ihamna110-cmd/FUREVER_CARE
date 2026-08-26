@@ -5245,3 +5245,539 @@ textarea.input-error {
 }
 
 
+
+
+/* ==========================================================================
+   PREMIUM SKY BLUE PETCARE HERO SECTION STYLES
+   ========================================================================== */
+.petcare-hero-wrapper {
+  position: relative;
+  padding: 30px 0 45px;
+  overflow: hidden;
+  background: radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.08) 0%, transparent 60%),
+              radial-gradient(circle at 10% 80%, rgba(99, 102, 241, 0.06) 0%, transparent 50%);
+}
+
+.petcare-hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 40px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* ── LEFT COLUMN ── */
+.petcare-hero-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 5;
+}
+
+.petcare-trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(14, 165, 233, 0.1);
+  border: 1.5px solid rgba(14, 165, 233, 0.28);
+  padding: 6px 18px;
+  border-radius: var(--radius-full, 9999px);
+  color: var(--primary-600, #0284c7);
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 10px rgba(14, 165, 233, 0.12);
+  transition: transform 0.25s ease;
+}
+.petcare-trust-badge:hover {
+  transform: translateY(-2px);
+}
+.petcare-trust-badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0ea5e9;
+  box-shadow: 0 0 10px #0ea5e9;
+  animation: petcarePulseDot 2s infinite;
+}
+@keyframes petcarePulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.7; }
+}
+
+.petcare-hero-title {
+  font-size: 3.1rem;
+  line-height: 1.15;
+  font-weight: 900;
+  color: var(--text-main, #0f172a);
+  margin: 0 0 18px;
+  letter-spacing: -0.025em;
+}
+
+.petcare-highlight-text {
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #6366f1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  position: relative;
+}
+
+.petcare-hero-desc {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-muted, #475569);
+  margin: 0 0 26px;
+  max-width: 540px;
+}
+
+.petcare-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.btn-petcare-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+  color: #ffffff;
+  padding: 14px 28px;
+  border-radius: var(--radius-full, 9999px);
+  font-weight: 800;
+  font-size: 0.96rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(14, 165, 233, 0.4);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.btn-petcare-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(14, 165, 233, 0.55);
+}
+
+.btn-petcare-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--bg-surface, #ffffff);
+  color: var(--text-main, #0f172a);
+  padding: 13px 26px;
+  border-radius: var(--radius-full, 9999px);
+  font-weight: 700;
+  font-size: 0.94rem;
+  border: 1.8px solid rgba(14, 165, 233, 0.35);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(0,0,0,0.04));
+}
+.btn-petcare-secondary:hover {
+  background: rgba(14, 165, 233, 0.08);
+  border-color: #0ea5e9;
+  color: #0284c7;
+  transform: translateY(-2px);
+}
+
+/* Trust Stats Strip */
+.petcare-stats-strip {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-color, rgba(226, 232, 240, 0.8));
+  width: 100%;
+}
+.petcare-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.petcare-stat-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(14, 165, 233, 0.12);
+  color: #0ea5e9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+.petcare-stat-val {
+  font-weight: 900;
+  font-size: 1.15rem;
+  color: var(--text-main, #0f172a);
+  line-height: 1.1;
+}
+.petcare-stat-lbl {
+  font-size: 0.76rem;
+  color: var(--text-muted, #64748b);
+  font-weight: 600;
+}
+
+/* ── RIGHT COLUMN: ANIMATED PET COMPOSITION ── */
+.petcare-hero-right {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 480px;
+}
+
+.petcare-composition-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 460px;
+}
+
+/* Glowing Ambient Orbs */
+.petcare-glow-orb-main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.18) 0%, rgba(99, 102, 241, 0.08) 60%, transparent 80%);
+  filter: blur(28px);
+  pointer-events: none;
+  z-index: 1;
+  animation: petcareAuraPulse 6s ease-in-out infinite alternate;
+}
+@keyframes petcareAuraPulse {
+  0% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.7; }
+  100% { transform: translate(-50%, -50%) scale(1.08); opacity: 1; }
+}
+
+.petcare-glow-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  border: 2px dashed rgba(14, 165, 233, 0.25);
+  pointer-events: none;
+  z-index: 1;
+  animation: petcareRingRotate 45s linear infinite;
+}
+@keyframes petcareRingRotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Floating Paw Prints */
+.petcare-paw-float {
+  position: absolute;
+  color: rgba(14, 165, 233, 0.35);
+  pointer-events: none;
+  z-index: 1;
+}
+.petcare-paw-1 {
+  top: 15%;
+  left: 8%;
+  font-size: 1.2rem;
+  animation: pawDrift1 7s ease-in-out infinite;
+}
+.petcare-paw-2 {
+  bottom: 20%;
+  right: 10%;
+  font-size: 1.4rem;
+  animation: pawDrift2 8.5s ease-in-out infinite 1.5s;
+}
+.petcare-paw-3 {
+  top: 65%;
+  left: 4%;
+  font-size: 1rem;
+  animation: pawDrift1 6.5s ease-in-out infinite 3s;
+}
+.petcare-paw-4 {
+  top: 8%;
+  right: 25%;
+  font-size: 1.1rem;
+  animation: pawDrift2 9s ease-in-out infinite 2s;
+}
+
+@keyframes pawDrift1 {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  25% { opacity: 0.4; }
+  75% { opacity: 0.4; }
+  100% { transform: translate(30px, -50px) rotate(18deg); opacity: 0; }
+}
+@keyframes pawDrift2 {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  25% { opacity: 0.35; }
+  75% { opacity: 0.35; }
+  100% { transform: translate(-25px, -45px) rotate(-15deg); opacity: 0; }
+}
+
+/* Pet Stage Cards */
+.petcare-pet-card {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 8px;
+  box-shadow: 0 16px 36px rgba(14, 165, 233, 0.22);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  z-index: 3;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.petcare-pet-card:hover {
+  transform: translateY(-6px) scale(1.03) !important;
+  box-shadow: 0 22px 48px rgba(14, 165, 233, 0.32);
+}
+
+/* Pet 1: Dog (Buddy) - Main Center Pet */
+.petcare-pet-dog {
+  top: 16%;
+  left: 20%;
+  width: 210px;
+  animation: petFloatDog 4.5s ease-in-out infinite, petBreathe 3.5s ease-in-out infinite;
+  z-index: 4;
+}
+.petcare-pet-img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+}
+
+/* Pet 2: Cat (Luna) - Right Elevated Pet */
+.petcare-pet-cat {
+  top: 8%;
+  right: 2%;
+  width: 155px;
+  animation: petFloatCat 5.2s ease-in-out infinite 0.8s, catTailSway 4s ease-in-out infinite;
+  z-index: 3;
+}
+.petcare-pet-cat .petcare-pet-img {
+  height: 140px;
+}
+
+/* Pet 3: Rabbit (Coco) - Bottom-Left Playful Pet */
+.petcare-pet-rabbit {
+  bottom: 8%;
+  left: 6%;
+  width: 145px;
+  animation: rabbitFloat 4.8s ease-in-out infinite 1.4s, rabbitEarTwitch 5s ease-in-out infinite;
+  z-index: 5;
+}
+.petcare-pet-rabbit .petcare-pet-img {
+  height: 130px;
+}
+
+/* Pet Info Tag inside card */
+.petcare-pet-tag {
+  padding: 6px 8px 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.petcare-pet-name {
+  font-weight: 800;
+  font-size: 0.88rem;
+  color: var(--text-main, #0f172a);
+}
+.petcare-pet-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #0284c7;
+  background: rgba(14, 165, 233, 0.12);
+  padding: 2px 8px;
+  border-radius: var(--radius-full, 9999px);
+}
+
+/* Specific Keyframes */
+@keyframes petFloatDog {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+@keyframes petBreathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.015); }
+}
+@keyframes petFloatCat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-11px); }
+}
+@keyframes catTailSway {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(2.5deg); }
+}
+@keyframes rabbitFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes rabbitEarTwitch {
+  0%, 85%, 100% { transform: rotate(0deg); }
+  88% { transform: rotate(-3deg); }
+  92% { transform: rotate(3deg); }
+}
+
+/* ── 3 FLOATING FEATURE CARDS ── */
+.petcare-feature-card {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1.5px solid rgba(14, 165, 233, 0.25);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 10px 16px;
+  box-shadow: 0 10px 30px rgba(14, 165, 233, 0.16);
+  z-index: 6;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-decoration: none;
+}
+.petcare-feature-card:hover {
+  transform: translateY(-4px) scale(1.05) !important;
+  box-shadow: 0 16px 40px rgba(14, 165, 233, 0.28);
+  border-color: #0ea5e9;
+}
+
+.petcare-feature-icon-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+.petcare-feature-title {
+  font-weight: 800;
+  font-size: 0.88rem;
+  color: var(--text-main, #0f172a);
+  line-height: 1.2;
+}
+.petcare-feature-desc {
+  font-size: 0.74rem;
+  color: var(--text-muted, #64748b);
+  margin-top: 2px;
+}
+
+/* Positions of 3 Feature Cards */
+.card-top-left {
+  top: 2%;
+  left: -2%;
+  animation: floatFeature1 5s ease-in-out infinite;
+}
+.card-top-right {
+  top: 48%;
+  right: -6%;
+  animation: floatFeature2 6s ease-in-out infinite 1s;
+}
+.card-bottom-right {
+  bottom: 2%;
+  right: 12%;
+  animation: floatFeature3 5.4s ease-in-out infinite 2s;
+}
+
+@keyframes floatFeature1 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes floatFeature2 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes floatFeature3 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+/* ── RESPONSIVENESS ── */
+@media (max-width: 1024px) {
+  .petcare-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  .petcare-hero-left {
+    align-items: center;
+  }
+  .petcare-hero-title {
+    font-size: 2.6rem;
+  }
+  .petcare-hero-desc {
+    max-width: 100%;
+  }
+  .petcare-cta-row {
+    justify-content: center;
+  }
+  .petcare-stats-strip {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .petcare-hero-title {
+    font-size: 2.1rem;
+  }
+  .petcare-composition-container {
+    height: 400px;
+    max-width: 100%;
+  }
+  .petcare-pet-dog {
+    width: 160px;
+    left: 24%;
+  }
+  .petcare-pet-dog .petcare-pet-img {
+    height: 150px;
+  }
+  .petcare-pet-cat {
+    width: 120px;
+    right: 0%;
+  }
+  .petcare-pet-cat .petcare-pet-img {
+    height: 110px;
+  }
+  .petcare-pet-rabbit {
+    width: 115px;
+    left: 4%;
+  }
+  .petcare-pet-rabbit .petcare-pet-img {
+    height: 105px;
+  }
+  .card-top-left {
+    left: 0;
+    top: 0;
+  }
+  .card-top-right {
+    right: 0;
+    top: 42%;
+  }
+  .card-bottom-right {
+    right: 4%;
+    bottom: 0;
+  }
+  .petcare-stats-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .petcare-pet-dog,
+  .petcare-pet-cat,
+  .petcare-pet-rabbit,
+  .petcare-feature-card,
+  .petcare-glow-ring,
+  .petcare-paw-float {
+    animation: none !important;
+  }
+}

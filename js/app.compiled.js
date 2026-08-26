@@ -442,6 +442,24 @@ function App() {
   // 2. LIFECYCLE, REALTIME CLOCK & DATA LOADING
   // ------------------------------------------------------------------------
   useEffect(() => {
+    /* GSAP Hero Animation Trigger */
+    if (typeof window !== 'undefined' && window.gsap) {
+      try {
+        window.gsap.from('.petcare-hero-left', {
+          opacity: 0,
+          y: 25,
+          duration: 0.8,
+          ease: 'power2.out'
+        });
+        window.gsap.from('.petcare-composition-container', {
+          opacity: 0,
+          scale: 0.94,
+          duration: 1,
+          ease: 'power2.out',
+          delay: 0.15
+        });
+      } catch (e) {}
+    }
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('furever_theme', theme);
   }, [theme]);
@@ -1601,224 +1619,192 @@ function App() {
   }))))), /*#__PURE__*/React.createElement("main", {
     className: "app-container"
   }, activeTab === 'home' && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("section", {
-    className: "hero-section hero-mockup-layout"
+    className: "hero-section petcare-hero-wrapper"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "hero-grid"
+    className: "petcare-hero-grid"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "hero-text-content"
+    className: "petcare-hero-left"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "hero-badge-glow"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-crown",
-    style: {
-      color: '#f59e0b'
+    className: "petcare-trust-badge"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "petcare-trust-badge-dot"
+  }), /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-shield-halved"
+  }), /*#__PURE__*/React.createElement("span", null, window.FurEverDB?.heroPetcare?.badge || 'Trusted PetCare Platform')), /*#__PURE__*/React.createElement("h1", {
+    className: "petcare-hero-title"
+  }, "Better Care for ", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
+    className: "petcare-highlight-text"
+  }, "Happier Pets")), /*#__PURE__*/React.createElement("p", {
+    className: "petcare-hero-desc"
+  }, window.FurEverDB?.heroPetcare?.subheading || 'Your all-in-one veterinary and companion wellness ecosystem. From accredited specialist clinics and gentle grooming salons to transparent adoptions and emergency rescue dispatch.'), /*#__PURE__*/React.createElement("div", {
+    className: "petcare-cta-row"
+  }, /*#__PURE__*/React.createElement("button", {
+    className: "btn-petcare-primary",
+    onClick: () => {
+      setActiveTab('shelter');
+      if (window.SoundEngine) window.SoundEngine.playClicker();
+      addToast('Exploring adoptable pets & companion gallery', 'fa-paw');
     }
-  }), /*#__PURE__*/React.createElement("span", null, "#1 Unified Companion Care Platform")), /*#__PURE__*/React.createElement("h1", {
-    className: "hero-title-mockup"
-  }, "They Deserve ", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
-    className: "hero-title-sky"
-  }, "Forever Love"), " ", /*#__PURE__*/React.createElement("br", null), "& World-Class Care."), /*#__PURE__*/React.createElement("p", {
-    className: "hero-subtitle-mockup"
-  }, "Because every wag, purr and chirp tells a story \u2014 give them the healthy, happy and safe life they deserve."), /*#__PURE__*/React.createElement("div", {
-    className: "hero-features-chips-row"
+  }, /*#__PURE__*/React.createElement("span", null, "Explore PetCare"), /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-arrow-right"
+  })), /*#__PURE__*/React.createElement("button", {
+    className: "btn-petcare-secondary",
+    onClick: () => {
+      setActiveTab('vet');
+      setVetViewMode('directory');
+      if (window.SoundEngine) window.SoundEngine.playClicker();
+      addToast('Browsing verified veterinary specialists', 'fa-user-doctor');
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-stethoscope",
+    style: {
+      color: '#0ea5e9'
+    }
+  }), /*#__PURE__*/React.createElement("span", null, "Find a Veterinarian"))), /*#__PURE__*/React.createElement("div", {
+    className: "petcare-stats-strip"
+  }, (window.FurEverDB?.heroPetcare?.trustStats || [{
+    value: '15+',
+    label: 'Verified Specialists',
+    icon: 'fa-user-doctor',
+    color: '#0ea5e9'
+  }, {
+    value: '4.9★',
+    label: 'Client Trust Rating',
+    icon: 'fa-shield-heart',
+    color: '#10b981'
+  }, {
+    value: '24/7',
+    label: 'Emergency SOS Desk',
+    icon: 'fa-truck-medical',
+    color: '#ef4444'
+  }]).map((stat, sIdx) => /*#__PURE__*/React.createElement("div", {
+    key: sIdx,
+    className: "petcare-stat-item"
   }, /*#__PURE__*/React.createElement("div", {
-    className: "hero-chip-item"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "chip-icon-circle chip-blue"
+    className: "petcare-stat-icon-wrap",
+    style: {
+      color: stat.color
+    }
   }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-heart"
-  })), /*#__PURE__*/React.createElement("span", null, "Verified Veterinarians")), /*#__PURE__*/React.createElement("div", {
-    className: "hero-chip-item"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "chip-icon-circle chip-sky"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-regular fa-clock"
-  })), /*#__PURE__*/React.createElement("span", null, "24/7 Emergency Helpline")), /*#__PURE__*/React.createElement("div", {
-    className: "hero-chip-item"
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "chip-icon-circle chip-cyan"
+    className: 'fa-solid ' + stat.icon
+  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "petcare-stat-val"
+  }, stat.value), /*#__PURE__*/React.createElement("div", {
+    className: "petcare-stat-lbl"
+  }, stat.label)))))), /*#__PURE__*/React.createElement("div", {
+    className: "petcare-hero-right"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "petcare-composition-container"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "petcare-glow-orb-main"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "petcare-glow-ring"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "petcare-paw-float petcare-paw-1"
   }, /*#__PURE__*/React.createElement("i", {
     className: "fa-solid fa-paw"
-  })), /*#__PURE__*/React.createElement("span", null, "Happy Adoptions")), /*#__PURE__*/React.createElement("div", {
-    className: "hero-chip-item"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "petcare-paw-float petcare-paw-2"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-paw"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "petcare-paw-float petcare-paw-3"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-paw"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "petcare-paw-float petcare-paw-4"
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-paw"
+  })), /*#__PURE__*/React.createElement("div", {
+    className: "petcare-pet-card petcare-pet-dog"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=500&q=80",
+    alt: "Buddy - Golden Retriever",
+    className: "petcare-pet-img"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "petcare-pet-tag"
   }, /*#__PURE__*/React.createElement("span", {
-    className: "chip-icon-circle chip-indigo"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-bag-shopping"
-  })), /*#__PURE__*/React.createElement("span", null, "Premium Pet Supplies"))), /*#__PURE__*/React.createElement("form", {
-    onSubmit: handleHeroSearchSubmit,
-    className: "hero-search-bar-mockup"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-magnifying-glass search-lens-icon"
-  }), /*#__PURE__*/React.createElement("input", {
-    type: "text",
-    placeholder: "Search pets, products, vets...",
-    value: heroSearchQuery,
-    onChange: e => setHeroSearchQuery(e.target.value),
-    className: "search-input-field"
-  }), /*#__PURE__*/React.createElement("button", {
-    type: "submit",
-    className: "search-portal-btn"
-  }, "Search Portal ", /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-arrow-right"
-  }))), /*#__PURE__*/React.createElement("div", {
-    className: "hero-action-cards-grid"
+    className: "petcare-pet-name"
+  }, "Buddy"), /*#__PURE__*/React.createElement("span", {
+    className: "petcare-pet-badge"
+  }, "\uD83D\uDC36 Dog"))), /*#__PURE__*/React.createElement("div", {
+    className: "petcare-pet-card petcare-pet-cat"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=500&q=80",
+    alt: "Luna - British Shorthair Cat",
+    className: "petcare-pet-img"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "petcare-pet-tag"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "petcare-pet-name"
+  }, "Luna"), /*#__PURE__*/React.createElement("span", {
+    className: "petcare-pet-badge"
+  }, "\uD83D\uDC31 Cat"))), /*#__PURE__*/React.createElement("div", {
+    className: "petcare-pet-card petcare-pet-rabbit"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: "https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?auto=format&fit=crop&w=500&q=80",
+    alt: "Coco - Holland Lop Bunny",
+    className: "petcare-pet-img"
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "petcare-pet-tag"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "petcare-pet-name"
+  }, "Coco"), /*#__PURE__*/React.createElement("span", {
+    className: "petcare-pet-badge"
+  }, "\uD83D\uDC30 Bunny"))), /*#__PURE__*/React.createElement("div", {
+    className: "petcare-feature-card card-top-left",
+    onClick: () => {
+      setActiveTab('vet');
+      setVetViewMode('directory');
+      if (window.SoundEngine) window.SoundEngine.playClicker();
+    }
   }, /*#__PURE__*/React.createElement("div", {
-    className: "hero-action-card active-action-card",
+    className: "petcare-feature-icon-box",
+    style: {
+      background: 'linear-gradient(135deg, #0ea5e9, #0284c7)'
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-stethoscope"
+  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "petcare-feature-title"
+  }, "Veterinary Care"), /*#__PURE__*/React.createElement("div", {
+    className: "petcare-feature-desc"
+  }, "Professional health support"))), /*#__PURE__*/React.createElement("div", {
+    className: "petcare-feature-card card-top-right",
     onClick: () => {
       setActiveTab('shelter');
       if (window.SoundEngine) window.SoundEngine.playClicker();
     }
   }, /*#__PURE__*/React.createElement("div", {
-    className: "action-card-icon-wrap"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-paw"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "action-card-text"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "action-card-title"
-  }, "Find Your Pet ", /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-arrow-right card-arrow"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "action-card-sub"
-  }, "Adopt a Companion"))), /*#__PURE__*/React.createElement("div", {
-    className: "hero-action-card",
-    onClick: () => {
-      setActiveTab('vet');
-      if (window.SoundEngine) window.SoundEngine.playClicker();
+    className: "petcare-feature-icon-box",
+    style: {
+      background: 'linear-gradient(135deg, #38bdf8, #0ea5e9)'
     }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "action-card-icon-wrap"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-stethoscope"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "action-card-text"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "action-card-title"
-  }, "Book a Vet ", /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-arrow-right card-arrow"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "action-card-sub"
-  }, "Expert Care Near You"))), /*#__PURE__*/React.createElement("div", {
-    className: "hero-action-card",
-    onClick: () => {
-      setActiveTab('products');
-      if (window.SoundEngine) window.SoundEngine.playClicker();
-    }
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "action-card-icon-wrap"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-bag-shopping"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "action-card-text"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "action-card-title"
-  }, "Pet Store ", /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-arrow-right card-arrow"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "action-card-sub"
-  }, "Quality Products"))))), /*#__PURE__*/React.createElement("div", {
-    className: "hero-visual-showcase-mockup"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "heart-doodle heart-doodle-1"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-regular fa-heart"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "heart-doodle heart-doodle-2"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-regular fa-heart"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "hero-mockup-img-container"
-  }, /*#__PURE__*/React.createElement("img", {
-    src: "assets/hero_puppy_kitten.jpg",
-    alt: "Golden Retriever Puppy and Fluffy Kitten Cuddling",
-    className: "hero-mockup-main-img"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "hero-mockup-bottom-fade"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "floating-stat-mockup-card"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "floating-stat-icon"
   }, /*#__PURE__*/React.createElement("i", {
     className: "fa-solid fa-heart"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "floating-stat-number"
-  }, "4,850+"), /*#__PURE__*/React.createElement("div", {
-    className: "floating-stat-label"
-  }, "Happy Adoptions"), /*#__PURE__*/React.createElement("div", {
-    className: "floating-avatar-stack"
-  }, /*#__PURE__*/React.createElement("img", {
-    src: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=100&q=80",
-    alt: "Adopted Pet",
-    className: "stack-avatar"
-  }), /*#__PURE__*/React.createElement("img", {
-    src: "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=100&q=80",
-    alt: "Adopted Pet",
-    className: "stack-avatar"
-  }), /*#__PURE__*/React.createElement("img", {
-    src: "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=100&q=80",
-    alt: "Adopted Pet",
-    className: "stack-avatar"
-  }))), /*#__PURE__*/React.createElement("div", {
-    className: "floating-quote-mockup-card"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "quote-paw-icon"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-paw"
-  })), /*#__PURE__*/React.createElement("div", {
-    className: "quote-text"
-  }, "\"Pets make our lives kinder, happier and whole.\" ", /*#__PURE__*/React.createElement("span", {
-    style: {
-      color: '#f43f5e'
-    }
-  }, "\u2764\uFE0F"))))), /*#__PURE__*/React.createElement("div", {
-    className: "hero-bottom-trust-banner"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "trust-banner-item trust-highlight-item"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "trust-shield-icon"
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-shield-halved"
   })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    className: "trust-bold-title"
-  }, "Trusted by"), /*#__PURE__*/React.createElement("div", {
-    className: "trust-sub-title"
-  }, "Pet Lovers Worldwide"))), /*#__PURE__*/React.createElement("div", {
-    className: "trust-divider"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "trust-banner-item"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "trust-stat-number"
-  }, "50K+"), /*#__PURE__*/React.createElement("div", {
-    className: "trust-stat-label"
-  }, "Happy Pet Parents")), /*#__PURE__*/React.createElement("div", {
-    className: "trust-divider"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "trust-banner-item"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "trust-stat-number"
-  }, "10K+"), /*#__PURE__*/React.createElement("div", {
-    className: "trust-stat-label"
-  }, "Certified Vets")), /*#__PURE__*/React.createElement("div", {
-    className: "trust-divider"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "trust-banner-item"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "trust-stat-number"
-  }, "120K+"), /*#__PURE__*/React.createElement("div", {
-    className: "trust-stat-label"
-  }, "Pet Products")), /*#__PURE__*/React.createElement("div", {
-    className: "trust-divider"
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "trust-banner-item"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "trust-stat-number",
-    style: {
-      color: '#38bdf8'
+    className: "petcare-feature-title"
+  }, "Pet Adoption"), /*#__PURE__*/React.createElement("div", {
+    className: "petcare-feature-desc"
+  }, "Find a loving companion"))), /*#__PURE__*/React.createElement("div", {
+    className: "petcare-feature-card card-bottom-right",
+    onClick: () => {
+      setActiveTab('pet-owner');
+      setPetOwnerSubTab('grooming-appts');
+      if (window.SoundEngine) window.SoundEngine.playClicker();
     }
-  }, "24/7"), /*#__PURE__*/React.createElement("div", {
-    className: "trust-stat-label"
-  }, "Care & Support")))), /*#__PURE__*/React.createElement("section", {
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "petcare-feature-icon-box",
+    style: {
+      background: 'linear-gradient(135deg, #6366f1, #0ea5e9)'
+    }
+  }, /*#__PURE__*/React.createElement("i", {
+    className: "fa-solid fa-scissors"
+  })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    className: "petcare-feature-title"
+  }, "Grooming"), /*#__PURE__*/React.createElement("div", {
+    className: "petcare-feature-desc"
+  }, "Healthy & happy pets"))))))), /*#__PURE__*/React.createElement("section", {
     id: "pet-wellness-hub",
     style: {
       marginTop: '50px'
