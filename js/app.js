@@ -127,6 +127,8 @@ function App() {
   const [contactSuccessData, setContactSuccessData] = useState(null);
   const [contactErrors, setContactErrors] = useState({});
   const [contactMapLocation, setContactMapLocation] = useState('hq');
+  const [heroScene, setHeroScene] = useState(0);
+  const [heroMousePos, setHeroMousePos] = useState({ x: 0, y: 0 });
   const [contactFaqOpen, setContactFaqOpen] = useState(1);
 
   // Adoption Success Confirmation Modal
@@ -385,6 +387,14 @@ function App() {
   // ------------------------------------------------------------------------
   // 2. LIFECYCLE, REALTIME CLOCK & DATA LOADING
   // ------------------------------------------------------------------------
+  useEffect(() => {
+    /* 15s Cinematic Hero Loop */
+    const heroTimer = setInterval(() => {
+      setHeroScene(prev => (prev + 1) % 3);
+    }, 5000);
+    return () => clearInterval(heroTimer);
+  }, []);
+
   useEffect(() => {
     /* GSAP Hero Animation Trigger */
     if (typeof window !== 'undefined' && window.gsap) {
@@ -1272,209 +1282,250 @@ function App() {
             ================================================================== */}
         {activeTab === 'home' && (
           <div>
-            {/* ── LUXURY MOCKUP HERO SECTION (ORIGINAL RESTORED) ── */}
-            <section className="hero-section hero-mockup-layout">
-              <div className="hero-grid">
+            {/* ══════════════════════════════════════════════════════════════════
+                APEX CINEMATIC HERO SECTION (15s SEAMLESS LOOP: CAT ➔ DOG ➔ BIRD)
+                ══════════════════════════════════════════════════════════════════ */}
+            <section 
+              className="hero-section apex-hero-wrapper"
+              onMouseMove={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
+                const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20;
+                setHeroMousePos({ x, y });
+              }}
+              onMouseLeave={() => setHeroMousePos({ x: 0, y: 0 })}
+            >
+              {/* Cinematic Ambient Light & Glow Orbs */}
+              <div className="cinematic-light-shafts" style={{ '--mouse-x': `${50 + heroMousePos.x * 1.5}%`, '--mouse-y': `${40 + heroMousePos.y * 1.5}%` }}></div>
+              <div className="cinematic-glow-backdrop"></div>
+
+              {/* Floating Paw Particles & Bokeh */}
+              <div className="cinematic-particle cinematic-p1"><i className="fa-solid fa-paw"></i></div>
+              <div className="cinematic-particle cinematic-p2"><i className="fa-solid fa-sparkles"></i></div>
+              <div className="cinematic-particle cinematic-p3"><i className="fa-solid fa-paw"></i></div>
+              <div className="cinematic-particle cinematic-p4"><i className="fa-solid fa-heart"></i></div>
+
+              {/* ── TWO-COLUMN HERO GRID ── */}
+              <div className="cinematic-hero-grid">
                 
-                {/* LEFT COLUMN: Main Hero Info, Search & 3 Action Cards */}
-                <div className="hero-text-content">
+                {/* ── LEFT COLUMN: DYNAMIC CINEMATIC HEADLINES & CTAS ── */}
+                <div 
+                  className="cinematic-left-content"
+                  style={{ transform: `translate3d(${-heroMousePos.x * 0.4}px, ${-heroMousePos.y * 0.4}px, 0)` }}
+                >
                   
-                  {/* Glowing Platform Badge */}
-                  <div className="hero-badge-glow">
-                    <i className="fa-solid fa-crown" style={{ color: '#f59e0b' }}></i>
-                    <span>#1 Unified Companion Care Platform</span>
+                  {/* Top Badge */}
+                  <div className="cinematic-top-badge">
+                    <span className="cinematic-pulse-dot"></span>
+                    <i className="fa-solid fa-shield-cat"></i>
+                    <span>
+                      {heroScene === 0 && 'Chapter I • Serene Feline Care'}
+                      {heroScene === 1 && 'Chapter II • Dedicated Canine Wellness'}
+                      {heroScene === 2 && 'Chapter III • Aviary & Companion Rescue'}
+                    </span>
                   </div>
 
-                  {/* High Impact Headline */}
-                  <h1 className="hero-title-mockup">
-                    They Deserve <br />
-                    <span className="hero-title-sky">Forever Love</span> <br />
-                    & World-Class Care.
+                  <div className="cinematic-brand-sub">FurEver Care Platform</div>
+
+                  {/* Dynamic Headline */}
+                  <h1 className="cinematic-headline">
+                    {heroScene === 0 && (
+                      <span>Because Every Paw <br /><span className="cinematic-highlight">Deserves Forever.</span></span>
+                    )}
+                    {heroScene === 1 && (
+                      <span>Unconditional Love, <br /><span className="cinematic-highlight">World-Class Health.</span></span>
+                    )}
+                    {heroScene === 2 && (
+                      <span>Soaring Freedom, <br /><span className="cinematic-highlight">Compassionate Care.</span></span>
+                    )}
                   </h1>
 
-                  {/* Elegant Emotional Subtitle */}
-                  <p className="hero-subtitle-mockup">
-                    Because every wag, purr and chirp tells a story — give them the healthy, happy and safe life they deserve.
+                  {/* Dynamic Subheading */}
+                  <p className="cinematic-subtext">
+                    {heroScene === 0 && 'Thoughtful care, accredited veterinarians, and endless love for every feline companion.'}
+                    {heroScene === 1 && 'Certified emergency hospital triage, preventative nutrition, and loving clinical expertise.'}
+                    {heroScene === 2 && 'Ethical companion sanctuaries, exotic avian wellness, and worldwide adoption networks.'}
                   </p>
 
-                  {/* 4 Micro-Features Pills */}
-                  <div className="hero-features-chips-row">
-                    <div className="hero-chip-item">
-                      <span className="chip-icon-circle chip-blue"><i className="fa-solid fa-heart"></i></span>
-                      <span>Verified Veterinarians</span>
-                    </div>
-                    <div className="hero-chip-item">
-                      <span className="chip-icon-circle chip-sky"><i className="fa-regular fa-clock"></i></span>
-                      <span>24/7 Emergency Helpline</span>
-                    </div>
-                    <div className="hero-chip-item">
-                      <span className="chip-icon-circle chip-cyan"><i className="fa-solid fa-paw"></i></span>
-                      <span>Happy Adoptions</span>
-                    </div>
-                    <div className="hero-chip-item">
-                      <span className="chip-icon-circle chip-indigo"><i className="fa-solid fa-bag-shopping"></i></span>
-                      <span>Premium Pet Supplies</span>
-                    </div>
-                  </div>
-
-                  {/* Universal Glass Search Bar */}
-                  <form onSubmit={handleHeroSearchSubmit} className="hero-search-bar-mockup">
-                    <i className="fa-solid fa-magnifying-glass search-lens-icon"></i>
-                    <input 
-                      type="text" 
-                      placeholder="Search pets, products, vets..." 
-                      value={heroSearchQuery}
-                      onChange={(e) => setHeroSearchQuery(e.target.value)}
-                      className="search-input-field"
-                    />
-                    <button type="submit" className="search-portal-btn">
-                      Search Portal <i className="fa-solid fa-arrow-right"></i>
-                    </button>
-                  </form>
-
-                  {/* 3 Quick Action Cards Row */}
-                  <div className="hero-action-cards-grid">
-                    
-                    {/* Card 1: Find Your Pet */}
-                    <div 
-                      className="hero-action-card active-action-card" 
+                  {/* Action Buttons */}
+                  <div className="cinematic-cta-group">
+                    <button 
+                      className="btn-cinematic-primary"
                       onClick={() => {
                         setActiveTab('shelter');
                         if (window.SoundEngine) window.SoundEngine.playClicker();
+                        addToast('Entering Adoption Gallery & Rescue Hub', 'fa-paw');
                       }}
                     >
-                      <div className="action-card-icon-wrap">
-                        <i className="fa-solid fa-paw"></i>
-                      </div>
-                      <div className="action-card-text">
-                        <div className="action-card-title">
-                          Find Your Pet <i className="fa-solid fa-arrow-right card-arrow"></i>
-                        </div>
-                        <div className="action-card-sub">Adopt a Companion</div>
-                      </div>
-                    </div>
+                      <span>Explore Care</span>
+                      <i className="fa-solid fa-arrow-right"></i>
+                    </button>
 
-                    {/* Card 2: Book a Vet */}
-                    <div 
-                      className="hero-action-card" 
+                    <button 
+                      className="btn-cinematic-secondary"
                       onClick={() => {
                         setActiveTab('vet');
+                        setVetViewMode('directory');
                         if (window.SoundEngine) window.SoundEngine.playClicker();
+                        addToast('Connecting with Verified Veterinarians', 'fa-user-doctor');
                       }}
                     >
-                      <div className="action-card-icon-wrap">
-                        <i className="fa-solid fa-stethoscope"></i>
-                      </div>
-                      <div className="action-card-text">
-                        <div className="action-card-title">
-                          Book a Vet <i className="fa-solid fa-arrow-right card-arrow"></i>
+                      <i className="fa-solid fa-stethoscope" style={{ color: '#0ea5e9' }}></i>
+                      <span>Meet Our Pets</span>
+                    </button>
+                  </div>
+
+                  {/* 15s Scene Timeline Chapter Selector */}
+                  <div className="cinematic-timeline-nav">
+                    {[
+                      { id: 0, label: '01 🐱 Cat', duration: '0–5s' },
+                      { id: 1, label: '02 🐶 Dog', duration: '5–10s' },
+                      { id: 2, label: '03 🐦 Bird', duration: '10–15s' }
+                    ].map(scene => (
+                      <button
+                        key={scene.id}
+                        className={`cinematic-timeline-dot ${heroScene === scene.id ? 'active' : ''}`}
+                        onClick={() => {
+                          setHeroScene(scene.id);
+                          if (window.SoundEngine) window.SoundEngine.playClicker();
+                        }}
+                        title={`Switch to Scene ${scene.id + 1}`}
+                      >
+                        {scene.label}
+                      </button>
+                    ))}
+                  </div>
+
+                </div>
+
+                {/* ── RIGHT COLUMN: CINEMATIC ANIMAL STAGE (CAT -> DOG -> BIRD) ── */}
+                <div 
+                  className="cinematic-stage"
+                  style={{ transform: `translate3d(${heroMousePos.x * 0.8}px, ${heroMousePos.y * 0.8}px, 0)` }}
+                >
+                  <div className="cinematic-animal-viewport">
+                    
+                    {/* 🐱 SCENE 01: CAT (Luna) */}
+                    <div className={`cinematic-animal-layer ${heroScene === 0 ? 'scene-active' : heroScene === 1 ? 'scene-exiting' : 'scene-entering'}`}>
+                      <div className="cinematic-visual-card motion-cat">
+                        <img 
+                          src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=700&q=80" 
+                          alt="Luna - British Shorthair Cat"
+                          className="cinematic-visual-img" 
+                        />
+                        <div className="cinematic-animal-pill">
+                          <div>
+                            <div className="cinematic-pill-name">Luna</div>
+                            <div className="cinematic-pill-breed">British Shorthair</div>
+                          </div>
+                          <span className="cinematic-pill-status">🐱 Feline Care</span>
                         </div>
-                        <div className="action-card-sub">Expert Care Near You</div>
                       </div>
                     </div>
 
-                    {/* Card 3: Pet Store */}
+                    {/* 🐶 SCENE 02: DOG (Buddy) */}
+                    <div className={`cinematic-animal-layer ${heroScene === 1 ? 'scene-active' : heroScene === 2 ? 'scene-exiting' : 'scene-entering'}`}>
+                      <div className="cinematic-visual-card motion-dog">
+                        <img 
+                          src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=700&q=80" 
+                          alt="Buddy - Golden Retriever"
+                          className="cinematic-visual-img" 
+                        />
+                        <div className="cinematic-animal-pill">
+                          <div>
+                            <div className="cinematic-pill-name">Buddy</div>
+                            <div className="cinematic-pill-breed">Golden Retriever</div>
+                          </div>
+                          <span className="cinematic-pill-status">🐶 Canine Care</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 🐦 SCENE 03: BIRD (Rio) */}
+                    <div className={`cinematic-animal-layer ${heroScene === 2 ? 'scene-active' : heroScene === 0 ? 'scene-exiting' : 'scene-entering'}`}>
+                      <div className="cinematic-visual-card motion-bird">
+                        <img 
+                          src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?auto=format&fit=crop&w=700&q=80" 
+                          alt="Rio - Blue Crown Conure"
+                          className="cinematic-visual-img" 
+                        />
+                        <div className="cinematic-animal-pill">
+                          <div>
+                            <div className="cinematic-pill-name">Rio</div>
+                            <div className="cinematic-pill-breed">Exotic Avian</div>
+                          </div>
+                          <span className="cinematic-pill-status">🐦 Free Flight</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Floating Glass Corner Cards */}
                     <div 
-                      className="hero-action-card" 
-                      onClick={() => {
-                        setActiveTab('products');
-                        if (window.SoundEngine) window.SoundEngine.playClicker();
-                      }}
+                      className="cinematic-floating-widget widget-top-right"
+                      onClick={() => { setActiveTab('emergency'); if (window.SoundEngine) window.SoundEngine.playClicker(); }}
                     >
-                      <div className="action-card-icon-wrap">
-                        <i className="fa-solid fa-bag-shopping"></i>
+                      <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(16,185,129,0.15)', color: '#10b981', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <i className="fa-solid fa-heart-pulse"></i>
                       </div>
-                      <div className="action-card-text">
-                        <div className="action-card-title">
-                          Pet Store <i className="fa-solid fa-arrow-right card-arrow"></i>
-                        </div>
-                        <div className="action-card-sub">Quality Products</div>
+                      <div>
+                        <div style={{ fontWeight: '800', fontSize: '0.85rem', color: '#0B2A52' }}>24/7 Clinical SOS</div>
+                        <div style={{ fontSize: '0.72rem', color: '#10b981' }}>Live Triage Active</div>
                       </div>
                     </div>
 
-                  </div>
-
-                </div>
-
-                {/* RIGHT COLUMN: Golden Retriever Puppy & Kitten Visual Showcase */}
-                <div className="hero-visual-showcase-mockup">
-                  
-                  {/* Glowing Neon Heart Doodles in Background */}
-                  <div className="heart-doodle heart-doodle-1"><i className="fa-regular fa-heart"></i></div>
-                  <div className="heart-doodle heart-doodle-2"><i className="fa-regular fa-heart"></i></div>
-
-                  {/* Main Puppy & Kitten Image Container */}
-                  <div className="hero-mockup-img-container">
-                    <img 
-                      src="assets/hero_puppy_kitten.jpg" 
-                      alt="Golden Retriever Puppy and Fluffy Kitten Cuddling" 
-                      className="hero-mockup-main-img"
-                    />
-                    <div className="hero-mockup-bottom-fade"></div>
-                  </div>
-
-                  {/* Floating Widget Top-Right: Happy Adoptions with Avatars */}
-                  <div className="floating-stat-mockup-card">
-                    <div className="floating-stat-icon"><i className="fa-solid fa-heart"></i></div>
-                    <div className="floating-stat-number">4,850+</div>
-                    <div className="floating-stat-label">Happy Adoptions</div>
-                    <div className="floating-avatar-stack">
-                      <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=100&q=80" alt="Adopted Pet" className="stack-avatar" />
-                      <img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=100&q=80" alt="Adopted Pet" className="stack-avatar" />
-                      <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=100&q=80" alt="Adopted Pet" className="stack-avatar" />
+                    <div 
+                      className="cinematic-floating-widget widget-bottom-left"
+                      onClick={() => { setActiveTab('shelter'); if (window.SoundEngine) window.SoundEngine.playClicker(); }}
+                    >
+                      <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(14,165,233,0.15)', color: '#0ea5e9', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <i className="fa-solid fa-shield-heart"></i>
+                      </div>
+                      <div>
+                        <div style={{ fontWeight: '800', fontSize: '0.85rem', color: '#0B2A52' }}>4,850+ Adoptions</div>
+                        <div style={{ fontSize: '0.72rem', color: '#0ea5e9' }}>Verified Shelters</div>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Floating Widget Bottom-Right: Quote Box */}
-                  <div className="floating-quote-mockup-card">
-                    <div className="quote-paw-icon"><i className="fa-solid fa-paw"></i></div>
-                    <div className="quote-text">
-                      "Pets make our lives kinder, happier and whole." <span style={{ color: '#f43f5e' }}>❤️</span>
-                    </div>
                   </div>
-
                 </div>
 
               </div>
 
-              {/* BOTTOM TRUST STATS BANNER */}
-              <div className="hero-bottom-trust-banner">
-                <div className="trust-banner-item trust-highlight-item">
-                  <div className="trust-shield-icon"><i className="fa-solid fa-shield-halved"></i></div>
+              {/* ── BOTTOM STATS STRIP ── */}
+              <div className="cinematic-bottom-strip">
+                <div className="cinematic-stat-box">
+                  <div className="cinematic-stat-icon"><i className="fa-solid fa-heart"></i></div>
                   <div>
-                    <div className="trust-bold-title">Trusted by</div>
-                    <div className="trust-sub-title">Pet Lovers Worldwide</div>
+                    <div className="cinematic-stat-val">50K+</div>
+                    <div className="cinematic-stat-lbl">Happy Pet Parents</div>
                   </div>
                 </div>
 
-                <div className="trust-divider"></div>
-
-                <div className="trust-banner-item">
-                  <div className="trust-stat-number">50K+</div>
-                  <div className="trust-stat-label">Happy Pet Parents</div>
+                <div className="cinematic-stat-box">
+                  <div className="cinematic-stat-icon"><i className="fa-solid fa-user-doctor"></i></div>
+                  <div>
+                    <div className="cinematic-stat-val">10K+</div>
+                    <div className="cinematic-stat-lbl">Verified Vets</div>
+                  </div>
                 </div>
 
-                <div className="trust-divider"></div>
-
-                <div className="trust-banner-item">
-                  <div className="trust-stat-number">10K+</div>
-                  <div className="trust-stat-label">Certified Vets</div>
+                <div className="cinematic-stat-box">
+                  <div className="cinematic-stat-icon"><i className="fa-solid fa-bag-shopping"></i></div>
+                  <div>
+                    <div className="cinematic-stat-val">120K+</div>
+                    <div className="cinematic-stat-lbl">Care Products</div>
+                  </div>
                 </div>
 
-                <div className="trust-divider"></div>
-
-                <div className="trust-banner-item">
-                  <div className="trust-stat-number">120K+</div>
-                  <div className="trust-stat-label">Pet Products</div>
-                </div>
-
-                <div className="trust-divider"></div>
-
-                <div className="trust-banner-item">
-                  <div className="trust-stat-number" style={{ color: '#38bdf8' }}>24/7</div>
-                  <div className="trust-stat-label">Care & Support</div>
+                <div className="cinematic-stat-box">
+                  <div className="cinematic-stat-icon" style={{ background: 'rgba(16,185,129,0.15)', color: '#10b981' }}><i className="fa-solid fa-clock"></i></div>
+                  <div>
+                    <div className="cinematic-stat-val" style={{ color: '#0ea5e9' }}>24/7</div>
+                    <div className="cinematic-stat-lbl">Care &amp; Support</div>
+                  </div>
                 </div>
               </div>
+
             </section>
 
             {/* ── NEW FEATURE: INTERACTIVE PET WELLNESS & LIFESTYLE MATCH HUB ── */}
@@ -5350,319 +5401,456 @@ function App() {
         {/* ==================================================================
             TAB: VIP LUXURY CONTACT US PAGE
             ================================================================== */}
+        {/* ==================================================================
+            TAB: COMPETITION-LEVEL PREMIUM CONTACT US PAGE
+            ================================================================== */}
         {activeTab === 'contact' && (() => {
           return (
-            <div className="contact-page-wrapper" style={{ animation: 'fadeIn 0.4s ease' }}>
+            <div className="fc-contact-container" style={{ animation: 'fadeIn 0.35s ease' }}>
               
-              {/* Header Hero Banner */}
-              <div className="section-header-wrap" style={{ textAlign: 'center', justifyContent: 'center', marginBottom: '40px' }}>
-                <div>
-                  <span className="badge-sky" style={{ padding: '6px 18px', fontSize: '0.85rem' }}>
-                    <i className="fa-solid fa-headset" style={{ marginRight: '6px' }}></i> 24/7 VIP Global Support Desk
-                  </span>
-                  <h2 style={{ fontSize: '2.6rem', marginTop: '12px', fontWeight: '900' }}>
-                    Connect with <span className="gradient-text">FurEver Care VIP Desk</span>
-                  </h2>
-                  <p style={{ maxWidth: '680px', margin: '10px auto 0', color: 'var(--text-muted)', fontSize: '1.02rem', lineHeight: '1.6' }}>
-                    Have questions about specialist veterinary consultations, pet adoption drives, nutrition plans, or emergency dispatch? Our dedicated triage coordinators are here for you 24/7.
-                  </p>
+              {/* ── TOP CONTACT INTRO ── */}
+              <div className="fc-contact-intro">
+                <div className="fc-intro-badge">
+                  <i className="fa-solid fa-paw"></i> WE'D LOVE TO HEAR FROM YOU
                 </div>
+                <h1 className="fc-intro-heading">
+                  Contact <span className="fc-text-blue">Us</span>
+                </h1>
+                <p className="fc-intro-subtext">
+                  Have a question, need support, or want to book an appointment? We're here for you and your furry friend.
+                </p>
               </div>
 
-              {/* 4 Luxury Contact Channel Cards */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px', marginBottom: '44px' }}>
+              {/* ── MAIN CONTACT TWO-COLUMN LAYOUT ── */}
+              <div className="fc-contact-grid">
                 
-                {/* Channel 1: 24/7 Phone */}
-                <div className="glass-panel glass-card-hover" style={{ padding: '26px 22px', borderRadius: '22px', border: '1.5px solid var(--border-glass)' }}>
-                  <div style={{ width: '52px', height: '52px', borderRadius: '16px', background: 'linear-gradient(135deg, #0ea5e9, #0284c7)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '1.3rem', marginBottom: '16px', boxShadow: '0 6px 18px rgba(14,165,233,0.35)' }}>
-                    <i className="fa-solid fa-phone-volume"></i>
-                  </div>
-                  <h3 style={{ fontSize: '1.15rem', margin: '0 0 6px', fontWeight: '800' }}>Emergency &amp; Helpline</h3>
-                  <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)', margin: '0 0 14px' }}>Instant 24/7 live veterinary doctor helpline.</p>
-                  <div style={{ fontWeight: '800', fontSize: '0.98rem', color: 'var(--primary-600)' }}>
-                    <i className="fa-solid fa-phone" style={{ marginRight: '6px' }}></i> +1 (800) 426-4435
-                  </div>
-                  <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '4px' }}>Toll-Free • 24/7 Active</div>
-                </div>
-
-                {/* Channel 2: WhatsApp VIP Desk */}
-                <div className="glass-panel glass-card-hover" style={{ padding: '26px 22px', borderRadius: '22px', border: '1.5px solid var(--border-glass)' }}>
-                  <div style={{ width: '52px', height: '52px', borderRadius: '16px', background: 'linear-gradient(135deg, #25D366, #128C7E)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '1.4rem', marginBottom: '16px', boxShadow: '0 6px 18px rgba(37,211,102,0.35)' }}>
-                    <i className="fa-brands fa-whatsapp"></i>
-                  </div>
-                  <h3 style={{ fontSize: '1.15rem', margin: '0 0 6px', fontWeight: '800' }}>WhatsApp VIP Desk</h3>
-                  <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)', margin: '0 0 14px' }}>Chat directly with animal care specialists.</p>
+                {/* ── LEFT SIDE: 4 FLOATING CARDS + PROMO + SOCIAL ── */}
+                <div className="fc-contact-left">
+                  
+                  {/* CARD 1: Call Us */}
                   <a 
-                    href="https://wa.me/923001234567?text=Assalam-o-Alaikum%20FurEver%20Care%20VIP%20Support" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    style={{ fontWeight: '800', fontSize: '0.98rem', color: '#16a34a', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+                    href="tel:+923001234567" 
+                    className="fc-contact-card"
+                    onClick={() => addToast('Dialing Furever Care: +92 300 1234567', 'fa-phone', 'info')}
                   >
-                    <i className="fa-brands fa-whatsapp"></i> +92 300 1234567
-                  </a>
-                  <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '4px' }}>Instant Chat • Fast Reply</div>
-                </div>
-
-                {/* Channel 3: Email Support */}
-                <div className="glass-panel glass-card-hover" style={{ padding: '26px 22px', borderRadius: '22px', border: '1.5px solid var(--border-glass)' }}>
-                  <div style={{ width: '52px', height: '52px', borderRadius: '16px', background: 'linear-gradient(135deg, #6366f1, #4f46e5)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '1.3rem', marginBottom: '16px', boxShadow: '0 6px 18px rgba(99,102,241,0.35)' }}>
-                    <i className="fa-solid fa-envelope-open-text"></i>
-                  </div>
-                  <h3 style={{ fontSize: '1.15rem', margin: '0 0 6px', fontWeight: '800' }}>Official Email Desk</h3>
-                  <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)', margin: '0 0 14px' }}>Detailed adoption, partnership &amp; care queries.</p>
-                  <div style={{ fontWeight: '800', fontSize: '0.92rem', color: '#4f46e5' }}>
-                    support@furevercare.org
-                  </div>
-                  <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '4px' }}>Avg Response: &lt; 15 Mins</div>
-                </div>
-
-                {/* Channel 4: Central Headquarters */}
-                <div className="glass-panel glass-card-hover" style={{ padding: '26px 22px', borderRadius: '22px', border: '1.5px solid var(--border-glass)' }}>
-                  <div style={{ width: '52px', height: '52px', borderRadius: '16px', background: 'linear-gradient(135deg, #f59e0b, #d97706)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '1.3rem', marginBottom: '16px', boxShadow: '0 6px 18px rgba(245,158,11,0.35)' }}>
-                    <i className="fa-solid fa-location-dot"></i>
-                  </div>
-                  <h3 style={{ fontSize: '1.15rem', margin: '0 0 6px', fontWeight: '800' }}>Care HQ Sanctuary</h3>
-                  <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)', margin: '0 0 14px' }}>Visit our modern adoption sanctuary.</p>
-                  <div style={{ fontWeight: '700', fontSize: '0.88rem', color: 'var(--text-main)' }}>
-                    FurEver Plaza, Suite 400
-                  </div>
-                  <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginTop: '4px' }}>Mon - Sun • 8 AM - 10 PM</div>
-                </div>
-
-              </div>
-
-              {/* Main Two-Column VIP Section: Interactive Form + Live Hub */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '32px', alignItems: 'start', marginBottom: '50px' }}>
-                
-                {/* LEFT: VIP Interactive Contact Form */}
-                <div className="glass-panel" style={{ padding: '36px 32px', borderRadius: '26px', border: '2px solid rgba(14,165,233,0.25)', boxShadow: '0 16px 40px rgba(14,165,233,0.12)' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                    <div>
-                      <span className="badge-sky" style={{ fontSize: '0.78rem' }}>VIP Ticket &amp; Callback</span>
-                      <h3 style={{ fontSize: '1.45rem', marginTop: '6px', fontWeight: '900' }}>Send a VIP Message</h3>
+                    <div className="fc-card-main">
+                      <div className="fc-card-icon-circle">
+                        <i className="fa-solid fa-phone"></i>
+                      </div>
+                      <div>
+                        <div className="fc-card-title">Call Us</div>
+                        <div className="fc-card-desc">Speak with our care team.</div>
+                        <div className="fc-card-highlight">+92 300 1234567</div>
+                      </div>
                     </div>
-                    <div style={{ width: '42px', height: '42px', borderRadius: '50%', background: 'rgba(14,165,233,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#0ea5e9' }}>
-                      <i className="fa-solid fa-paper-plane"></i>
+                    <div className="fc-card-arrow">
+                      <i className="fa-solid fa-arrow-right"></i>
+                    </div>
+                  </a>
+
+                  {/* CARD 2: Email Us */}
+                  <a 
+                    href="mailto:hello@furevercare.com" 
+                    className="fc-contact-card"
+                  >
+                    <div className="fc-card-main">
+                      <div className="fc-card-icon-circle">
+                        <i className="fa-solid fa-envelope"></i>
+                      </div>
+                      <div>
+                        <div className="fc-card-title">Email Us</div>
+                        <div className="fc-card-desc">We'll reply to your email.</div>
+                        <div className="fc-card-highlight">hello@furevercare.com</div>
+                      </div>
+                    </div>
+                    <div className="fc-card-arrow">
+                      <i className="fa-solid fa-arrow-right"></i>
+                    </div>
+                  </a>
+
+                  {/* CARD 3: Visit Us */}
+                  <div className="fc-contact-card" style={{ cursor: 'default' }}>
+                    <div className="fc-card-main">
+                      <div className="fc-card-icon-circle">
+                        <i className="fa-solid fa-location-dot"></i>
+                      </div>
+                      <div>
+                        <div className="fc-card-title">Visit Us</div>
+                        <div className="fc-card-desc">Come say hello at our center.</div>
+                        <div className="fc-card-highlight" style={{ fontSize: '0.88rem' }}>
+                          Furever Care Center, 123 Paw Street, Karachi, Pakistan
+                        </div>
+                      </div>
+                    </div>
+                    <div className="fc-card-arrow">
+                      <i className="fa-solid fa-compass"></i>
+                    </div>
+                  </div>
+
+                  {/* CARD 4: Opening Hours */}
+                  <div className="fc-contact-card" style={{ cursor: 'default' }}>
+                    <div className="fc-card-main">
+                      <div className="fc-card-icon-circle">
+                        <i className="fa-solid fa-clock"></i>
+                      </div>
+                      <div>
+                        <div className="fc-card-title">Opening Hours</div>
+                        <div className="fc-card-desc">We're here to care for pets.</div>
+                        <div className="fc-card-highlight" style={{ fontSize: '0.85rem' }}>
+                          Mon – Sat: 9:00 AM – 8:00 PM<br />
+                          Sunday: 10:00 AM – 6:00 PM
+                        </div>
+                      </div>
+                    </div>
+                    <div className="fc-card-arrow">
+                      <i className="fa-solid fa-heart-pulse"></i>
+                    </div>
+                  </div>
+
+                  {/* ── PET CARE MESSAGE CARD ── */}
+                  <div className="fc-pet-message-card">
+                    <div>
+                      <div className="fc-pet-msg-title">"Because every paw matters." 🐾</div>
+                      <div className="fc-pet-msg-sub">
+                        Your pet's happiness is our mission. We treat them like family.
+                      </div>
+                    </div>
+                    <img 
+                      src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=300&q=80" 
+                      alt="Cute realistic puppy and kitten" 
+                      className="fc-pet-msg-img"
+                    />
+                  </div>
+
+                  {/* ── SOCIAL MEDIA SECTION ── */}
+                  <div className="fc-social-box">
+                    <div className="fc-social-title">Follow Us 🐾</div>
+                    <div className="fc-social-row">
+                      <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="fc-social-btn" title="Facebook">
+                        <i className="fa-brands fa-facebook-f"></i>
+                      </a>
+                      <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="fc-social-btn" title="Instagram">
+                        <i className="fa-brands fa-instagram"></i>
+                      </a>
+                      <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="fc-social-btn" title="Twitter / X">
+                        <i className="fa-brands fa-x-twitter"></i>
+                      </a>
+                      <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className="fc-social-btn" title="YouTube">
+                        <i className="fa-brands fa-youtube"></i>
+                      </a>
+                      <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" className="fc-social-btn" title="TikTok">
+                        <i className="fa-brands fa-tiktok"></i>
+                      </a>
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* ── RIGHT SIDE: CONTACT FORM CARD ── */}
+                <div className="fc-form-card">
+                  
+                  <div className="fc-form-header">
+                    <h2 className="fc-form-title">Send Us a Message 🐾</h2>
+                    <p className="fc-form-subtitle">Fill out the form below and we'll get back to you soon.</p>
+                    <div className="fc-form-decor-paw">
+                      <i className="fa-solid fa-heart" style={{ color: '#f43f5e', fontSize: '1.2rem', marginRight: '6px' }}></i>
+                      <i className="fa-solid fa-paw"></i>
                     </div>
                   </div>
 
                   <form noValidate onSubmit={(e) => {
                     e.preventDefault();
                     const errs = {};
-                    if (!contactForm.name.trim()) errs.name = 'Please enter your full name';
-                    if (!contactForm.email.trim() || !contactForm.email.includes('@')) errs.email = 'Please enter a valid email address';
-                    if (!contactForm.phone.trim()) errs.phone = 'Please enter your contact number';
-                    if (!contactForm.message.trim()) errs.message = 'Please provide details about your inquiry';
-                    
+                    if (!contactForm.name || !contactForm.name.trim()) errs.name = 'Please enter your full name';
+                    if (!contactForm.email || !contactForm.email.trim() || !contactForm.email.includes('@')) errs.email = 'Please enter a valid email address';
+                    if (!contactForm.phone || !contactForm.phone.trim()) errs.phone = 'Please enter your phone number';
+                    if (!contactForm.message || !contactForm.message.trim()) errs.message = 'Please type your message';
+                    if (!contactForm.agreed) errs.agreed = 'Please agree to the privacy policy and terms';
+
                     setContactErrors(errs);
                     if (Object.keys(errs).length > 0) {
                       if (window.SoundEngine) window.SoundEngine.playBeep();
-                      addToast('Please fill out all required fields', 'fa-triangle-exclamation', 'warning');
+                      addToast('Please complete required fields', 'fa-triangle-exclamation', 'warning');
                       return;
                     }
 
-                    const ticketNumber = 'TICK-' + Math.floor(100000 + Math.random() * 900000);
-                    const successPayload = {
-                      ticket: ticketNumber,
+                    const ticketRef = 'FC-' + Math.floor(100000 + Math.random() * 900000);
+                    setContactSuccessData({
+                      ticket: ticketRef,
                       name: contactForm.name,
                       email: contactForm.email,
                       phone: contactForm.phone,
-                      type: contactForm.inquiryType,
-                      priority: contactForm.priority,
+                      petName: contactForm.petName || 'Companion',
+                      subject: contactForm.inquiryType || 'General Inquiry',
                       message: contactForm.message
-                    };
+                    });
 
-                    setContactSuccessData(successPayload);
                     setContactSuccessModal(true);
-                    setContactForm({ name: '', email: '', phone: '', inquiryType: 'Veterinary Doctor Consultation', priority: 'Standard', message: '' });
+                    setContactForm({ name: '', email: '', phone: '', petName: '', inquiryType: 'General Inquiry', priority: 'Standard', message: '', agreed: false });
                     setContactErrors({});
                     if (window.SoundEngine) window.SoundEngine.playChime();
                   }}>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
-                      <div className="form-group-custom">
-                        <label className="form-label-custom" style={{ fontWeight: '700' }}>Your Full Name *</label>
+                    {/* Row 1: Full Name + Email Address */}
+                    <div className="fc-form-row">
+                      <div className="fc-form-group" style={{ marginBottom: 0 }}>
+                        <label className="fc-label">Full Name *</label>
                         <input 
                           type="text" 
-                          className="input-sky" 
+                          className="fc-input" 
                           placeholder="e.g. Hamna Khan"
-                          value={contactForm.name}
+                          value={contactForm.name || ''}
                           onChange={(e) => { setContactForm({ ...contactForm, name: e.target.value }); setContactErrors({ ...contactErrors, name: '' }); }}
-                          style={{ border: contactErrors.name ? '2px solid #ef4444' : '' }}
+                          style={{ borderColor: contactErrors.name ? '#ef4444' : '' }}
                         />
-                        {contactErrors.name && <div style={{ color: '#ef4444', fontSize: '0.74rem', marginTop: '4px' }}><i className="fa-solid fa-circle-exclamation"></i> {contactErrors.name}</div>}
+                        {contactErrors.name && <span style={{ color: '#ef4444', fontSize: '0.74rem', marginTop: '4px' }}>{contactErrors.name}</span>}
                       </div>
 
-                      <div className="form-group-custom">
-                        <label className="form-label-custom" style={{ fontWeight: '700' }}>Email Address *</label>
+                      <div className="fc-form-group" style={{ marginBottom: 0 }}>
+                        <label className="fc-label">Email Address *</label>
                         <input 
                           type="email" 
-                          className="input-sky" 
+                          className="fc-input" 
                           placeholder="hamna@example.com"
-                          value={contactForm.email}
+                          value={contactForm.email || ''}
                           onChange={(e) => { setContactForm({ ...contactForm, email: e.target.value }); setContactErrors({ ...contactErrors, email: '' }); }}
-                          style={{ border: contactErrors.email ? '2px solid #ef4444' : '' }}
+                          style={{ borderColor: contactErrors.email ? '#ef4444' : '' }}
                         />
-                        {contactErrors.email && <div style={{ color: '#ef4444', fontSize: '0.74rem', marginTop: '4px' }}><i className="fa-solid fa-circle-exclamation"></i> {contactErrors.email}</div>}
+                        {contactErrors.email && <span style={{ color: '#ef4444', fontSize: '0.74rem', marginTop: '4px' }}>{contactErrors.email}</span>}
                       </div>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
-                      <div className="form-group-custom">
-                        <label className="form-label-custom" style={{ fontWeight: '700' }}>Phone / WhatsApp *</label>
+                    {/* Row 2: Phone Number + Pet Name */}
+                    <div className="fc-form-row" style={{ marginTop: '16px' }}>
+                      <div className="fc-form-group" style={{ marginBottom: 0 }}>
+                        <label className="fc-label">Phone Number *</label>
                         <input 
                           type="text" 
-                          className="input-sky" 
+                          className="fc-input" 
                           placeholder="+92 300 1234567"
-                          value={contactForm.phone}
+                          value={contactForm.phone || ''}
                           onChange={(e) => { setContactForm({ ...contactForm, phone: e.target.value }); setContactErrors({ ...contactErrors, phone: '' }); }}
-                          style={{ border: contactErrors.phone ? '2px solid #ef4444' : '' }}
+                          style={{ borderColor: contactErrors.phone ? '#ef4444' : '' }}
                         />
-                        {contactErrors.phone && <div style={{ color: '#ef4444', fontSize: '0.74rem', marginTop: '4px' }}><i className="fa-solid fa-circle-exclamation"></i> {contactErrors.phone}</div>}
+                        {contactErrors.phone && <span style={{ color: '#ef4444', fontSize: '0.74rem', marginTop: '4px' }}>{contactErrors.phone}</span>}
                       </div>
 
-                      <div className="form-group-custom">
-                        <label className="form-label-custom" style={{ fontWeight: '700' }}>Inquiry Department</label>
-                        <select 
-                          className="input-sky"
-                          value={contactForm.inquiryType}
-                          onChange={(e) => setContactForm({ ...contactForm, inquiryType: e.target.value })}
-                        >
-                          <option>Veterinary Doctor Consultation</option>
-                          <option>Pet Adoption &amp; Foster Guidance</option>
-                          <option>Grooming &amp; Spa Care Inquiry</option>
-                          <option>Shelter Volunteer &amp; Partnership</option>
-                          <option>General Support &amp; Feedback</option>
-                        </select>
+                      <div className="fc-form-group" style={{ marginBottom: 0 }}>
+                        <label className="fc-label">Pet Name (if any)</label>
+                        <input 
+                          type="text" 
+                          className="fc-input" 
+                          placeholder="e.g. Bella / Milo"
+                          value={contactForm.petName || ''}
+                          onChange={(e) => setContactForm({ ...contactForm, petName: e.target.value })}
+                        />
                       </div>
                     </div>
 
-                    {/* Priority Selector */}
-                    <div style={{ marginBottom: '18px' }}>
-                      <label className="form-label-custom" style={{ fontWeight: '700', marginBottom: '8px', display: 'block' }}>Response Priority</label>
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px' }}>
-                        {[
-                          { id: 'Standard', label: '🟢 Standard', time: 'Within 24 Hours' },
-                          { id: 'High', label: '🟡 High Priority', time: 'Within 2 Hours' },
-                          { id: 'Emergency', label: '🔴 Urgent Triage', time: 'Immediate Callback' }
-                        ].map(p => (
-                          <div 
-                            key={p.id}
-                            onClick={() => setContactForm({ ...contactForm, priority: p.id })}
-                            style={{ 
-                              padding: '10px', 
-                              borderRadius: '12px', 
-                              textAlign: 'center', 
-                              cursor: 'pointer',
-                              border: contactForm.priority === p.id ? '2px solid #0ea5e9' : '1px solid var(--border-glass)',
-                              background: contactForm.priority === p.id ? 'rgba(14,165,233,0.12)' : 'var(--bg-surface)',
-                              transition: 'all 0.2s'
-                            }}
-                          >
-                            <div style={{ fontWeight: '800', fontSize: '0.85rem', color: contactForm.priority === p.id ? '#0284c7' : 'var(--text-main)' }}>{p.label}</div>
-                            <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>{p.time}</div>
-                          </div>
-                        ))}
-                      </div>
+                    {/* Full Width: Select Subject */}
+                    <div className="fc-form-group" style={{ marginTop: '16px' }}>
+                      <label className="fc-label">Select Subject</label>
+                      <select 
+                        className="fc-input"
+                        value={contactForm.inquiryType || 'General Inquiry'}
+                        onChange={(e) => setContactForm({ ...contactForm, inquiryType: e.target.value })}
+                      >
+                        <option>General Inquiry</option>
+                        <option>Appointment</option>
+                        <option>Pet Care</option>
+                        <option>Technical Support</option>
+                        <option>Emergency</option>
+                        <option>Other</option>
+                      </select>
                     </div>
 
-                    {/* Message Area */}
-                    <div className="form-group-custom" style={{ marginBottom: '22px' }}>
-                      <label className="form-label-custom" style={{ fontWeight: '700' }}>Your Message / Care Details *</label>
+                    {/* Large Textarea: Your Message */}
+                    <div className="fc-form-group">
+                      <label className="fc-label">Your Message... *</label>
                       <textarea 
-                        rows="4" 
-                        className="input-sky" 
-                        placeholder="Please describe how our veterinary specialists or adoption team can assist you..."
-                        value={contactForm.message}
+                        className="fc-input fc-textarea"
+                        placeholder="Write your message or question here..."
+                        value={contactForm.message || ''}
                         onChange={(e) => { setContactForm({ ...contactForm, message: e.target.value }); setContactErrors({ ...contactErrors, message: '' }); }}
-                        style={{ border: contactErrors.message ? '2px solid #ef4444' : '', resize: 'vertical' }}
+                        style={{ borderColor: contactErrors.message ? '#ef4444' : '' }}
                       ></textarea>
-                      {contactErrors.message && <div style={{ color: '#ef4444', fontSize: '0.74rem', marginTop: '4px' }}><i className="fa-solid fa-circle-exclamation"></i> {contactErrors.message}</div>}
+                      {contactErrors.message && <span style={{ color: '#ef4444', fontSize: '0.74rem', marginTop: '4px' }}>{contactErrors.message}</span>}
                     </div>
 
-                    <button 
-                      type="submit" 
-                      className="btn-sky-primary" 
-                      style={{ width: '100%', padding: '14px', fontSize: '1.02rem', fontWeight: '800', borderRadius: '14px', boxShadow: '0 6px 20px rgba(14,165,233,0.38)' }}
-                    >
-                      <i className="fa-solid fa-paper-plane" style={{ marginRight: '8px' }}></i> Submit VIP Request &amp; Dispatch
+                    {/* Privacy Agreement Checkbox */}
+                    <div className="fc-checkbox-row">
+                      <input 
+                        type="checkbox" 
+                        id="fc-agree-terms"
+                        checked={contactForm.agreed || false}
+                        onChange={(e) => { setContactForm({ ...contactForm, agreed: e.target.checked }); setContactErrors({ ...contactErrors, agreed: '' }); }}
+                      />
+                      <label htmlFor="fc-agree-terms" style={{ cursor: 'pointer' }}>
+                        I agree to the privacy policy and terms.
+                      </label>
+                    </div>
+                    {contactErrors.agreed && <div style={{ color: '#ef4444', fontSize: '0.74rem', margin: '-14px 0 16px' }}>{contactErrors.agreed}</div>}
+
+                    {/* Primary Button */}
+                    <button type="submit" className="fc-btn-submit">
+                      <i className="fa-solid fa-paper-plane"></i>
+                      <span>Send Message</span>
+                      <i className="fa-solid fa-paw" style={{ fontSize: '0.9rem' }}></i>
                     </button>
+
+                    <div className="fc-form-footer-safe">
+                      <i className="fa-solid fa-shield-halved" style={{ color: '#2196F3' }}></i>
+                      <span>Your information is safe with us.</span>
+                    </div>
+
+                    {/* Overlapping Realistic Puppy & Kitten Visual */}
+                    <div className="fc-form-pet-badge">
+                      <img 
+                        src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=150&q=80" 
+                        alt="Puppy and Kitten" 
+                        className="fc-form-pet-thumb"
+                      />
+                      <div>
+                        <div style={{ fontWeight: '800', fontSize: '0.82rem', color: 'var(--fc-dark-navy)' }}>FurEver Care Team</div>
+                        <div style={{ fontSize: '0.72rem', color: '#64748B' }}>Ready to assist you &amp; your companions</div>
+                      </div>
+                    </div>
+
                   </form>
                 </div>
 
-                {/* RIGHT: Live Hospital Desk, Schedule & Directions */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              </div>
+
+              {/* ── LOCATION SECTION ── */}
+              <div className="fc-location-card">
+                <div>
+                  <div className="fc-loc-badge">
+                    <i className="fa-solid fa-location-dot"></i> OUR LOCATION
+                  </div>
+                  <h2 className="fc-loc-heading">Find Furever Care Near You</h2>
+                  <p className="fc-loc-text">
+                    Visit our care center for the best services and treatment your pet deserves.
+                  </p>
+                  <a 
+                    href="https://maps.google.com/?q=123+Paw+Street+Karachi+Pakistan" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="fc-btn-directions"
+                  >
+                    <i className="fa-solid fa-diamond-turn-right"></i>
+                    <span>Get Directions</span>
+                  </a>
+                </div>
+
+                <div className="fc-map-box">
+                  <iframe 
+                    title="Furever Care Center Map"
+                    className="fc-map-frame"
+                    src="https://maps.google.com/maps?q=Karachi%20Pakistan&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                    loading="lazy"
+                    allowFullScreen
+                  ></iframe>
+                  <div className="fc-map-label-bar">
+                    <i className="fa-solid fa-location-dot" style={{ color: '#2196F3', fontSize: '1.1rem' }}></i>
+                    <div>
+                      <strong style={{ fontSize: '0.88rem', color: 'var(--fc-dark-navy)' }}>Furever Care Center</strong>
+                      <div style={{ fontSize: '0.78rem', color: '#64748B' }}>123 Paw Street, Karachi, Pakistan</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* ── FAQ SECTION ── */}
+              <div className="fc-faq-section">
+                <h2 className="fc-faq-heading">Frequently Asked Questions</h2>
+                
+                <div className="fc-faq-grid">
                   
-                  {/* Live Status Card */}
-                  <div className="glass-panel" style={{ padding: '26px', borderRadius: '24px', border: '1.5px solid var(--border-glass)' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '14px' }}>
-                      <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#10b981', boxShadow: '0 0 10px #10b981', animation: 'petcarePulseDot 2s infinite' }}></span>
-                      <strong style={{ fontSize: '1rem', color: 'var(--text-main)' }}>Live Support Desk Status: ONLINE</strong>
+                  {/* FAQ 1 */}
+                  <div 
+                    className={`fc-faq-card ${(contactFaqOpen === 1) ? 'open' : ''}`}
+                    onClick={() => setContactFaqOpen(contactFaqOpen === 1 ? null : 1)}
+                  >
+                    <div className="fc-faq-question-row">
+                      <div className="fc-faq-q-left">
+                        <div className="fc-faq-icon-circle"><i className="fa-solid fa-bolt"></i></div>
+                        <div className="fc-faq-question">How quickly will you respond?</div>
+                      </div>
+                      <div className="fc-faq-toggle-btn">
+                        <i className={`fa-solid ${contactFaqOpen === 1 ? 'fa-xmark' : 'fa-plus'}`}></i>
+                      </div>
                     </div>
-                    <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)', lineHeight: '1.6', margin: '0 0 16px' }}>
-                      Our clinical triage team is currently active. Average wait time for VIP inquiries is under <strong>4 minutes</strong>.
-                    </p>
-                    <div style={{ display: 'flex', gap: '10px' }}>
-                      <button 
-                        className="btn-sky-primary" 
-                        style={{ flex: 1, padding: '10px', fontSize: '0.86rem', fontWeight: '700', borderRadius: '10px' }}
-                        onClick={() => addToast('Dialing Emergency Hospital Desk: (888) 426-4435', 'fa-phone', 'warning')}
-                      >
-                        <i className="fa-solid fa-phone"></i> Call Hospital Desk
-                      </button>
-                      <a 
-                        href="https://wa.me/923001234567" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="btn-sky-outline" 
-                        style={{ padding: '10px 16px', fontSize: '0.86rem', fontWeight: '700', borderRadius: '10px', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px' }}
-                      >
-                        <i className="fa-brands fa-whatsapp" style={{ color: '#25D366' }}></i> WhatsApp
-                      </a>
-                    </div>
+                    {contactFaqOpen === 1 && (
+                      <div className="fc-faq-answer">
+                        We usually respond within a few hours during our working hours.
+                      </div>
+                    )}
                   </div>
 
-                  {/* Operating Schedule Table */}
-                  <div className="glass-panel" style={{ padding: '26px', borderRadius: '24px', border: '1.5px solid var(--border-glass)' }}>
-                    <h4 style={{ margin: '0 0 14px', fontSize: '1.1rem', fontWeight: '800' }}>
-                      <i className="fa-solid fa-clock" style={{ color: 'var(--primary-500)', marginRight: '8px' }}></i>
-                      Operating &amp; Clinic Hours
-                    </h4>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.86rem' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '8px', borderBottom: '1px solid var(--border-glass)' }}>
-                        <span style={{ color: 'var(--text-muted)' }}>Emergency Trauma Center</span>
-                        <strong style={{ color: '#0ea5e9' }}>24 Hours / 7 Days</strong>
+                  {/* FAQ 2 */}
+                  <div 
+                    className={`fc-faq-card ${(contactFaqOpen === 2) ? 'open' : ''}`}
+                    onClick={() => setContactFaqOpen(contactFaqOpen === 2 ? null : 2)}
+                  >
+                    <div className="fc-faq-question-row">
+                      <div className="fc-faq-q-left">
+                        <div className="fc-faq-icon-circle"><i className="fa-solid fa-calendar-check"></i></div>
+                        <div className="fc-faq-question">Can I book an appointment here?</div>
                       </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '8px', borderBottom: '1px solid var(--border-glass)' }}>
-                        <span style={{ color: 'var(--text-muted)' }}>Veterinary Specialist Clinics</span>
-                        <strong>08:00 AM – 10:00 PM</strong>
-                      </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '8px', borderBottom: '1px solid var(--border-glass)' }}>
-                        <span style={{ color: 'var(--text-muted)' }}>Adoption Hub &amp; Foster Desk</span>
-                        <strong>09:00 AM – 08:00 PM</strong>
-                      </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span style={{ color: 'var(--text-muted)' }}>Grooming Spa &amp; Hydro-Bath</span>
-                        <strong>09:30 AM – 06:30 PM</strong>
+                      <div className="fc-faq-toggle-btn">
+                        <i className={`fa-solid ${contactFaqOpen === 2 ? 'fa-xmark' : 'fa-plus'}`}></i>
                       </div>
                     </div>
+                    {contactFaqOpen === 2 && (
+                      <div className="fc-faq-answer">
+                        Yes! Our team will assist you in booking the best time for your pet.
+                      </div>
+                    )}
                   </div>
 
-                  {/* Map / Headquarters Location Visual Box */}
-                  <div className="glass-panel" style={{ padding: '0', overflow: 'hidden', borderRadius: '24px', position: 'relative', minHeight: '190px', border: '1.5px solid var(--border-glass)' }}>
-                    <img 
-                      src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80" 
-                      alt="FurEver Care Center Headquarters"
-                      style={{ width: '100%', height: '190px', objectFit: 'cover' }}
-                    />
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%)', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '18px' }}>
-                      <div style={{ color: '#fff', fontWeight: '800', fontSize: '0.95rem' }}>FurEver Care Central Sanctuary</div>
-                      <div style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.78rem' }}>742 Evergreen Blvd, Suite 400 • Free Visitor Parking</div>
+                  {/* FAQ 3 */}
+                  <div 
+                    className={`fc-faq-card ${(contactFaqOpen === 3) ? 'open' : ''}`}
+                    onClick={() => setContactFaqOpen(contactFaqOpen === 3 ? null : 3)}
+                  >
+                    <div className="fc-faq-question-row">
+                      <div className="fc-faq-q-left">
+                        <div className="fc-faq-icon-circle"><i className="fa-solid fa-truck-medical"></i></div>
+                        <div className="fc-faq-question">Do you provide emergency support?</div>
+                      </div>
+                      <div className="fc-faq-toggle-btn">
+                        <i className={`fa-solid ${contactFaqOpen === 3 ? 'fa-xmark' : 'fa-plus'}`}></i>
+                      </div>
                     </div>
+                    {contactFaqOpen === 3 && (
+                      <div className="fc-faq-answer">
+                        Yes, we have 24/7 emergency support for your furry friends.
+                      </div>
+                    )}
+                  </div>
+
+                  {/* FAQ 4 */}
+                  <div 
+                    className={`fc-faq-card ${(contactFaqOpen === 4) ? 'open' : ''}`}
+                    onClick={() => setContactFaqOpen(contactFaqOpen === 4 ? null : 4)}
+                  >
+                    <div className="fc-faq-question-row">
+                      <div className="fc-faq-q-left">
+                        <div className="fc-faq-icon-circle"><i className="fa-solid fa-id-card"></i></div>
+                        <div className="fc-faq-question">How can I update my pet profile?</div>
+                      </div>
+                      <div className="fc-faq-toggle-btn">
+                        <i className={`fa-solid ${contactFaqOpen === 4 ? 'fa-xmark' : 'fa-plus'}`}></i>
+                      </div>
+                    </div>
+                    {contactFaqOpen === 4 && (
+                      <div className="fc-faq-answer">
+                        You can update your pet's profile from your account dashboard.
+                      </div>
+                    )}
                   </div>
 
                 </div>
-
               </div>
 
             </div>
