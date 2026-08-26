@@ -153,6 +153,7 @@ function App() {
   const [contactSuccessData, setContactSuccessData] = useState(null);
   const [contactErrors, setContactErrors] = useState({});
   const [contactMapLocation, setContactMapLocation] = useState('hq');
+  const [contactFaqOpen, setContactFaqOpen] = useState(1);
 
   // Adoption Success Confirmation Modal
   const [adoptSuccessData, setAdoptSuccessData] = useState(null);
@@ -13970,7 +13971,7 @@ function App() {
   }), " Done"))), contactSuccessModal && contactSuccessData && /*#__PURE__*/React.createElement("div", {
     className: "modal-overlay",
     style: {
-      background: 'rgba(15, 23, 42, 0.78)',
+      background: 'rgba(11, 42, 82, 0.75)',
       backdropFilter: 'blur(10px)',
       zIndex: 99999
     },
@@ -13979,136 +13980,108 @@ function App() {
     className: "modal-dialog-content",
     onClick: e => e.stopPropagation(),
     style: {
-      background: 'var(--bg-card, #ffffff)',
-      borderRadius: '26px',
-      padding: '38px 32px',
+      background: '#FFFFFF',
+      borderRadius: '28px',
+      padding: '40px 34px',
       textAlign: 'center',
-      maxWidth: '440px',
+      maxWidth: '430px',
       width: '92%',
-      boxShadow: '0 25px 70px rgba(14, 165, 233, 0.4)',
-      border: '2px solid rgba(14, 165, 233, 0.3)',
+      boxShadow: '0 25px 70px rgba(33, 150, 243, 0.35)',
+      border: '2px solid rgba(91, 184, 255, 0.4)',
       animation: 'scaleUp 0.3s ease'
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      width: '84px',
-      height: '84px',
+      width: '88px',
+      height: '88px',
       borderRadius: '50%',
-      background: 'linear-gradient(135deg, #0ea5e9 0%, #38bdf8 50%, #6366f1 100%)',
+      background: 'linear-gradient(135deg, #2196F3 0%, #5BB8FF 100%)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       margin: '0 auto 20px',
-      boxShadow: '0 8px 30px rgba(14, 165, 233, 0.5)'
+      boxShadow: '0 10px 30px rgba(33, 150, 243, 0.45)'
     }
   }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-paper-plane",
+    className: "fa-solid fa-paw",
     style: {
-      color: '#ffffff',
-      fontSize: '2.4rem'
+      color: '#FFFFFF',
+      fontSize: '2.5rem'
     }
-  })), /*#__PURE__*/React.createElement("span", {
-    className: "badge-sky",
+  })), /*#__PURE__*/React.createElement("h2", {
     style: {
-      fontSize: '0.8rem',
-      padding: '5px 16px',
-      marginBottom: '8px',
-      display: 'inline-block'
-    }
-  }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-circle-check"
-  }), " VIP Dispatch Confirmed"), /*#__PURE__*/React.createElement("h2", {
-    style: {
-      fontSize: '1.55rem',
+      fontSize: '1.65rem',
       fontWeight: '900',
-      color: 'var(--text-main, #0f172a)',
-      margin: '8px 0 10px'
+      color: '#0B2A52',
+      margin: '0 0 10px'
     }
-  }, "Message Dispatched!"), /*#__PURE__*/React.createElement("p", {
+  }, "Message Received! \uD83D\uDC3E"), /*#__PURE__*/React.createElement("p", {
     style: {
-      color: 'var(--text-muted, #475569)',
-      fontSize: '0.92rem',
+      color: '#475569',
+      fontSize: '0.94rem',
       lineHeight: '1.6',
-      margin: '0 0 16px'
+      margin: '0 0 20px'
     }
-  }, "Thank you, ", /*#__PURE__*/React.createElement("strong", {
-    style: {
-      color: 'var(--primary-500, #0ea5e9)'
-    }
-  }, contactSuccessData.name), "! Your inquiry has been routed to our certified care coordinators."), /*#__PURE__*/React.createElement("div", {
+  }, "Thank you for reaching out, ", /*#__PURE__*/React.createElement("strong", null, contactSuccessData.name), ". Our care team will get back to you shortly."), /*#__PURE__*/React.createElement("div", {
     style: {
       padding: '14px 18px',
-      background: 'linear-gradient(135deg, rgba(14, 165, 233, 0.08) 0%, rgba(99, 102, 241, 0.08) 100%)',
+      background: '#F5FBFF',
       borderRadius: '16px',
-      border: '1.5px solid rgba(14, 165, 233, 0.2)',
-      marginBottom: '20px',
-      textAlign: 'left'
+      border: '1.5px solid rgba(91, 184, 255, 0.3)',
+      marginBottom: '22px',
+      textAlign: 'left',
+      fontSize: '0.85rem'
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       justifyContent: 'space-between',
-      marginBottom: '6px',
-      fontSize: '0.85rem'
+      marginBottom: '6px'
     }
   }, /*#__PURE__*/React.createElement("span", {
     style: {
-      color: 'var(--text-muted)'
+      color: '#64748B'
     }
-  }, "Ticket Reference:"), /*#__PURE__*/React.createElement("strong", {
+  }, "Ticket ID:"), /*#__PURE__*/React.createElement("strong", {
     style: {
-      color: '#0ea5e9'
+      color: '#2196F3'
     }
   }, contactSuccessData.ticket)), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
       justifyContent: 'space-between',
-      marginBottom: '6px',
-      fontSize: '0.85rem'
+      marginBottom: '6px'
     }
   }, /*#__PURE__*/React.createElement("span", {
     style: {
-      color: 'var(--text-muted)'
+      color: '#64748B'
     }
-  }, "Department:"), /*#__PURE__*/React.createElement("strong", {
+  }, "Subject:"), /*#__PURE__*/React.createElement("strong", {
     style: {
-      color: 'var(--text-main)'
+      color: '#0B2A52'
     }
-  }, contactSuccessData.type)), /*#__PURE__*/React.createElement("div", {
+  }, contactSuccessData.subject)), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',
-      justifyContent: 'space-between',
-      fontSize: '0.85rem'
+      justifyContent: 'space-between'
     }
   }, /*#__PURE__*/React.createElement("span", {
     style: {
-      color: 'var(--text-muted)'
+      color: '#64748B'
     }
-  }, "Priority Level:"), /*#__PURE__*/React.createElement("strong", {
+  }, "Pet:"), /*#__PURE__*/React.createElement("strong", {
     style: {
-      color: '#16a34a'
+      color: '#2196F3'
     }
-  }, contactSuccessData.priority))), /*#__PURE__*/React.createElement("button", {
-    className: "btn-sky-primary",
-    style: {
-      width: '100%',
-      padding: '13px',
-      fontWeight: '800',
-      fontSize: '1rem',
-      borderRadius: '14px',
-      background: 'linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%)',
-      boxShadow: '0 6px 20px rgba(14, 165, 233, 0.4)'
-    },
+  }, contactSuccessData.petName))), /*#__PURE__*/React.createElement("button", {
+    className: "fc-btn-submit",
     onClick: () => {
       setContactSuccessModal(false);
       if (window.SoundEngine) window.SoundEngine.playClicker();
     }
   }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-check",
-    style: {
-      marginRight: '8px'
-    }
-  }), " Done"))), /*#__PURE__*/React.createElement("div", {
+    className: "fa-solid fa-check"
+  }), /*#__PURE__*/React.createElement("span", null, "Done")))), /*#__PURE__*/React.createElement("div", {
     className: "toast-container"
   }, toasts.map(t => /*#__PURE__*/React.createElement("div", {
     key: t.id,

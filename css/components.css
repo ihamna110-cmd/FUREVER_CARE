@@ -5940,3 +5940,645 @@ textarea.input-error {
   0%, 100% { transform: scale(1); opacity: 1; }
   50% { transform: scale(1.4); opacity: 0.7; }
 }
+
+/* ==========================================================================
+   COMPETITION-LEVEL PREMIUM CONTACT US PAGE STYLES (FUREVER CARE)
+   ========================================================================== */
+
+:root {
+  --fc-primary-blue: #2196F3;
+  --fc-sky-blue: #5BB8FF;
+  --fc-light-blue: #EAF7FF;
+  --fc-bg-soft: #F5FBFF;
+  --fc-dark-navy: #0B2A52;
+  --fc-white: #FFFFFF;
+  --fc-border-soft: rgba(91, 184, 255, 0.25);
+  --fc-shadow-card: 0 12px 36px rgba(33, 150, 243, 0.08);
+  --fc-shadow-hover: 0 20px 50px rgba(33, 150, 243, 0.22);
+}
+
+.fc-contact-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 20px 20px 70px;
+  position: relative;
+}
+
+/* ── TOP CONTACT INTRO ── */
+.fc-contact-intro {
+  text-align: center;
+  margin-bottom: 48px;
+  position: relative;
+}
+
+.fc-intro-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--fc-light-blue);
+  color: var(--fc-primary-blue);
+  border: 1.5px solid rgba(91, 184, 255, 0.4);
+  padding: 8px 22px;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 16px rgba(33, 150, 243, 0.12);
+  transition: transform 0.3s ease;
+}
+.fc-intro-badge:hover {
+  transform: translateY(-2px);
+}
+
+.fc-intro-heading {
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: var(--fc-dark-navy);
+  margin: 0 0 14px;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.fc-text-blue {
+  color: var(--fc-primary-blue);
+  background: linear-gradient(135deg, #2196F3 0%, #5BB8FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.fc-intro-subtext {
+  font-size: 1.08rem;
+  color: #475569;
+  max-width: 620px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+/* ── MAIN CONTACT TWO-COLUMN LAYOUT ── */
+.fc-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.22fr;
+  gap: 36px;
+  align-items: start;
+  margin-bottom: 60px;
+}
+
+/* ── LEFT COLUMN: CARDS & SOCIAL ── */
+.fc-contact-left {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.fc-contact-card {
+  background: var(--fc-white);
+  border-radius: 22px;
+  padding: 22px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1.5px solid var(--fc-border-soft);
+  box-shadow: var(--fc-shadow-card);
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.fc-contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--fc-shadow-hover);
+  border-color: var(--fc-primary-blue);
+}
+
+.fc-card-main {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.fc-card-icon-circle {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #EAF7FF 0%, #D4EFFF 100%);
+  color: var(--fc-primary-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  border: 1px solid rgba(91, 184, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.fc-contact-card:hover .fc-card-icon-circle {
+  background: linear-gradient(135deg, #2196F3 0%, #5BB8FF 100%);
+  color: #FFFFFF;
+  transform: scale(1.08) rotate(5deg);
+}
+
+.fc-card-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--fc-dark-navy);
+  margin-bottom: 3px;
+}
+
+.fc-card-desc {
+  font-size: 0.82rem;
+  color: #64748b;
+  margin-bottom: 5px;
+}
+
+.fc-card-highlight {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--fc-primary-blue);
+}
+
+.fc-card-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #F8FAFC;
+  color: #94A3B8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.fc-contact-card:hover .fc-card-arrow {
+  background: var(--fc-light-blue);
+  color: var(--fc-primary-blue);
+  transform: translateX(4px);
+}
+
+/* ── PET CARE MESSAGE CARD ── */
+.fc-pet-message-card {
+  background: linear-gradient(135deg, #EAF7FF 0%, #F5FBFF 100%);
+  border: 1.5px solid rgba(91, 184, 255, 0.4);
+  border-radius: 22px;
+  padding: 22px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  box-shadow: var(--fc-shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+
+.fc-pet-msg-title {
+  font-size: 1.12rem;
+  font-weight: 900;
+  color: var(--fc-dark-navy);
+  margin-bottom: 4px;
+}
+
+.fc-pet-msg-sub {
+  font-size: 0.85rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.fc-pet-msg-img {
+  width: 88px;
+  height: 88px;
+  border-radius: 18px;
+  object-fit: cover;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 6px 18px rgba(33, 150, 243, 0.2);
+  flex-shrink: 0;
+  animation: petGentleFloat 4s ease-in-out infinite alternate;
+}
+
+@keyframes petGentleFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-5px); }
+}
+
+/* ── SOCIAL MEDIA SECTION ── */
+.fc-social-box {
+  background: var(--fc-white);
+  border-radius: 20px;
+  padding: 18px 24px;
+  border: 1.5px solid var(--fc-border-soft);
+  box-shadow: var(--fc-shadow-card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.fc-social-title {
+  font-weight: 800;
+  font-size: 0.98rem;
+  color: var(--fc-dark-navy);
+}
+
+.fc-social-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fc-social-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--fc-white);
+  border: 1.5px solid var(--fc-border-soft);
+  color: var(--fc-primary-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 3px 10px rgba(33, 150, 243, 0.1);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.fc-social-btn:hover {
+  transform: translateY(-4px) scale(1.1);
+  background: linear-gradient(135deg, #2196F3, #5BB8FF);
+  color: #FFFFFF;
+  box-shadow: 0 8px 20px rgba(33, 150, 243, 0.35);
+  border-color: transparent;
+}
+
+/* ── RIGHT SIDE: CONTACT FORM CARD ── */
+.fc-form-card {
+  background: var(--fc-white);
+  border-radius: 26px;
+  padding: 38px 36px 32px;
+  border: 1.8px solid var(--fc-border-soft);
+  box-shadow: 0 20px 60px rgba(33, 150, 243, 0.12);
+  position: relative;
+  overflow: hidden;
+}
+
+.fc-form-header {
+  margin-bottom: 26px;
+  position: relative;
+}
+
+.fc-form-title {
+  font-size: 1.65rem;
+  font-weight: 900;
+  color: var(--fc-dark-navy);
+  margin: 0 0 6px;
+}
+
+.fc-form-subtitle {
+  font-size: 0.92rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.fc-form-decor-paw {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1.8rem;
+  color: rgba(91, 184, 255, 0.35);
+}
+
+.fc-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.fc-form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.fc-label {
+  font-size: 0.86rem;
+  font-weight: 800;
+  color: var(--fc-dark-navy);
+  margin-bottom: 7px;
+}
+
+.fc-input {
+  width: 100%;
+  padding: 13px 18px;
+  border-radius: 14px;
+  border: 1.5px solid #E2E8F0;
+  background: #F8FAFC;
+  color: var(--fc-dark-navy);
+  font-size: 0.92rem;
+  font-family: inherit;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+}
+
+.fc-input:focus {
+  outline: none;
+  border-color: var(--fc-primary-blue);
+  background: var(--fc-white);
+  box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.15);
+}
+
+.fc-textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.fc-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 6px 0 20px;
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.fc-checkbox-row input {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--fc-primary-blue);
+  cursor: pointer;
+}
+
+.fc-btn-submit {
+  width: 100%;
+  padding: 15px 28px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #2196F3 0%, #5BB8FF 100%);
+  color: #FFFFFF;
+  border: none;
+  font-size: 1.05rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(33, 150, 243, 0.35);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.fc-btn-submit:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 14px 36px rgba(33, 150, 243, 0.48);
+}
+
+.fc-btn-submit:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.fc-form-footer-safe {
+  text-align: center;
+  font-size: 0.78rem;
+  color: #94A3B8;
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* ── OVERLAPPING FORM PET CORNER VISUAL ── */
+.fc-form-pet-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, rgba(234, 247, 255, 0.9) 0%, rgba(245, 251, 255, 0.9) 100%);
+  border: 1px solid var(--fc-border-soft);
+  border-radius: 16px;
+  padding: 8px 14px;
+  margin-top: 18px;
+}
+
+.fc-form-pet-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--fc-sky-blue);
+}
+
+/* ── LOCATION CARD SECTION ── */
+.fc-location-card {
+  background: var(--fc-white);
+  border-radius: 26px;
+  padding: 36px;
+  border: 1.8px solid var(--fc-border-soft);
+  box-shadow: var(--fc-shadow-card);
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 36px;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.fc-loc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--fc-light-blue);
+  color: var(--fc-primary-blue);
+  padding: 6px 16px;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.fc-loc-heading {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--fc-dark-navy);
+  margin: 0 0 10px;
+}
+
+.fc-loc-text {
+  font-size: 0.96rem;
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+.fc-btn-directions {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #2196F3 0%, #5BB8FF 100%);
+  color: #FFFFFF;
+  padding: 13px 26px;
+  border-radius: 9999px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(33, 150, 243, 0.3);
+  transition: all 0.3s ease;
+}
+
+.fc-btn-directions:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(33, 150, 243, 0.45);
+}
+
+.fc-map-box {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1.5px solid var(--fc-border-soft);
+  box-shadow: 0 10px 30px rgba(33, 150, 243, 0.1);
+  position: relative;
+  background: #F8FAFC;
+}
+
+.fc-map-frame {
+  width: 100%;
+  height: 240px;
+  border: none;
+  display: block;
+}
+
+.fc-map-label-bar {
+  padding: 12px 18px;
+  background: var(--fc-white);
+  border-top: 1px solid var(--fc-border-soft);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ── FAQ ACCORDION SECTION ── */
+.fc-faq-section {
+  margin-bottom: 40px;
+}
+
+.fc-faq-heading {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: var(--fc-dark-navy);
+  margin: 0 0 32px;
+}
+
+.fc-faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.fc-faq-card {
+  background: var(--fc-white);
+  border-radius: 20px;
+  padding: 20px 24px;
+  border: 1.5px solid var(--fc-border-soft);
+  box-shadow: var(--fc-shadow-card);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.fc-faq-card:hover {
+  border-color: var(--fc-primary-blue);
+  box-shadow: var(--fc-shadow-hover);
+}
+
+.fc-faq-question-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.fc-faq-q-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fc-faq-icon-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--fc-light-blue);
+  color: var(--fc-primary-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.fc-faq-question {
+  font-weight: 800;
+  font-size: 0.98rem;
+  color: var(--fc-dark-navy);
+}
+
+.fc-faq-toggle-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #F1F5F9;
+  color: #64748B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.88rem;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.fc-faq-card.open .fc-faq-toggle-btn {
+  background: var(--fc-primary-blue);
+  color: #FFFFFF;
+  transform: rotate(45deg);
+}
+
+.fc-faq-answer {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(226, 232, 240, 0.7);
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* ── RESPONSIVE DESIGN ── */
+@media (max-width: 1024px) {
+  .fc-contact-grid {
+    grid-template-columns: 1fr;
+  }
+  .fc-location-card {
+    grid-template-columns: 1fr;
+  }
+  .fc-faq-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .fc-intro-heading {
+    font-size: 2.3rem;
+  }
+  .fc-form-row {
+    grid-template-columns: 1fr;
+  }
+  .fc-form-card {
+    padding: 26px 20px;
+  }
+  .fc-location-card {
+    padding: 24px 20px;
+  }
+  .fc-social-box {
+    justify-content: center;
+  }
+}
