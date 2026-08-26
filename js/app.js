@@ -3352,7 +3352,7 @@ function App() {
 
               // Single category selected -> 3 cards
               if (petFilter !== 'all') {
-                const pets = adoptablePets.filter(p => p.type === petFilter).slice(0, 3);
+                const pets = adoptablePets.filter(p => p.type === petFilter).slice(0, 4);
                 return (
                   <div className="shelter-pets-grid" style={{ marginBottom: '48px' }}>
                     {pets.map(pet => renderPetCard(pet))}
@@ -3364,7 +3364,7 @@ function App() {
               return (
                 <div style={{ marginBottom: '48px' }}>
                   {SHELTER_CATEGORIES.map(cat => {
-                    const pets = adoptablePets.filter(p => p.type === cat.key).slice(0, 3);
+                    const pets = adoptablePets.filter(p => p.type === cat.key).slice(0, 4);
                     if (pets.length === 0) return null;
                     return (
                       <div key={cat.key} style={{ marginBottom: '40px' }}>
@@ -3374,7 +3374,7 @@ function App() {
                           </div>
                           <div>
                             <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: '800', color: 'var(--text-primary)' }}>{cat.label}</h3>
-                            <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Top 3 Available for Adoption</span>
+                            <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Top 4 Available for Adoption</span>
                           </div>
                           <button
                             style={{ marginLeft: 'auto', cursor: 'pointer', border: '1px solid rgba(14,165,233,0.3)', background: 'rgba(14,165,233,0.08)', padding: '4px 14px', borderRadius: '20px', fontSize: '0.78rem', fontWeight: '700', color: 'var(--primary-600)' }}

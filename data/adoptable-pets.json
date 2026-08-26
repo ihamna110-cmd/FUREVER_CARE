@@ -45,6 +45,21 @@
     "healthStatus": "First Vaccinations & Dewormed"
   },
   {
+    "id": "pet-d4",
+    "name": "Rocky the Husky",
+    "type": "dog",
+    "breed": "Siberian Husky",
+    "age": "3 Years",
+    "gender": "Male",
+    "size": "Large",
+    "location": "Shelter Wing C",
+    "vaccinated": true,
+    "image": "https://images.unsplash.com/photo-1605568427561-40dd23c2acea?auto=format&fit=crop&w=600&q=80",
+    "badge": "Snow Runner",
+    "description": "Energetic Husky with stunning blue eyes, great with kids, loves long hikes and chasing snowflakes.",
+    "healthStatus": "Vaccinated & Hip-Checked"
+  },
+  {
     "id": "pet-2",
     "name": "Luna Frost",
     "type": "cat",
@@ -88,6 +103,21 @@
     "badge": "Playful Cutie",
     "description": "Curious, super friendly, greets you at the door with soft meows, and loves chasing laser pointers.",
     "healthStatus": "Fully Vaccinated & Spayed"
+  },
+  {
+    "id": "pet-c4",
+    "name": "Shadow the Panther",
+    "type": "cat",
+    "breed": "Black Domestic Shorthair",
+    "age": "1.5 Years",
+    "gender": "Male",
+    "size": "Medium",
+    "location": "Cattery Night Wing",
+    "vaccinated": true,
+    "image": "https://images.unsplash.com/photo-1608848461950-0fe51dfc41cb?auto=format&fit=crop&w=600&q=80",
+    "badge": "Midnight Charm",
+    "description": "Sleek and mysterious, loves cuddle sessions at night, very affectionate and gets along with other cats.",
+    "healthStatus": "Neutered & Fully Vaccinated"
   },
   {
     "id": "pet-3",
@@ -135,6 +165,21 @@
     "healthStatus": "Both Neutered & Vaccinated"
   },
   {
+    "id": "pet-r4",
+    "name": "Snowball",
+    "type": "rabbit",
+    "breed": "Lionhead Rabbit",
+    "age": "8 Months",
+    "gender": "Female",
+    "size": "Mini",
+    "location": "Bunny Suite D",
+    "vaccinated": true,
+    "image": "https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=600&q=80",
+    "badge": "Fluffy Princess",
+    "description": "Adorable lionhead with a super fluffy mane, loves being held, binky dancing and organic strawberry treats.",
+    "healthStatus": "RHDV2 Vaccinated & Healthy"
+  },
+  {
     "id": "pet-6",
     "name": "Pip & Peanut",
     "type": "bird",
@@ -178,5 +223,20 @@
     "badge": "Intelligent Companions",
     "description": "Social and bright personalities, loves puzzle toys, cracked walnuts, and learning new vocal phrases.",
     "healthStatus": "Full Blood Panel & Feather Checked"
+  },
+  {
+    "id": "pet-b4",
+    "name": "Kiwi the Lovebird",
+    "type": "bird",
+    "breed": "Peach-Faced Lovebird",
+    "age": "1 Year",
+    "gender": "Female",
+    "size": "Small",
+    "location": "Aviary Suite 7",
+    "vaccinated": true,
+    "image": "https://images.unsplash.com/photo-1522858547137-f1dcec554f55?auto=format&fit=crop&w=600&q=80",
+    "badge": "Sweet Singer",
+    "description": "Dazzling green and peach plumage, bonds deeply with her owner, loves mirrors, bells and millet perches.",
+    "healthStatus": "Avian Panel Clear & Healthy"
   }
 ]
