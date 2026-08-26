@@ -7410,7 +7410,7 @@ function App() {
       {reminderModalOpen && reminderModalData && (
         <div className="modal-overlay" onClick={() => { setReminderModalOpen(false); setReminderSuccess(false); }}>
           <div className="modal-dialog-content" onClick={(e) => e.stopPropagation()} style={{ maxHeight: '92vh', overflowY: 'auto', padding: '0', borderRadius: '20px', maxWidth: '480px', width: '95%' }}>
-            <div style={{ background: 'linear-gradient(135deg, #f59e0b 0%, #ef4444 100%)', padding: '22px 26px 18px', borderRadius: '20px 20px 0 0', position: 'sticky', top: 0, zIndex: 2 }}>
+            <div style={{ background: 'linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%)', padding: '22px 26px 18px', borderRadius: '20px 20px 0 0', position: 'sticky', top: 0, zIndex: 2 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                   <span style={{ background: 'rgba(255,255,255,0.2)', borderRadius: '50%', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -7469,7 +7469,7 @@ function App() {
               </div>
               <button
                 className="btn-sky-primary"
-                style={{ width: '100%', padding: '13px', fontWeight: '800', fontSize: '0.98rem', borderRadius: '12px', background: 'linear-gradient(135deg, #f59e0b, #ef4444)', boxShadow: '0 4px 14px rgba(245,158,11,0.35)' }}
+                style={{ width: '100%', padding: '13px', fontWeight: '800', fontSize: '0.98rem', borderRadius: '12px', background: 'linear-gradient(135deg, #0ea5e9, #6366f1)', boxShadow: '0 4px 14px rgba(14,165,233,0.35)' }}
                 onClick={() => {
                   setReminderModalOpen(false);
                   setReminderSuccess(true);
@@ -7488,17 +7488,17 @@ function App() {
       {reminderSuccess && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999 }}>
           <div style={{ background: 'var(--bg-card)', borderRadius: '24px', padding: '40px 32px', textAlign: 'center', maxWidth: '360px', width: '90%', boxShadow: '0 20px 60px rgba(0,0,0,0.3)', border: '1px solid var(--border-glass)' }}>
-            <div style={{ width: '76px', height: '76px', borderRadius: '50%', background: 'linear-gradient(135deg, #f59e0b, #ef4444)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 18px' }}>
+            <div style={{ width: '76px', height: '76px', borderRadius: '50%', background: 'linear-gradient(135deg, #0ea5e9, #6366f1)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 18px' }}>
               <i className="fa-solid fa-bell" style={{ color: '#fff', fontSize: '2rem' }}></i>
             </div>
             <h2 style={{ fontSize: '1.45rem', fontWeight: '900', color: 'var(--text-main)', margin: '0 0 8px' }}>Reminders Sent!</h2>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: '1.6', margin: '0 0 6px' }}>
-              All reminders for <strong style={{ color: '#f59e0b' }}>{reminderModalData ? reminderModalData.service : 'your appointment'}</strong> have been successfully scheduled.
+              All reminders for <strong style={{ color: 'var(--primary-500)' }}>{reminderModalData ? reminderModalData.service : 'your appointment'}</strong> have been successfully scheduled.
             </p>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.82rem', margin: '0 0 22px' }}>
               <i className="fa-solid fa-check" style={{ color: '#10b981', marginRight: '5px' }}></i>You will be notified via SMS, Email and WhatsApp.
             </p>
-            <button className="btn-sky-primary" style={{ width: '100%', padding: '12px', fontWeight: '800', borderRadius: '12px', background: 'linear-gradient(135deg, #f59e0b, #ef4444)' }} onClick={() => setReminderSuccess(false)}>
+            <button className="btn-sky-primary" style={{ width: '100%', padding: '12px', fontWeight: '800', borderRadius: '12px', background: 'linear-gradient(135deg, #0ea5e9, #6366f1)' }} onClick={() => setReminderSuccess(false)}>
               <i className="fa-solid fa-check" style={{ marginRight: '8px' }}></i>Done
             </button>
           </div>

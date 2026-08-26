@@ -12739,7 +12739,7 @@ function App() {
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      background: 'linear-gradient(135deg, #f59e0b 0%, #ef4444 100%)',
+      background: 'linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%)',
       padding: '22px 26px 18px',
       borderRadius: '20px 20px 0 0',
       position: 'sticky',
@@ -12985,8 +12985,8 @@ function App() {
       fontWeight: '800',
       fontSize: '0.98rem',
       borderRadius: '12px',
-      background: 'linear-gradient(135deg, #f59e0b, #ef4444)',
-      boxShadow: '0 4px 14px rgba(245,158,11,0.35)'
+      background: 'linear-gradient(135deg, #0ea5e9, #6366f1)',
+      boxShadow: '0 4px 14px rgba(14,165,233,0.35)'
     },
     onClick: () => {
       setReminderModalOpen(false);
@@ -13026,7 +13026,7 @@ function App() {
       width: '76px',
       height: '76px',
       borderRadius: '50%',
-      background: 'linear-gradient(135deg, #f59e0b, #ef4444)',
+      background: 'linear-gradient(135deg, #0ea5e9, #6366f1)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -13054,7 +13054,7 @@ function App() {
     }
   }, "All reminders for ", /*#__PURE__*/React.createElement("strong", {
     style: {
-      color: '#f59e0b'
+      color: 'var(--primary-500)'
     }
   }, reminderModalData ? reminderModalData.service : 'your appointment'), " have been successfully scheduled."), /*#__PURE__*/React.createElement("p", {
     style: {
@@ -13075,7 +13075,7 @@ function App() {
       padding: '12px',
       fontWeight: '800',
       borderRadius: '12px',
-      background: 'linear-gradient(135deg, #f59e0b, #ef4444)'
+      background: 'linear-gradient(135deg, #0ea5e9, #6366f1)'
     },
     onClick: () => setReminderSuccess(false)
   }, /*#__PURE__*/React.createElement("i", {
