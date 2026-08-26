@@ -127,6 +127,8 @@ function App() {
   const [contactSuccessData, setContactSuccessData] = useState(null);
   const [contactErrors, setContactErrors] = useState({});
   const [contactMapLocation, setContactMapLocation] = useState('hq');
+  const [catFrameIndex, setCatFrameIndex] = useState(0);
+  const [fishCursorPos, setFishCursorPos] = useState({ x: 0, y: 0, visible: false });
   const [heroScene, setHeroScene] = useState(0);
   const [heroMousePos, setHeroMousePos] = useState({ x: 0, y: 0 });
   const [contactFaqOpen, setContactFaqOpen] = useState(1);
@@ -1283,247 +1285,108 @@ function App() {
         {activeTab === 'home' && (
           <div>
             {/* ══════════════════════════════════════════════════════════════════
-                APEX CINEMATIC HERO SECTION (15s SEAMLESS LOOP: CAT ➔ DOG ➔ BIRD)
+                EXACT VIDEO HERO SECTION (INTERACTIVE RAGDOLL CAT + FISH CURSOR)
                 ══════════════════════════════════════════════════════════════════ */}
             <section 
-              className="hero-section apex-hero-wrapper"
+              className="hero-section video-hero-container"
               onMouseMove={(e) => {
                 const rect = e.currentTarget.getBoundingClientRect();
-                const x = ((e.clientX - rect.left) / rect.width - 0.5) * 20;
-                const y = ((e.clientY - rect.top) / rect.height - 0.5) * 20;
-                setHeroMousePos({ x, y });
-              }}
-              onMouseLeave={() => setHeroMousePos({ x: 0, y: 0 })}
-            >
-              {/* Cinematic Ambient Light & Glow Orbs */}
-              <div className="cinematic-light-shafts" style={{ '--mouse-x': `${50 + heroMousePos.x * 1.5}%`, '--mouse-y': `${40 + heroMousePos.y * 1.5}%` }}></div>
-              <div className="cinematic-glow-backdrop"></div>
-
-              {/* Floating Paw Particles & Bokeh */}
-              <div className="cinematic-particle cinematic-p1"><i className="fa-solid fa-paw"></i></div>
-              <div className="cinematic-particle cinematic-p2"><i className="fa-solid fa-sparkles"></i></div>
-              <div className="cinematic-particle cinematic-p3"><i className="fa-solid fa-paw"></i></div>
-              <div className="cinematic-particle cinematic-p4"><i className="fa-solid fa-heart"></i></div>
-
-              {/* ── TWO-COLUMN HERO GRID ── */}
-              <div className="cinematic-hero-grid">
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+                const ratioX = Math.max(0, Math.min(1, mouseX / rect.width));
                 
-                {/* ── LEFT COLUMN: DYNAMIC CINEMATIC HEADLINES & CTAS ── */}
+                // Map mouse X to cat animation frame (0 to 76)
+                const targetFrame = Math.floor(ratioX * 76);
+                setCatFrameIndex(targetFrame);
+                setFishCursorPos({ x: mouseX, y: mouseY, visible: true });
+              }}
+              onMouseLeave={() => {
+                setFishCursorPos(prev => ({ ...prev, visible: false }));
+              }}
+            >
+              {/* Floating Interactive Fish Toy Cursor */}
+              {fishCursorPos && fishCursorPos.visible && (
                 <div 
-                  className="cinematic-left-content"
-                  style={{ transform: `translate3d(${-heroMousePos.x * 0.4}px, ${-heroMousePos.y * 0.4}px, 0)` }}
+                  className="hero-fish-toy-cursor"
+                  style={{ left: `${fishCursorPos.x}px`, top: `${fishCursorPos.y}px` }}
                 >
-                  
-                  {/* Top Badge */}
-                  <div className="cinematic-top-badge">
-                    <span className="cinematic-pulse-dot"></span>
-                    <i className="fa-solid fa-shield-cat"></i>
-                    <span>
-                      {heroScene === 0 && 'Chapter I • Serene Feline Care'}
-                      {heroScene === 1 && 'Chapter II • Dedicated Canine Wellness'}
-                      {heroScene === 2 && 'Chapter III • Aviary & Companion Rescue'}
-                    </span>
-                  </div>
-
-                  <div className="cinematic-brand-sub">FurEver Care Platform</div>
-
-                  {/* Dynamic Headline */}
-                  <h1 className="cinematic-headline">
-                    {heroScene === 0 && (
-                      <span>Because Every Paw <br /><span className="cinematic-highlight">Deserves Forever.</span></span>
-                    )}
-                    {heroScene === 1 && (
-                      <span>Unconditional Love, <br /><span className="cinematic-highlight">World-Class Health.</span></span>
-                    )}
-                    {heroScene === 2 && (
-                      <span>Soaring Freedom, <br /><span className="cinematic-highlight">Compassionate Care.</span></span>
-                    )}
-                  </h1>
-
-                  {/* Dynamic Subheading */}
-                  <p className="cinematic-subtext">
-                    {heroScene === 0 && 'Thoughtful care, accredited veterinarians, and endless love for every feline companion.'}
-                    {heroScene === 1 && 'Certified emergency hospital triage, preventative nutrition, and loving clinical expertise.'}
-                    {heroScene === 2 && 'Ethical companion sanctuaries, exotic avian wellness, and worldwide adoption networks.'}
-                  </p>
-
-                  {/* Action Buttons */}
-                  <div className="cinematic-cta-group">
-                    <button 
-                      className="btn-cinematic-primary"
-                      onClick={() => {
-                        setActiveTab('shelter');
-                        if (window.SoundEngine) window.SoundEngine.playClicker();
-                        addToast('Entering Adoption Gallery & Rescue Hub', 'fa-paw');
-                      }}
-                    >
-                      <span>Explore Care</span>
-                      <i className="fa-solid fa-arrow-right"></i>
-                    </button>
-
-                    <button 
-                      className="btn-cinematic-secondary"
-                      onClick={() => {
-                        setActiveTab('vet');
-                        setVetViewMode('directory');
-                        if (window.SoundEngine) window.SoundEngine.playClicker();
-                        addToast('Connecting with Verified Veterinarians', 'fa-user-doctor');
-                      }}
-                    >
-                      <i className="fa-solid fa-stethoscope" style={{ color: '#0ea5e9' }}></i>
-                      <span>Meet Our Pets</span>
-                    </button>
-                  </div>
-
-                  {/* 15s Scene Timeline Chapter Selector */}
-                  <div className="cinematic-timeline-nav">
-                    {[
-                      { id: 0, label: '01 🐱 Cat', duration: '0–5s' },
-                      { id: 1, label: '02 🐶 Dog', duration: '5–10s' },
-                      { id: 2, label: '03 🐦 Bird', duration: '10–15s' }
-                    ].map(scene => (
-                      <button
-                        key={scene.id}
-                        className={`cinematic-timeline-dot ${heroScene === scene.id ? 'active' : ''}`}
-                        onClick={() => {
-                          setHeroScene(scene.id);
-                          if (window.SoundEngine) window.SoundEngine.playClicker();
-                        }}
-                        title={`Switch to Scene ${scene.id + 1}`}
-                      >
-                        {scene.label}
-                      </button>
-                    ))}
-                  </div>
-
+                  <img 
+                    src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/external-fish-toy-cat-accessories-flaticons-lineal-color-flat-icons.png"
+                    alt="Fish Toy"
+                    style={{ width: '42px', height: '42px', display: 'block', filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.25))' }}
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.parentElement.innerHTML = '🐟';
+                    }}
+                  />
                 </div>
+              )}
 
-                {/* ── RIGHT COLUMN: CINEMATIC ANIMAL STAGE (CAT -> DOG -> BIRD) ── */}
-                <div 
-                  className="cinematic-stage"
-                  style={{ transform: `translate3d(${heroMousePos.x * 0.8}px, ${heroMousePos.y * 0.8}px, 0)` }}
-                >
-                  <div className="cinematic-animal-viewport">
-                    
-                    {/* 🐱 SCENE 01: CAT (Luna) */}
-                    <div className={`cinematic-animal-layer ${heroScene === 0 ? 'scene-active' : heroScene === 1 ? 'scene-exiting' : 'scene-entering'}`}>
-                      <div className="cinematic-visual-card motion-cat">
-                        <img 
-                          src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=700&q=80" 
-                          alt="Luna - British Shorthair Cat"
-                          className="cinematic-visual-img" 
-                        />
-                        <div className="cinematic-animal-pill">
-                          <div>
-                            <div className="cinematic-pill-name">Luna</div>
-                            <div className="cinematic-pill-breed">British Shorthair</div>
-                          </div>
-                          <span className="cinematic-pill-status">🐱 Feline Care</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* 🐶 SCENE 02: DOG (Buddy) */}
-                    <div className={`cinematic-animal-layer ${heroScene === 1 ? 'scene-active' : heroScene === 2 ? 'scene-exiting' : 'scene-entering'}`}>
-                      <div className="cinematic-visual-card motion-dog">
-                        <img 
-                          src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=700&q=80" 
-                          alt="Buddy - Golden Retriever"
-                          className="cinematic-visual-img" 
-                        />
-                        <div className="cinematic-animal-pill">
-                          <div>
-                            <div className="cinematic-pill-name">Buddy</div>
-                            <div className="cinematic-pill-breed">Golden Retriever</div>
-                          </div>
-                          <span className="cinematic-pill-status">🐶 Canine Care</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* 🐦 SCENE 03: BIRD (Rio) */}
-                    <div className={`cinematic-animal-layer ${heroScene === 2 ? 'scene-active' : heroScene === 0 ? 'scene-exiting' : 'scene-entering'}`}>
-                      <div className="cinematic-visual-card motion-bird">
-                        <img 
-                          src="https://images.unsplash.com/photo-1552728089-57bdde30beb3?auto=format&fit=crop&w=700&q=80" 
-                          alt="Rio - Blue Crown Conure"
-                          className="cinematic-visual-img" 
-                        />
-                        <div className="cinematic-animal-pill">
-                          <div>
-                            <div className="cinematic-pill-name">Rio</div>
-                            <div className="cinematic-pill-breed">Exotic Avian</div>
-                          </div>
-                          <span className="cinematic-pill-status">🐦 Free Flight</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Floating Glass Corner Cards */}
-                    <div 
-                      className="cinematic-floating-widget widget-top-right"
-                      onClick={() => { setActiveTab('emergency'); if (window.SoundEngine) window.SoundEngine.playClicker(); }}
-                    >
-                      <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(16,185,129,0.15)', color: '#10b981', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <i className="fa-solid fa-heart-pulse"></i>
-                      </div>
-                      <div>
-                        <div style={{ fontWeight: '800', fontSize: '0.85rem', color: '#0B2A52' }}>24/7 Clinical SOS</div>
-                        <div style={{ fontSize: '0.72rem', color: '#10b981' }}>Live Triage Active</div>
-                      </div>
-                    </div>
-
-                    <div 
-                      className="cinematic-floating-widget widget-bottom-left"
-                      onClick={() => { setActiveTab('shelter'); if (window.SoundEngine) window.SoundEngine.playClicker(); }}
-                    >
-                      <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: 'rgba(14,165,233,0.15)', color: '#0ea5e9', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <i className="fa-solid fa-shield-heart"></i>
-                      </div>
-                      <div>
-                        <div style={{ fontWeight: '800', fontSize: '0.85rem', color: '#0B2A52' }}>4,850+ Adoptions</div>
-                        <div style={{ fontSize: '0.72rem', color: '#0ea5e9' }}>Verified Shelters</div>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
+              {/* Background Interactive Fluffy Cat Video Frame Viewport */}
+              <div className="video-cat-bg-wrapper">
+                <img 
+                  src={`assets/cat_sequence/cat_${String(catFrameIndex || 0).padStart(2, '0')}.jpg`}
+                  alt="Interactive Ragdoll Cat" 
+                  className="video-cat-bg-img"
+                  onError={(e) => {
+                    e.target.src = 'assets/hero_video_cat_exact.jpg';
+                  }}
+                />
               </div>
 
-              {/* ── BOTTOM STATS STRIP ── */}
-              <div className="cinematic-bottom-strip">
-                <div className="cinematic-stat-box">
-                  <div className="cinematic-stat-icon"><i className="fa-solid fa-heart"></i></div>
-                  <div>
-                    <div className="cinematic-stat-val">50K+</div>
-                    <div className="cinematic-stat-lbl">Happy Pet Parents</div>
-                  </div>
+              {/* Subtle Floating Decorative Paw Prints */}
+              <div className="video-hero-paw paw-pos-1"><i className="fa-solid fa-paw"></i></div>
+              <div className="video-hero-paw paw-pos-2"><i className="fa-solid fa-paw"></i></div>
+              <div className="video-hero-paw paw-pos-3"><i className="fa-solid fa-paw"></i></div>
+              <div className="video-hero-paw paw-pos-4"><i className="fa-solid fa-paw"></i></div>
+
+              {/* ── LEFT COLUMN OVERLAY CONTENT (EXACT AS IN VIDEO) ── */}
+              <div className="video-hero-left-content">
+                
+                {/* Pill Badge */}
+                <div className="video-hero-badge">
+                  <i className="fa-solid fa-paw" style={{ color: '#8C6E5F' }}></i>
+                  <span>Made for Cats. Loved by Cat People.</span>
+                  <i className="fa-solid fa-heart" style={{ color: '#f43f5e', fontSize: '0.75rem', marginLeft: '4px' }}></i>
                 </div>
 
-                <div className="cinematic-stat-box">
-                  <div className="cinematic-stat-icon"><i className="fa-solid fa-user-doctor"></i></div>
-                  <div>
-                    <div className="cinematic-stat-val">10K+</div>
-                    <div className="cinematic-stat-lbl">Verified Vets</div>
-                  </div>
+                {/* Big Headline */}
+                <h1 className="video-hero-title">
+                  Everything Your <br />
+                  Cat Deserves.
+                </h1>
+
+                {/* Subtitle */}
+                <p className="video-hero-desc">
+                  Thoughtfully chosen essentials, irresistible toys, cozy spaces, and little luxuries made for cats who rule the house.
+                </p>
+
+                {/* CTA Buttons */}
+                <div className="video-hero-cta-row">
+                  <button 
+                    className="btn-video-primary"
+                    onClick={() => {
+                      setActiveTab('products');
+                      if (window.SoundEngine) window.SoundEngine.playClicker();
+                      addToast('Exploring Pet Products & Luxuries', 'fa-bag-shopping');
+                    }}
+                  >
+                    <span>Shop for Cats</span>
+                    <i className="fa-solid fa-arrow-right"></i>
+                  </button>
+
+                  <button 
+                    className="btn-video-secondary"
+                    onClick={() => {
+                      setActiveTab('shelter');
+                      if (window.SoundEngine) window.SoundEngine.playClicker();
+                      addToast('Browsing Companion Breeds & Adoptions', 'fa-paw');
+                    }}
+                  >
+                    <span>Explore Cat Breeds</span>
+                  </button>
                 </div>
 
-                <div className="cinematic-stat-box">
-                  <div className="cinematic-stat-icon"><i className="fa-solid fa-bag-shopping"></i></div>
-                  <div>
-                    <div className="cinematic-stat-val">120K+</div>
-                    <div className="cinematic-stat-lbl">Care Products</div>
-                  </div>
-                </div>
-
-                <div className="cinematic-stat-box">
-                  <div className="cinematic-stat-icon" style={{ background: 'rgba(16,185,129,0.15)', color: '#10b981' }}><i className="fa-solid fa-clock"></i></div>
-                  <div>
-                    <div className="cinematic-stat-val" style={{ color: '#0ea5e9' }}>24/7</div>
-                    <div className="cinematic-stat-lbl">Care &amp; Support</div>
-                  </div>
-                </div>
               </div>
 
             </section>
