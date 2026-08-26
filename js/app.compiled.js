@@ -152,6 +152,7 @@ function App() {
   const [contactSuccessModal, setContactSuccessModal] = useState(false);
   const [contactSuccessData, setContactSuccessData] = useState(null);
   const [contactErrors, setContactErrors] = useState({});
+  const [contactMapLocation, setContactMapLocation] = useState('hq');
 
   // Adoption Success Confirmation Modal
   const [adoptSuccessData, setAdoptSuccessData] = useState(null);
@@ -1591,7 +1592,7 @@ function App() {
       if (window.SoundEngine) window.SoundEngine.playClicker();
     }
   }, /*#__PURE__*/React.createElement("i", {
-    className: "fa-solid fa-headset"
+    className: "fa-solid fa-address-book"
   }), " Contact Us")), /*#__PURE__*/React.createElement("div", {
     style: {
       display: 'flex',

@@ -126,6 +126,7 @@ function App() {
   const [contactSuccessModal, setContactSuccessModal] = useState(false);
   const [contactSuccessData, setContactSuccessData] = useState(null);
   const [contactErrors, setContactErrors] = useState({});
+  const [contactMapLocation, setContactMapLocation] = useState('hq');
 
   // Adoption Success Confirmation Modal
   const [adoptSuccessData, setAdoptSuccessData] = useState(null);
@@ -1227,7 +1228,7 @@ function App() {
                   <i className="fa-solid fa-circle-info"></i> About Us
                 </button>
                 <button className={`nav-btn ${activeTab === 'contact' ? 'active' : ''}`} onClick={() => { setActiveTab('contact'); if (window.SoundEngine) window.SoundEngine.playClicker(); }}>
-                  <i className="fa-solid fa-headset"></i> Contact Us
+                  <i className="fa-solid fa-address-book"></i> Contact Us
                 </button>
               </nav>
 
