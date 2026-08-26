@@ -4409,20 +4409,17 @@ function App() {
                     </h2>
                   </div>
 
-                  {/* 5. FEEDBACK FILTER CHIPS */}
+                  {/* 5. FEEDBACK FILTER CHIPS - ONLY ALL REVIEWS */}
                   <div className="category-filter-chips">
-                    {feedbackCategories.map(cat => (
-                      <button
-                        key={cat}
-                        className={`filter-chip ${feedbackCategoryFilter === cat ? 'active' : ''}`}
-                        onClick={() => {
-                          setFeedbackCategoryFilter(cat);
-                          if (window.SoundEngine) window.SoundEngine.playClicker();
-                        }}
-                      >
-                        {cat === 'All' ? '🌟 All Reviews' : cat}
-                      </button>
-                    ))}
+                    <button
+                      className="filter-chip active"
+                      onClick={() => {
+                        setFeedbackCategoryFilter('All');
+                        if (window.SoundEngine) window.SoundEngine.playClicker();
+                      }}
+                    >
+                      🌟 All Reviews
+                    </button>
                   </div>
                 </div>
 

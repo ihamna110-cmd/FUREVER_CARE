@@ -7159,14 +7159,13 @@ function App() {
       className: "gradient-text"
     }, "Parents Say"))), /*#__PURE__*/React.createElement("div", {
       className: "category-filter-chips"
-    }, feedbackCategories.map(cat => /*#__PURE__*/React.createElement("button", {
-      key: cat,
-      className: `filter-chip ${feedbackCategoryFilter === cat ? 'active' : ''}`,
+    }, /*#__PURE__*/React.createElement("button", {
+      className: "filter-chip active",
       onClick: () => {
-        setFeedbackCategoryFilter(cat);
+        setFeedbackCategoryFilter('All');
         if (window.SoundEngine) window.SoundEngine.playClicker();
       }
-    }, cat === 'All' ? '🌟 All Reviews' : cat)))), /*#__PURE__*/React.createElement("div", {
+    }, "\uD83C\uDF1F All Reviews"))), /*#__PURE__*/React.createElement("div", {
       className: "feedback-reviews-grid"
     }, filteredReviews.map(rev => {
       const isHelpful = !!helpfulReviews[rev.id];
