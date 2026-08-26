@@ -3010,8 +3010,9 @@ textarea.input-error {
 .feedback-page-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  padding-bottom: 30px;
+  gap: 32px;
+  padding-bottom: 0px !important;
+  margin-bottom: 0px !important;
 }
 
 /* 1. Introduction Section */
@@ -7344,4 +7345,24 @@ textarea.input-error {
     position: relative;
     height: 340px;
   }
+}
+
+/* NO_BOTTOM_EMPTY_GAP */
+.feedback-cta-section {
+  margin-bottom: 0 !important;
+}
+.feedback-reviews-section {
+  margin-bottom: 0 !important;
+}
+.feedback-page-wrapper {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+.community-page-wrapper {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+.fc-contact-container {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
