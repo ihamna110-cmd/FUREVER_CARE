@@ -4668,15 +4668,6 @@ function App() {
                     >
                       <i className="fa-solid fa-pen-nib" style={{ marginRight: '8px' }}></i> Join Our Community & Share
                     </button>
-                    <button 
-                      className="btn-sky-outline"
-                      onClick={() => {
-                        const el = document.getElementById('faq-section');
-                        if (el) el.scrollIntoView({ behavior: 'smooth' });
-                      }}
-                    >
-                      <i className="fa-solid fa-circle-question" style={{ marginRight: '8px' }}></i> Platform FAQs
-                    </button>
                   </div>
                 </div>
 
@@ -4997,52 +4988,6 @@ function App() {
                 </div>
               </div>
 
-              {/* ── SECTION 6: GENERAL WEBSITE FAQ ACCORDION ── */}
-              <section id="faq-section" className="community-faq-section">
-                <div className="about-section-label">
-                  <span className="badge-sky"><i className="fa-solid fa-circle-question" style={{ marginRight: '6px' }}></i> Platform Knowledge Base</span>
-                  <h2 className="about-section-heading" style={{ textAlign: 'center', marginTop: '10px' }}>
-                    Frequently Asked <span className="gradient-text">Questions</span>
-                  </h2>
-                  <p style={{ color: 'var(--text-muted)', textAlign: 'center', maxWidth: '600px', margin: '10px auto 0', fontSize: '0.97rem' }}>
-                    Everything you need to know about adoption, veterinary care, pet store delivery, and community support.
-                  </p>
-                </div>
-
-                <div className="faq-accordion-wrap">
-                  {faqs.map((faq, index) => {
-                    const isOpen = activeFaqIndex === index;
-                    return (
-                      <div key={index} className={`faq-accordion-item ${isOpen ? 'open' : ''}`}>
-                        <button 
-                          className="faq-question-btn"
-                          onClick={() => {
-                            setActiveFaqIndex(isOpen ? null : index);
-                            if (window.SoundEngine) window.SoundEngine.playClicker();
-                          }}
-                        >
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-                            <div className="faq-icon-pill">
-                              <i className={faq.icon}></i>
-                            </div>
-                            <div style={{ textAlign: 'left' }}>
-                              <span className="faq-category-tag">{faq.category}</span>
-                              <div className="faq-question-text">{faq.question}</div>
-                            </div>
-                          </div>
-                          <i className={`fa-solid fa-chevron-${isOpen ? 'up' : 'down'} faq-chevron`}></i>
-                        </button>
-
-                        {isOpen && (
-                          <div className="faq-answer-pane">
-                            <p>{faq.answer}</p>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </section>
 
             </div>
           );
@@ -5718,98 +5663,6 @@ function App() {
                 </div>
               </div>
 
-              {/* ── FAQ SECTION ── */}
-              <div className="fc-faq-section">
-                <h2 className="fc-faq-heading">Frequently Asked Questions</h2>
-                
-                <div className="fc-faq-grid">
-                  
-                  {/* FAQ 1 */}
-                  <div 
-                    className={`fc-faq-card ${(contactFaqOpen === 1) ? 'open' : ''}`}
-                    onClick={() => setContactFaqOpen(contactFaqOpen === 1 ? null : 1)}
-                  >
-                    <div className="fc-faq-question-row">
-                      <div className="fc-faq-q-left">
-                        <div className="fc-faq-icon-circle"><i className="fa-solid fa-bolt"></i></div>
-                        <div className="fc-faq-question">How quickly will you respond?</div>
-                      </div>
-                      <div className="fc-faq-toggle-btn">
-                        <i className={`fa-solid ${contactFaqOpen === 1 ? 'fa-xmark' : 'fa-plus'}`}></i>
-                      </div>
-                    </div>
-                    {contactFaqOpen === 1 && (
-                      <div className="fc-faq-answer">
-                        We usually respond within a few hours during our working hours.
-                      </div>
-                    )}
-                  </div>
-
-                  {/* FAQ 2 */}
-                  <div 
-                    className={`fc-faq-card ${(contactFaqOpen === 2) ? 'open' : ''}`}
-                    onClick={() => setContactFaqOpen(contactFaqOpen === 2 ? null : 2)}
-                  >
-                    <div className="fc-faq-question-row">
-                      <div className="fc-faq-q-left">
-                        <div className="fc-faq-icon-circle"><i className="fa-solid fa-calendar-check"></i></div>
-                        <div className="fc-faq-question">Can I book an appointment here?</div>
-                      </div>
-                      <div className="fc-faq-toggle-btn">
-                        <i className={`fa-solid ${contactFaqOpen === 2 ? 'fa-xmark' : 'fa-plus'}`}></i>
-                      </div>
-                    </div>
-                    {contactFaqOpen === 2 && (
-                      <div className="fc-faq-answer">
-                        Yes! Our team will assist you in booking the best time for your pet.
-                      </div>
-                    )}
-                  </div>
-
-                  {/* FAQ 3 */}
-                  <div 
-                    className={`fc-faq-card ${(contactFaqOpen === 3) ? 'open' : ''}`}
-                    onClick={() => setContactFaqOpen(contactFaqOpen === 3 ? null : 3)}
-                  >
-                    <div className="fc-faq-question-row">
-                      <div className="fc-faq-q-left">
-                        <div className="fc-faq-icon-circle"><i className="fa-solid fa-truck-medical"></i></div>
-                        <div className="fc-faq-question">Do you provide emergency support?</div>
-                      </div>
-                      <div className="fc-faq-toggle-btn">
-                        <i className={`fa-solid ${contactFaqOpen === 3 ? 'fa-xmark' : 'fa-plus'}`}></i>
-                      </div>
-                    </div>
-                    {contactFaqOpen === 3 && (
-                      <div className="fc-faq-answer">
-                        Yes, we have 24/7 emergency support for your furry friends.
-                      </div>
-                    )}
-                  </div>
-
-                  {/* FAQ 4 */}
-                  <div 
-                    className={`fc-faq-card ${(contactFaqOpen === 4) ? 'open' : ''}`}
-                    onClick={() => setContactFaqOpen(contactFaqOpen === 4 ? null : 4)}
-                  >
-                    <div className="fc-faq-question-row">
-                      <div className="fc-faq-q-left">
-                        <div className="fc-faq-icon-circle"><i className="fa-solid fa-id-card"></i></div>
-                        <div className="fc-faq-question">How can I update my pet profile?</div>
-                      </div>
-                      <div className="fc-faq-toggle-btn">
-                        <i className={`fa-solid ${contactFaqOpen === 4 ? 'fa-xmark' : 'fa-plus'}`}></i>
-                      </div>
-                    </div>
-                    {contactFaqOpen === 4 && (
-                      <div className="fc-faq-answer">
-                        You can update your pet's profile from your account dashboard.
-                      </div>
-                    )}
-                  </div>
-
-                </div>
-              </div>
 
             </div>
           );
