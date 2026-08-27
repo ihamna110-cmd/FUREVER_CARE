@@ -2741,6 +2741,28 @@ function App() {
                   onChange={(e) => setProductSearch(e.target.value)}
                 />
               </div>
+
+              <div className="category-filter-chips">
+                {[
+                  { id: 'All', label: 'All Products' },
+                  { id: 'Dog/Cat Food', label: 'Pet Food' },
+                  { id: 'Toys', label: 'Toys' },
+                  { id: 'Grooming Essentials', label: 'Grooming Essentials' },
+                  { id: 'Health Supplements', label: 'Health Supplements' },
+                  { id: 'Bedding and Apparel', label: 'Bedding & Apparel' }
+                ].map(cat => (
+                  <button
+                    key={cat.id}
+                    className={'filter-chip ' + (selectedProductCategory === cat.id ? 'active' : '')}
+                    onClick={() => {
+                      setSelectedProductCategory(cat.id);
+                      if (window.SoundEngine) window.SoundEngine.playClicker();
+                    }}
+                  >
+                    {cat.label}
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* Marketplace Trust & Assurance Banner */}
