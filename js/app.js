@@ -524,12 +524,6 @@ function App() {
     };
     updateTime();
     const timer = setInterval(updateTime, 1000);
-    // Cat Video Sequence Auto-Player when idle / mobile
-    let currentFrame = 0;
-    const catVideoInterval = setInterval(() => {
-      currentFrame = (currentFrame + 1) % 77;
-      setCatFrameIndex(currentFrame);
-    }, 90);
 
     // Visitor Counter Simulation
     const visitorInterval = setInterval(() => {
@@ -602,7 +596,6 @@ function App() {
 
     return () => {
       clearInterval(timer);
-      clearInterval(catVideoInterval);
       clearInterval(visitorInterval);
       clearTimeout(introTimeout);
       window.removeEventListener('scroll', handleScroll);
@@ -1292,127 +1285,209 @@ function App() {
             ================================================================== */}
         {activeTab === 'home' && (
           <div>
-            {/* ══════════════════════════════════════════════════════════════════
-                EXACT VIDEO HERO SECTION (INTERACTIVE RAGDOLL CAT + FISH CURSOR)
-                ══════════════════════════════════════════════════════════════════ */}
-            <section 
-              className="hero-section video-hero-container"
-              onMouseMove={(e) => {
-                const rect = e.currentTarget.getBoundingClientRect();
-                const mouseX = e.clientX - rect.left;
-                const mouseY = e.clientY - rect.top;
-                const ratioX = Math.max(0, Math.min(1, mouseX / rect.width));
+            {/* ── LUXURY MOCKUP HERO SECTION (RESTORED) ── */}
+            <section className="hero-section hero-mockup-layout">
+              <div className="hero-grid">
                 
-                // Map mouse X to cat animation frame (0 to 76)
-                const targetFrame = Math.floor(ratioX * 76);
-                setCatFrameIndex(targetFrame);
-                setFishCursorPos({ x: mouseX, y: mouseY, visible: true });
-              }}
-              onMouseLeave={() => {
-                setFishCursorPos(prev => ({ ...prev, visible: false }));
-              }}
-            >
-              {/* Floating Interactive Fish Toy Cursor */}
-              {fishCursorPos && fishCursorPos.visible && (
-                <div 
-                  className="hero-fish-toy-cursor"
-                  style={{ left: fishCursorPos.x + 'px', top: fishCursorPos.y + 'px' }}
-                >
-                  <img 
-                    src="https://img.icons8.com/external-flaticons-lineal-color-flat-icons/64/external-fish-toy-cat-accessories-flaticons-lineal-color-flat-icons.png"
-                    alt="Fish Toy"
-                    style={{ width: '42px', height: '42px', display: 'block', filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.25))' }}
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                      e.target.parentElement.innerHTML = '🐟';
-                    }}
-                  />
-                </div>
-              )}
+                {/* LEFT COLUMN: Main Hero Info, Search & 3 Action Cards */}
+                <div className="hero-text-content">
+                  
+                  {/* Glowing Platform Badge */}
+                  <div className="hero-badge-glow">
+                    <i className="fa-solid fa-crown" style={{ color: '#f59e0b' }}></i>
+                    <span>#1 Unified Companion Care Platform</span>
+                  </div>
 
-              {/* Background Interactive Fluffy Cat Video Frame Viewport */}
-              <div className="video-cat-bg-wrapper">
-                <img 
-                  src={'assets/cat_sequence/cat_' + String(catFrameIndex || 0).padStart(2, '0') + '.jpg'}
-                  alt="Interactive Ragdoll Cat" 
-                  className="video-cat-bg-img"
-                  onError={(e) => {
-                    e.target.src = 'assets/hero_video_cat_exact.jpg';
-                  }}
-                />
+                  {/* High Impact Headline */}
+                  <h1 className="hero-title-mockup">
+                    They Deserve <br />
+                    <span className="hero-title-sky">Forever Love</span> <br />
+                    & World-Class Care.
+                  </h1>
+
+                  {/* Elegant Emotional Subtitle */}
+                  <p className="hero-subtitle-mockup">
+                    Because every wag, purr and chirp tells a story — give them the healthy, happy and safe life they deserve.
+                  </p>
+
+                  {/* 4 Micro-Features Pills */}
+                  <div className="hero-features-chips-row">
+                    <div className="hero-chip-item">
+                      <span className="chip-icon-circle chip-blue"><i className="fa-solid fa-heart"></i></span>
+                      <span>Verified Veterinarians</span>
+                    </div>
+                    <div className="hero-chip-item">
+                      <span className="chip-icon-circle chip-sky"><i className="fa-regular fa-clock"></i></span>
+                      <span>24/7 Emergency Helpline</span>
+                    </div>
+                    <div className="hero-chip-item">
+                      <span className="chip-icon-circle chip-cyan"><i className="fa-solid fa-paw"></i></span>
+                      <span>Happy Adoptions</span>
+                    </div>
+                    <div className="hero-chip-item">
+                      <span className="chip-icon-circle chip-indigo"><i className="fa-solid fa-bag-shopping"></i></span>
+                      <span>Premium Pet Supplies</span>
+                    </div>
+                  </div>
+
+                  {/* Universal Glass Search Bar */}
+                  <form onSubmit={handleHeroSearchSubmit} className="hero-search-bar-mockup">
+                    <i className="fa-solid fa-magnifying-glass search-lens-icon"></i>
+                    <input 
+                      type="text" 
+                      placeholder="Search pets, products, vets..." 
+                      value={heroSearchQuery}
+                      onChange={(e) => setHeroSearchQuery(e.target.value)}
+                      className="search-input-field"
+                    />
+                    <button type="submit" className="search-portal-btn">
+                      Search Portal <i className="fa-solid fa-arrow-right"></i>
+                    </button>
+                  </form>
+
+                  {/* 3 Quick Action Cards Row */}
+                  <div className="hero-action-cards-grid">
+                    
+                    {/* Card 1: Find Your Pet */}
+                    <div 
+                      className="hero-action-card active-action-card" 
+                      onClick={() => {
+                        setActiveTab('shelter');
+                        if (window.SoundEngine) window.SoundEngine.playClicker();
+                      }}
+                    >
+                      <div className="action-card-icon-wrap">
+                        <i className="fa-solid fa-paw"></i>
+                      </div>
+                      <div className="action-card-text">
+                        <div className="action-card-title">
+                          Find Your Pet <i className="fa-solid fa-arrow-right card-arrow"></i>
+                        </div>
+                        <div className="action-card-sub">Adopt a Companion</div>
+                      </div>
+                    </div>
+
+                    {/* Card 2: Book a Vet */}
+                    <div 
+                      className="hero-action-card" 
+                      onClick={() => {
+                        setActiveTab('vet');
+                        if (window.SoundEngine) window.SoundEngine.playClicker();
+                      }}
+                    >
+                      <div className="action-card-icon-wrap">
+                        <i className="fa-solid fa-stethoscope"></i>
+                      </div>
+                      <div className="action-card-text">
+                        <div className="action-card-title">
+                          Book a Vet <i className="fa-solid fa-arrow-right card-arrow"></i>
+                        </div>
+                        <div className="action-card-sub">Expert Care Near You</div>
+                      </div>
+                    </div>
+
+                    {/* Card 3: Pet Store */}
+                    <div 
+                      className="hero-action-card" 
+                      onClick={() => {
+                        setActiveTab('products');
+                        if (window.SoundEngine) window.SoundEngine.playClicker();
+                      }}
+                    >
+                      <div className="action-card-icon-wrap">
+                        <i className="fa-solid fa-bag-shopping"></i>
+                      </div>
+                      <div className="action-card-text">
+                        <div className="action-card-title">
+                          Pet Store <i className="fa-solid fa-arrow-right card-arrow"></i>
+                        </div>
+                        <div className="action-card-sub">Quality Products</div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+
+                {/* RIGHT COLUMN: Golden Retriever Puppy & Kitten Visual Showcase */}
+                <div className="hero-visual-showcase-mockup">
+                  
+                  {/* Glowing Neon Heart Doodles in Background */}
+                  <div className="heart-doodle heart-doodle-1"><i className="fa-regular fa-heart"></i></div>
+                  <div className="heart-doodle heart-doodle-2"><i className="fa-regular fa-heart"></i></div>
+
+                  {/* Main Puppy & Kitten Image Container */}
+                  <div className="hero-mockup-img-container">
+                    <img 
+                      src="assets/hero_puppy_kitten.jpg" 
+                      alt="Golden Retriever Puppy and Fluffy Kitten Cuddling" 
+                      className="hero-mockup-main-img"
+                    />
+                    <div className="hero-mockup-bottom-fade"></div>
+                  </div>
+
+                  {/* Floating Widget Top-Right: Happy Adoptions with Avatars */}
+                  <div className="floating-stat-mockup-card">
+                    <div className="floating-stat-icon"><i className="fa-solid fa-heart"></i></div>
+                    <div className="floating-stat-number">4,850+</div>
+                    <div className="floating-stat-label">Happy Adoptions</div>
+                    <div className="floating-avatar-stack">
+                      <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=100&q=80" alt="Adopted Pet" className="stack-avatar" />
+                      <img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=100&q=80" alt="Adopted Pet" className="stack-avatar" />
+                      <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=100&q=80" alt="Adopted Pet" className="stack-avatar" />
+                    </div>
+                  </div>
+
+                  {/* Floating Widget Bottom-Right: Quote Box */}
+                  <div className="floating-quote-mockup-card">
+                    <div className="quote-paw-icon"><i className="fa-solid fa-paw"></i></div>
+                    <div className="quote-text">
+                      "Pets make our lives kinder, happier and whole." <span style={{ color: '#f43f5e' }}>❤️</span>
+                    </div>
+                  </div>
+
+                </div>
+
               </div>
 
-              {/* Subtle Floating Decorative Paw Prints */}
-              <div className="video-hero-paw paw-pos-1"><i className="fa-solid fa-paw"></i></div>
-              <div className="video-hero-paw paw-pos-2"><i className="fa-solid fa-paw"></i></div>
-              <div className="video-hero-paw paw-pos-3"><i className="fa-solid fa-paw"></i></div>
-              <div className="video-hero-paw paw-pos-4"><i className="fa-solid fa-paw"></i></div>
-
-              {/* ── LEFT COLUMN OVERLAY CONTENT (EXACT AS IN VIDEO) ── */}
-              <div className="video-hero-left-content">
-                
-                {/* Pill Badge */}
-                <div className="video-hero-badge">
-                  <i className="fa-solid fa-paw" style={{ color: '#8C6E5F' }}></i>
-                  <span>Made for Cats. Loved by Cat People.</span>
-                  <i className="fa-solid fa-heart" style={{ color: '#f43f5e', fontSize: '0.75rem', marginLeft: '4px' }}></i>
-                </div>
-
-                {/* Big Headline */}
-                <h1 className="video-hero-title">
-                  Everything Your <br />
-                  Cat Deserves.
-                </h1>
-
-                {/* Subtitle */}
-                <p className="video-hero-desc">
-                  Thoughtfully chosen essentials, irresistible toys, cozy spaces, and little luxuries made for cats who rule the house.
-                </p>
-
-                {/* CTA Buttons */}
-                <div className="video-hero-cta-row">
-                  <button 
-                    className="btn-video-primary"
-                    onClick={() => {
-                      setActiveTab('products');
-                      if (window.SoundEngine) window.SoundEngine.playClicker();
-                      addToast('Exploring Pet Products & Luxuries', 'fa-bag-shopping');
-                    }}
-                  >
-                    <span>Shop for Cats</span>
-                    <i className="fa-solid fa-arrow-right"></i>
-                  </button>
-
-                  <button 
-                    className="btn-video-secondary"
-                    onClick={() => {
-                      setActiveTab('shelter');
-                      if (window.SoundEngine) window.SoundEngine.playClicker();
-                      addToast('Browsing Companion Breeds & Adoptions', 'fa-paw');
-                    }}
-                  >
-                    <span>Explore Cat Breeds</span>
-                  </button>
-                </div>
-
-                {/* Bottom Trust Indicators */}
-                <div className="video-hero-bottom-trust">
-                  <div className="video-trust-item">
-                    <i className="fa-solid fa-shield-heart"></i>
-                    <span>100% Vet Approved</span>
-                  </div>
-                  <div className="video-trust-item">
-                    <i className="fa-solid fa-truck-fast"></i>
-                    <span>Express 2-Day Shipping</span>
-                  </div>
-                  <div className="video-trust-item">
-                    <i className="fa-solid fa-heart"></i>
-                    <span>4.8k+ Happy Adoptions</span>
+              {/* BOTTOM TRUST STATS BANNER */}
+              <div className="hero-bottom-trust-banner">
+                <div className="trust-banner-item trust-highlight-item">
+                  <div className="trust-shield-icon"><i className="fa-solid fa-shield-halved"></i></div>
+                  <div>
+                    <div className="trust-bold-title">Trusted by</div>
+                    <div className="trust-sub-title">Pet Lovers Worldwide</div>
                   </div>
                 </div>
 
+                <div className="trust-divider"></div>
+
+                <div className="trust-banner-item">
+                  <div className="trust-stat-number">50K+</div>
+                  <div className="trust-stat-label">Happy Pet Parents</div>
+                </div>
+
+                <div className="trust-divider"></div>
+
+                <div className="trust-banner-item">
+                  <div className="trust-stat-number">10K+</div>
+                  <div className="trust-stat-label">Certified Vets</div>
+                </div>
+
+                <div className="trust-divider"></div>
+
+                <div className="trust-banner-item">
+                  <div className="trust-stat-number">120K+</div>
+                  <div className="trust-stat-label">Pet Products</div>
+                </div>
+
+                <div className="trust-divider"></div>
+
+                <div className="trust-banner-item">
+                  <div className="trust-stat-number" style={{ color: '#38bdf8' }}>24/7</div>
+                  <div className="trust-stat-label">Care & Support</div>
+                </div>
               </div>
-
             </section>
 
             {/* ── NEW FEATURE: INTERACTIVE PET WELLNESS & LIFESTYLE MATCH HUB ── */}
