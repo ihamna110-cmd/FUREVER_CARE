@@ -56,6 +56,7 @@ function App() {
   });
   const [feedbackHoverRating, setFeedbackHoverRating] = useState(0);
   const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
+  const [feedbackFormErrors, setFeedbackFormErrors] = useState({});
   const [helpfulReviews, setHelpfulReviews] = useState({});
 
   // Community State
@@ -4054,34 +4055,66 @@ function App() {
 
           const handleFeedbackSubmit = (e) => {
             e.preventDefault();
-            if (!feedbackFormData.fullName.trim()) {
-              markInvalidField(document.getElementById('feedback-name-input'), 'Please enter your full name');
-              return;
+            const errors = {};
+
+            if (!feedbackFormData.fullName || !feedbackFormData.fullName.trim()) {
+              errors.fullName = 'Full Name is required.';
+            } else if (feedbackFormData.fullName.trim().length < 3) {
+              errors.fullName = 'Full Name must be at least 3 characters.';
             }
-            if (!feedbackFormData.email.trim() || !/^\S+@\S+\.\S+$/.test(feedbackFormData.email)) {
-              markInvalidField(document.getElementById('feedback-email-input'), 'Please enter a valid email address');
-              return;
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!feedbackFormData.email || !feedbackFormData.email.trim()) {
+              errors.email = 'Email Address is required.';
+            } else if (!emailRegex.test(feedbackFormData.email.trim())) {
+              errors.email = 'Please enter a valid email address (e.g. name@example.com).';
             }
-            if (!feedbackFormData.feedback.trim()) {
-              markInvalidField(document.getElementById('feedback-msg-input'), 'Please write your feedback message');
+
+            if (!feedbackFormData.rating || feedbackFormData.rating < 1) {
+              errors.rating = 'Please select a star rating.';
+            }
+
+            if (!feedbackFormData.feedback || !feedbackFormData.feedback.trim()) {
+              errors.feedback = 'Feedback description is required.';
+            } else if (feedbackFormData.feedback.trim().length < 10) {
+              errors.feedback = 'Feedback must be at least 10 characters long.';
+            }
+
+            if (Object.keys(errors).length > 0) {
+              setFeedbackFormErrors(errors);
+              const firstKey = Object.keys(errors)[0];
+              const firstMsg = errors[firstKey];
+              if (window.SoundEngine) window.SoundEngine.playPop();
+              addToast(firstMsg, 'fa-triangle-exclamation');
+              const el = document.getElementById(
+                firstKey === 'fullName' ? 'feedback-name-input' :
+                firstKey === 'email' ? 'feedback-email-input' :
+                firstKey === 'feedback' ? 'feedback-msg-input' : 'feedback-name-input'
+              );
+              if (el) el.focus();
               return;
             }
 
+            setFeedbackFormErrors({});
+
             const newReview = {
-              id: `rev-${Date.now()}`,
+              id: 'rev-custom-' + Date.now(),
               userName: feedbackFormData.fullName.trim(),
-              userAvatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80',
+              userAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80',
               rating: feedbackFormData.rating || 5,
-              date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+              date: 'Just Now',
               category: feedbackFormData.category || 'Pet Adoption',
               petName: feedbackFormData.petName.trim() || 'Companion Pet',
-              petImage: feedbackFormData.petImage.trim() || '',
+              petImage: feedbackFormData.petImage || 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=600&q=80',
               review: feedbackFormData.feedback.trim(),
-              helpfulCount: 1
+              helpfulCount: 0,
+              verifiedBuyer: true
             };
 
             setReviews(prev => [newReview, ...prev]);
             setFeedbackSubmitted(true);
+            if (window.SoundEngine) window.SoundEngine.playSuccess();
+            addToast('Thank you! Your feedback has been published.', 'fa-star');
             setFeedbackFormData({
               fullName: '',
               email: '',
@@ -4091,9 +4124,6 @@ function App() {
               petName: '',
               petImage: ''
             });
-
-            if (window.SoundEngine) window.SoundEngine.playChime();
-            addToast('Thank you for your feedback! Submitted successfully.', 'fa-circle-check');
           };
 
           const handleToggleHelpful = (revId) => {
@@ -4282,11 +4312,20 @@ function App() {
                             type="text" 
                             id="feedback-name-input"
                             className="input-sky" 
+                            style={{ borderColor: feedbackFormErrors.fullName ? '#ef4444' : undefined }}
                             placeholder="e.g. Sarah Connor"
                             value={feedbackFormData.fullName}
-                            onChange={(e) => setFeedbackFormData({ ...feedbackFormData, fullName: e.target.value })}
+                            onChange={(e) => {
+                              setFeedbackFormData({ ...feedbackFormData, fullName: e.target.value });
+                              if (feedbackFormErrors.fullName) setFeedbackFormErrors({ ...feedbackFormErrors, fullName: '' });
+                            }}
                           />
                         </div>
+                        {feedbackFormErrors.fullName && (
+                          <div style={{ color: '#ef4444', fontSize: '0.78rem', marginTop: '4px', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                            <i className="fa-solid fa-circle-exclamation"></i> {feedbackFormErrors.fullName}
+                          </div>
+                        )}
                       </div>
 
                       <div className="form-group-custom">
@@ -4296,15 +4335,24 @@ function App() {
                             type="email" 
                             id="feedback-email-input"
                             className="input-sky" 
+                            style={{ borderColor: feedbackFormErrors.email ? '#ef4444' : undefined }}
                             placeholder="name@example.com"
                             value={feedbackFormData.email}
-                            onChange={(e) => setFeedbackFormData({ ...feedbackFormData, email: e.target.value })}
+                            onChange={(e) => {
+                              setFeedbackFormData({ ...feedbackFormData, email: e.target.value });
+                              if (feedbackFormErrors.email) setFeedbackFormErrors({ ...feedbackFormErrors, email: '' });
+                            }}
                           />
                         </div>
+                        {feedbackFormErrors.email && (
+                          <div style={{ color: '#ef4444', fontSize: '0.78rem', marginTop: '4px', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                            <i className="fa-solid fa-circle-exclamation"></i> {feedbackFormErrors.email}
+                          </div>
+                        )}
                       </div>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '18px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '18px', marginTop: '4px' }}>
                       <div className="form-group-custom">
                         <label className="form-label-custom">Feedback Category *</label>
                         <select 
@@ -4321,7 +4369,7 @@ function App() {
                       {/* Interactive Professional Star Rating Picker */}
                       <div className="form-group-custom">
                         <label className="form-label-custom">Star Rating *</label>
-                        <div className="interactive-star-picker">
+                        <div className="interactive-star-picker" style={{ border: feedbackFormErrors.rating ? '1px solid #ef4444' : undefined, borderRadius: '8px', padding: '4px 8px' }}>
                           {[1, 2, 3, 4, 5].map(star => {
                             const isFilled = (feedbackHoverRating || feedbackFormData.rating) >= star;
                             return (
@@ -4333,11 +4381,12 @@ function App() {
                                 onMouseLeave={() => setFeedbackHoverRating(0)}
                                 onClick={() => {
                                   setFeedbackFormData({ ...feedbackFormData, rating: star });
+                                  if (feedbackFormErrors.rating) setFeedbackFormErrors({ ...feedbackFormErrors, rating: '' });
                                   if (window.SoundEngine) window.SoundEngine.playClicker();
                                 }}
-                                title={`Rate ${star} Stars`}
+                                title={'Rate ' + star + ' Stars'}
                               >
-                                <i className={`fa-${isFilled ? 'solid' : 'regular'} fa-star`} style={{ color: isFilled ? '#f59e0b' : 'var(--text-light)' }}></i>
+                                <i className={(isFilled ? 'fa-solid' : 'fa-regular') + ' fa-star'} style={{ color: isFilled ? '#f59e0b' : 'var(--text-light)' }}></i>
                               </button>
                             );
                           })}
@@ -4345,22 +4394,36 @@ function App() {
                             {feedbackHoverRating || feedbackFormData.rating} / 5 Stars
                           </span>
                         </div>
+                        {feedbackFormErrors.rating && (
+                          <div style={{ color: '#ef4444', fontSize: '0.78rem', marginTop: '4px', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                            <i className="fa-solid fa-circle-exclamation"></i> {feedbackFormErrors.rating}
+                          </div>
+                        )}
                       </div>
                     </div>
 
-                    <div className="form-group-custom">
+                    <div className="form-group-custom" style={{ marginTop: '4px' }}>
                       <label className="form-label-custom">Your Feedback & Experience *</label>
                       <textarea 
                         id="feedback-msg-input"
                         className="input-sky" 
                         rows="4" 
+                        style={{ borderColor: feedbackFormErrors.feedback ? '#ef4444' : undefined }}
                         placeholder="Tell us what you loved about Forever Care Pets, or how we can make our services even better for your pet..."
                         value={feedbackFormData.feedback}
-                        onChange={(e) => setFeedbackFormData({ ...feedbackFormData, feedback: e.target.value })}
+                        onChange={(e) => {
+                          setFeedbackFormData({ ...feedbackFormData, feedback: e.target.value });
+                          if (feedbackFormErrors.feedback) setFeedbackFormErrors({ ...feedbackFormErrors, feedback: '' });
+                        }}
                       ></textarea>
+                      {feedbackFormErrors.feedback && (
+                        <div style={{ color: '#ef4444', fontSize: '0.78rem', marginTop: '4px', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                          <i className="fa-solid fa-circle-exclamation"></i> {feedbackFormErrors.feedback}
+                        </div>
+                      )}
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '18px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '18px', marginTop: '4px' }}>
                       <div className="form-group-custom">
                         <label className="form-label-custom">Pet Name (Optional)</label>
                         <input 
@@ -4372,22 +4435,66 @@ function App() {
                         />
                       </div>
 
+                      {/* File Upload for Photo Attachment */}
                       <div className="form-group-custom">
-                        <label className="form-label-custom">Pet Image URL (Optional)</label>
-                        <input 
-                          type="url" 
-                          className="input-sky" 
-                          placeholder="Paste pet photo link"
-                          value={feedbackFormData.petImage}
-                          onChange={(e) => setFeedbackFormData({ ...feedbackFormData, petImage: e.target.value })}
-                        />
+                        <label className="form-label-custom">
+                          <i className="fa-solid fa-image" style={{ marginRight: '6px', color: 'var(--primary-500)' }}></i>
+                          Upload Photo / Image (Optional)
+                        </label>
+                        <div style={{ position: 'relative' }}>
+                          <input 
+                            type="file" 
+                            id="feedback-photo-input"
+                            accept="image/*"
+                            className="input-sky" 
+                            style={{ padding: '8px 12px', fontSize: '0.85rem' }}
+                            onChange={(e) => {
+                              const file = e.target.files && e.target.files[0];
+                              if (file) {
+                                if (file.size > 5 * 1024 * 1024) {
+                                  addToast('Please select an image under 5MB', 'fa-triangle-exclamation');
+                                  return;
+                                }
+                                const reader = new FileReader();
+                                reader.onload = (ev) => {
+                                  setFeedbackFormData(prev => ({ ...prev, petImage: ev.target.result }));
+                                  addToast('Photo attached successfully!', 'fa-circle-check');
+                                };
+                                reader.readAsDataURL(file);
+                              }
+                            }}
+                          />
+                        </div>
+                        {feedbackFormData.petImage && (
+                          <div style={{ marginTop: '8px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <img 
+                              src={feedbackFormData.petImage} 
+                              alt="Attached Preview" 
+                              style={{ width: '42px', height: '42px', objectFit: 'cover', borderRadius: '8px', border: '2px solid var(--primary-500)' }} 
+                            />
+                            <span style={{ fontSize: '0.8rem', color: '#10b981', fontWeight: '600' }}>
+                              <i className="fa-solid fa-check-circle" style={{ marginRight: '4px' }}></i> Photo Attached
+                            </span>
+                            <button 
+                              type="button" 
+                              style={{ background: 'none', border: 'none', color: '#ef4444', cursor: 'pointer', fontSize: '0.8rem', fontWeight: '600' }}
+                              onClick={() => {
+                                setFeedbackFormData(prev => ({ ...prev, petImage: '' }));
+                                const el = document.getElementById('feedback-photo-input');
+                                if (el) el.value = '';
+                              }}
+                            >
+                              <i className="fa-solid fa-trash" style={{ marginRight: '3px' }}></i> Remove
+                            </button>
+                          </div>
+                        )}
                       </div>
                     </div>
 
                     <button 
                       type="submit" 
                       className="btn-sky-primary" 
-                      style={{ width: '100%', padding: '14px', fontSize: '1.02rem', marginTop: '6px' }}
+                      style={{ width: '100%', padding: '14px', fontSize: '1.02rem', marginTop: '14px' }}
                     >
                       <i className="fa-solid fa-paper-plane" style={{ marginRight: '8px' }}></i> Submit Feedback
                     </button>
