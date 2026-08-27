@@ -1,5 +1,7 @@
 /* ==========================================================================
-   FurEver Care - Ultra-Premium Responsive Design & Mobile Navigation Engine
+   FurEver Care - Ultra-Premium Comprehensive Responsive Engine
+   Covers Desktop (1440px+), Laptop (1024px-1439px), Tablet (769px-1023px),
+   Mobile (481px-768px), and Ultra-Compact Mobile (<=480px)
    ========================================================================== */
 
 /* Custom Smooth Scrollbar */
@@ -22,10 +24,10 @@
 }
 
 /* --------------------------------------------------------------------------
-   TABLET & COMPACT SCREENS (<= 1024px)
+   1. TABLETS & COMPACT LAPTOPS (<= 1024px)
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
-  /* Header & Navigation: Horizontal Swipeable Pill Bar */
+  /* Header & Navigation: Touch-Friendly Horizontal Swipeable Pill Bar */
   .main-header {
     position: sticky;
     top: 0;
@@ -108,7 +110,7 @@
     grid-template-columns: 1fr;
   }
 
-  /* Catalog & Filters */
+  /* Catalog & Toolbar */
   .catalog-toolbar {
     flex-direction: column;
     align-items: stretch;
@@ -131,14 +133,15 @@
     display: none;
   }
 
-  /* Contact & Map section */
+  /* Contact & Map Section */
   .fc-contact-layout {
     grid-template-columns: 1fr !important;
+    gap: 28px;
   }
 }
 
 /* --------------------------------------------------------------------------
-   MOBILE SCREENS (<= 768px)
+   2. MOBILE SCREENS (<= 768px)
    -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
   .app-container {
@@ -178,7 +181,7 @@
     font-size: 0.75rem;
   }
 
-  /* Hero Section Mobile */
+  /* Hero Section */
   .hero-title, .hero-title-mockup {
     font-size: 1.85rem;
   }
@@ -211,14 +214,15 @@
     object-fit: cover;
   }
 
-  /* Grids: 1 column clean cards */
+  /* Grid Layouts: 1 Column Card Stacking */
   .products-grid,
   .shelter-pets-grid,
   .feedback-grid-auto,
   .community-posts-grid,
   .vets-grid,
   .about-stats-grid,
-  .fc-contact-info-grid {
+  .fc-contact-info-grid,
+  .feedback-stats-row {
     grid-template-columns: 1fr !important;
     gap: 18px;
   }
@@ -227,17 +231,31 @@
     grid-template-columns: 1fr !important;
   }
 
-  .store-trust-strip > div {
-    justify-content: flex-start;
-  }
-
   .section-header-wrap {
     flex-direction: column;
     align-items: flex-start;
     gap: 14px;
   }
 
-  /* Modals: Safe Mobile Sizing */
+  /* Form Grids: Single Column on Mobile */
+  form div[style*="grid-template-columns: 1fr 1fr"],
+  form div[style*="gridTemplateColumns: '1fr 1fr'"],
+  form div[style*="gridTemplateColumns: 1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  /* Star Rating Picker on Mobile */
+  .interactive-star-picker {
+    flex-wrap: wrap;
+  }
+
+  .star-picker-btn {
+    font-size: 1.25rem;
+    padding: 4px 6px;
+  }
+
+  /* Modals: Safe Mobile Viewport */
   .modal-overlay {
     padding: 12px;
   }
@@ -263,7 +281,7 @@
     max-height: 80vh;
   }
 
-  /* Floating SOS & Live Bot Buttons */
+  /* Floating SOS & AI Concierge */
   .sos-floating-btn {
     padding: 9px 14px;
     font-size: 0.8rem;
@@ -279,7 +297,7 @@
     left: 12px;
   }
 
-  /* Onboarding screen */
+  /* Onboarding */
   .onboarding-container {
     padding: 20px 14px;
     margin: 12px auto;
@@ -289,14 +307,25 @@
   .section-title-box h2 {
     font-size: 1.55rem;
   }
+
+  /* Footer Responsive Collapse */
+  .footer-top-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px;
+  }
+
+  .luxury-main-footer {
+    padding: 40px 18px 20px;
+    margin-top: 50px;
+  }
 }
 
 /* --------------------------------------------------------------------------
-   ULTRA-COMPACT SCREENS (<= 480px)
+   3. ULTRA-COMPACT SCREENS (<= 480px)
    -------------------------------------------------------------------------- */
 @media (max-width: 480px) {
   .hero-title, .hero-title-mockup {
-    font-size: 1.6rem;
+    font-size: 1.55rem;
   }
 
   .nav-btn {
@@ -316,5 +345,10 @@
 
   .fc-contact-header h1 {
     font-size: 1.7rem;
+  }
+
+  .btn-sky-primary, .btn-sky-outline {
+    padding: 10px 16px;
+    font-size: 0.88rem;
   }
 }
