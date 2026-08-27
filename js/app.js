@@ -2741,30 +2741,6 @@ function App() {
                   onChange={(e) => setProductSearch(e.target.value)}
                 />
               </div>
-
-              {/* 5. FEEDBACK FILTER CHIPS (ALL + 6 CATEGORIES WITH 4 CARDS EACH) */}
-                  <div className="category-filter-chips">
-                    {[
-                      { id: 'All', label: '🌟 All Reviews' },
-                      { id: 'Pet Adoption', label: 'Pet Adoption (4)' },
-                      { id: 'Veterinary Care', label: 'Veterinary Care (4)' },
-                      { id: 'Pet Products', label: 'Pet Products (4)' },
-                      { id: 'Pet Care', label: 'Pet Care (4)' },
-                      { id: 'Community', label: 'Community (4)' },
-                      { id: 'Website', label: 'Website (4)' }
-                    ].map(cat => (
-                      <button
-                        key={cat.id}
-                        className={`filter-chip ${feedbackCategoryFilter === cat.id ? 'active' : ''}`}
-                        onClick={() => {
-                          setFeedbackCategoryFilter(cat.id);
-                          if (window.SoundEngine) window.SoundEngine.playClicker();
-                        }}
-                      >
-                        {cat.label}
-                      </button>
-                    ))}
-                  </div>
             </div>
 
             {/* Marketplace Trust & Assurance Banner */}
