@@ -1,11 +1,11 @@
 /* ==========================================================================
-   FurEver Care - Responsive Design & Media Queries
+   FurEver Care - Ultra-Premium Responsive Design & Mobile Navigation Engine
    ========================================================================== */
 
-/* Custom Scrollbar */
+/* Custom Smooth Scrollbar */
 ::-webkit-scrollbar {
-  width: 9px;
-  height: 9px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
@@ -21,33 +21,86 @@
   background: var(--primary-500);
 }
 
-/* Tablet & Smaller Screens (< 1024px) */
+/* --------------------------------------------------------------------------
+   TABLET & COMPACT SCREENS (<= 1024px)
+   -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
+  /* Header & Navigation: Horizontal Swipeable Pill Bar */
+  .main-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-container {
+    padding: 10px 16px 8px;
+    flex-wrap: wrap;
+    row-gap: 8px;
+    justify-content: space-between;
+  }
+
+  .brand-logo-custom {
+    order: 1;
+  }
+
+  .header-container > div:last-child {
+    order: 2;
+  }
+
+  .nav-links {
+    order: 3;
+    width: 100%;
+    display: flex !important;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 4px 2px 8px;
+    gap: 8px;
+    justify-content: flex-start;
+    border-top: 1px solid rgba(14, 165, 233, 0.12);
+    margin-top: 4px;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-btn {
+    padding: 7px 15px;
+    font-size: 0.86rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Hero Section Responsiveness */
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 36px;
     text-align: center;
   }
 
-  .hero-title {
-    font-size: 2.8rem;
+  .hero-title, .hero-title-mockup {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
   }
 
-  .hero-subtitle {
+  .hero-subtitle, .hero-subtitle-mockup {
     margin-left: auto;
     margin-right: auto;
+    max-width: 580px;
   }
 
-  .hero-actions {
+  .hero-features-chips-row {
     justify-content: center;
   }
 
-  .hero-stats-row {
+  .hero-actions, .hero-stats-row {
     justify-content: center;
   }
 
-  .hero-visual-card {
-    max-width: 540px;
+  .hero-visual-card, .hero-visual-mockup {
+    max-width: 560px;
     margin: 0 auto;
   }
 
@@ -55,86 +108,213 @@
     grid-template-columns: 1fr;
   }
 
-  .header-container {
-    padding: 12px 16px;
+  /* Catalog & Filters */
+  .catalog-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
   }
 
-  .nav-links {
-    display: none; /* Collapsible or subnav controlled */
+  .search-input-wrap {
+    width: 100%;
+    min-width: 0;
   }
 
-  .nav-mobile-toggle {
-    display: flex !important;
+  .category-filter-chips {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .category-filter-chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Contact & Map section */
+  .fc-contact-layout {
+    grid-template-columns: 1fr !important;
   }
 }
 
-/* Mobile Screens (< 768px) */
+/* --------------------------------------------------------------------------
+   MOBILE SCREENS (<= 768px)
+   -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
-  .hero-title {
-    font-size: 2.2rem;
-  }
-
   .app-container {
-    padding: 16px 12px;
+    padding: 14px 12px 60px;
   }
 
   .ticker-bar {
-    font-size: 0.75rem;
-    padding: 6px 12px;
+    font-size: 0.72rem;
+    padding: 6px 10px;
   }
 
   .ticker-content {
-    gap: 14px;
+    gap: 10px;
   }
 
-  .floating-widget {
-    display: none; /* Reduce visual clutter on small screens */
+  .brand-logo-img {
+    width: 38px;
+    height: 38px;
   }
 
-  .hero-main-img {
-    height: 300px;
+  .brand-name span:first-child {
+    font-size: 1.18rem;
   }
 
-  .chat-modal-window {
-    width: calc(100vw - 32px);
-    left: 16px;
-    right: 16px;
-    bottom: 84px;
-    height: 480px;
+  .brand-tagline {
+    font-size: 0.58rem;
   }
 
-  .sos-floating-btn {
-    padding: 10px 16px;
-    font-size: 0.82rem;
-    bottom: 16px;
-    right: 16px;
+  .user-status-pill {
+    padding: 4px 10px;
+    font-size: 0.78rem;
   }
 
-  .ai-bot-toggle-btn {
-    width: 48px;
-    height: 48px;
-    font-size: 1.2rem;
-    bottom: 16px;
-    left: 16px;
+  .user-avatar-badge {
+    width: 26px;
+    height: 26px;
+    font-size: 0.75rem;
   }
 
-  .products-grid, .shelter-pets-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .onboarding-container {
-    padding: 24px 18px;
-  }
-}
-
-/* Extra small devices (< 480px) */
-@media (max-width: 480px) {
-  .hero-title {
+  /* Hero Section Mobile */
+  .hero-title, .hero-title-mockup {
     font-size: 1.85rem;
   }
 
-  .hero-stats-row {
-    grid-template-columns: 1fr;
-    gap: 12px;
+  .hero-subtitle, .hero-subtitle-mockup {
+    font-size: 0.92rem;
+  }
+
+  .hero-features-chips-row {
+    gap: 8px;
+  }
+
+  .hero-chip-item {
+    font-size: 0.76rem;
+    padding: 5px 10px;
+  }
+
+  .hero-search-wrapper-mockup form {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero-search-wrapper-mockup button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-main-img {
+    height: 260px;
+    object-fit: cover;
+  }
+
+  /* Grids: 1 column clean cards */
+  .products-grid,
+  .shelter-pets-grid,
+  .feedback-grid-auto,
+  .community-posts-grid,
+  .vets-grid,
+  .about-stats-grid,
+  .fc-contact-info-grid {
+    grid-template-columns: 1fr !important;
+    gap: 18px;
+  }
+
+  .store-trust-strip {
+    grid-template-columns: 1fr !important;
+  }
+
+  .store-trust-strip > div {
+    justify-content: flex-start;
+  }
+
+  .section-header-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  /* Modals: Safe Mobile Sizing */
+  .modal-overlay {
+    padding: 12px;
+  }
+
+  .modal-content, 
+  .modal-card,
+  .fc-modal-inner,
+  .product-modal-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 18px 16px !important;
+  }
+
+  /* Chat Window on Mobile */
+  .chat-modal-window {
+    width: calc(100vw - 24px) !important;
+    left: 12px !important;
+    right: 12px !important;
+    bottom: 74px !important;
+    height: 460px !important;
+    max-height: 80vh;
+  }
+
+  /* Floating SOS & Live Bot Buttons */
+  .sos-floating-btn {
+    padding: 9px 14px;
+    font-size: 0.8rem;
+    bottom: 14px;
+    right: 12px;
+  }
+
+  .ai-bot-toggle-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 1.15rem;
+    bottom: 14px;
+    left: 12px;
+  }
+
+  /* Onboarding screen */
+  .onboarding-container {
+    padding: 20px 14px;
+    margin: 12px auto;
+  }
+
+  /* Section Title Spacing */
+  .section-title-box h2 {
+    font-size: 1.55rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ULTRA-COMPACT SCREENS (<= 480px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .hero-title, .hero-title-mockup {
+    font-size: 1.6rem;
+  }
+
+  .nav-btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    gap: 5px;
+  }
+
+  .nav-btn i {
+    font-size: 0.78rem;
+  }
+
+  .filter-chip {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+  }
+
+  .fc-contact-header h1 {
+    font-size: 1.7rem;
   }
 }
