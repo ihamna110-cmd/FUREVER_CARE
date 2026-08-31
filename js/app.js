@@ -143,6 +143,8 @@ function App() {
 
   // Reschedule Appointment Modal State
   const [rescheduleModalOpen, setRescheduleModalOpen] = useState(false);
+  const [vetAppointmentSlip, setVetAppointmentSlip] = useState(null);
+  const [petPassportPrintModal, setPetPassportPrintModal] = useState(null);
   const [selectedAptToReschedule, setSelectedAptToReschedule] = useState(null);
   const [rescheduleForm, setRescheduleForm] = useState({
     date: '2026-09-25',
@@ -209,7 +211,16 @@ function App() {
     };
   });
 
-  const [petsList, setPetsList] = useState([petForm]);
+  const [petsList, setPetsList] = useState(() => {
+    try {
+      const savedList = localStorage.getItem('furever_pets');
+      if (savedList) {
+        const arr = JSON.parse(savedList);
+        if (Array.isArray(arr) && arr.length > 0) return arr;
+      }
+    } catch(e) {}
+    return [petForm];
+  });
   const [activePetId, setActivePetId] = useState(petForm.id || 'PET-101');
 
   const setPetForm = (updatedPet) => {
@@ -7026,6 +7037,164 @@ function App() {
         </div>
       )}
 
+      {/* ── DOCTOR APPOINTMENT OFFICIAL PRINTABLE SLIP MODAL ── */}
+      {vetAppointmentSlip && (
+        <div className="modal-overlay" onClick={() => setVetAppointmentSlip(null)}>
+          <div className="modal-dialog-content" style={{ maxWidth: '580px', textAlign: 'center' }} onClick={(e) => e.stopPropagation()}>
+            <div className="print-only-header">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <img src="assets/logo.png?v=13" alt="FurEver Care" style={{ width: '36px', height: '36px' }} />
+                <div>
+                  <h2 style={{ fontSize: '1.2rem', margin: 0, fontWeight: '900' }}>FurEver Care Clinical Network</h2>
+                  <div style={{ fontSize: '0.75rem', color: '#64748b' }}>Official Clinical Appointment Confirmation</div>
+                </div>
+              </div>
+              <div style={{ textAlign: 'right', fontSize: '0.75rem', fontWeight: '700' }}>
+                <div>Slip #{vetAppointmentSlip.refId}</div>
+                <div style={{ color: '#64748b' }}>Date: {vetAppointmentSlip.date}</div>
+              </div>
+            </div>
+
+            <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'linear-gradient(135deg, #0ea5e9, #6366f1)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', color: '#fff', fontSize: '1.8rem', boxShadow: '0 8px 24px rgba(14,165,233,0.35)' }}>
+              <i className="fa-solid fa-calendar-check"></i>
+            </div>
+
+            <span className="badge-sky" style={{ marginBottom: '10px', display: 'inline-block' }}>
+              <i className="fa-solid fa-certificate"></i> APPOINTMENT CONFIRMED
+            </span>
+
+            <h2 style={{ fontSize: '1.6rem', fontWeight: '800', margin: '4px 0 12px', color: 'var(--text-main)' }}>
+              Doctor Appointment Reserved!
+            </h2>
+
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '20px' }}>
+              Your consultation slip for <strong>{vetAppointmentSlip.petName}</strong> with <strong>{vetAppointmentSlip.doctor}</strong> has been issued.
+            </p>
+
+            <div className="printable-slip-card" style={{ background: 'var(--bg-surface)', padding: '20px', borderRadius: '16px', border: '1.5px solid var(--border-glow)', textAlign: 'left', marginBottom: '22px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-glass)', paddingBottom: '12px', marginBottom: '14px' }}>
+                <div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--text-light)', textTransform: 'uppercase' }}>Assigned Specialist</div>
+                  <div style={{ fontWeight: '800', fontSize: '1.05rem', color: 'var(--primary-700)' }}>{vetAppointmentSlip.doctor}</div>
+                  <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>{vetAppointmentSlip.specialty}</div>
+                </div>
+                <div style={{ textAlign: 'right' }}>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--text-light)', textTransform: 'uppercase' }}>Consultation Fee</div>
+                  <div style={{ fontWeight: '800', fontSize: '1.15rem', color: '#10b981' }}>${vetAppointmentSlip.fee}</div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Status: <strong>Paid / Reserved</strong></div>
+                </div>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', fontSize: '0.85rem' }}>
+                <div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--text-light)', textTransform: 'uppercase' }}>Pet Patient</div>
+                  <div style={{ fontWeight: '700', color: 'var(--text-main)' }}>{vetAppointmentSlip.petName} ({petForm.species})</div>
+                </div>
+                <div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--text-light)', textTransform: 'uppercase' }}>Parent / Guardian</div>
+                  <div style={{ fontWeight: '700', color: 'var(--text-main)' }}>{vetAppointmentSlip.patientName}</div>
+                </div>
+                <div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--text-light)', textTransform: 'uppercase' }}>Clinic Facility</div>
+                  <div style={{ fontWeight: '600' }}>{vetAppointmentSlip.clinic}</div>
+                </div>
+                <div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--text-light)', textTransform: 'uppercase' }}>Date & Scheduled Time</div>
+                  <div style={{ fontWeight: '700', color: 'var(--primary-600)' }}>{vetAppointmentSlip.date} at {vetAppointmentSlip.time}</div>
+                </div>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
+              <button 
+                className="btn-sky-outline" 
+                style={{ flex: 1, padding: '12px 18px', fontSize: '0.95rem', fontWeight: '700' }}
+                onClick={() => window.print()}
+              >
+                <i className="fa-solid fa-print" style={{ marginRight: '8px' }}></i> Print Doctor Slip
+              </button>
+              <button 
+                className="btn-sky-primary" 
+                style={{ flex: 1, padding: '12px 18px', fontSize: '0.95rem', fontWeight: '700' }}
+                onClick={() => setVetAppointmentSlip(null)}
+              >
+                <i className="fa-solid fa-check" style={{ marginRight: '8px' }}></i> Done
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ── OFFICIAL PET VACCINATION PASSPORT & HEALTH CARD PRINT MODAL ── */}
+      {petPassportPrintModal && (
+        <div className="modal-overlay" onClick={() => setPetPassportPrintModal(null)}>
+          <div className="modal-dialog-content" style={{ maxWidth: '640px', textAlign: 'center' }} onClick={(e) => e.stopPropagation()}>
+            <div className="print-only-header">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <img src="assets/logo.png?v=13" alt="FurEver Care" style={{ width: '40px', height: '40px' }} />
+                <div>
+                  <h2 style={{ fontSize: '1.25rem', margin: 0, fontWeight: '900' }}>FurEver Care Global Pet Health Passport</h2>
+                  <div style={{ fontSize: '0.75rem', color: '#64748b' }}>Certified Digital Medical Identification</div>
+                </div>
+              </div>
+              <div style={{ textAlign: 'right', fontSize: '0.75rem' }}>
+                <strong>Microchip: {petPassportPrintModal.microchip || 'Active'}</strong>
+                <div>Issued: 2026</div>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '18px', textAlign: 'left', marginBottom: '20px', padding: '18px', background: 'var(--bg-surface)', borderRadius: '16px', border: '1.5px solid var(--border-glow)' }}>
+              <img 
+                src={petPassportPrintModal.photo || 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=300&q=80'} 
+                alt={petPassportPrintModal.name} 
+                style={{ width: '84px', height: '84px', borderRadius: '50%', objectFit: 'cover', border: '3px solid var(--primary-500)' }} 
+              />
+              <div style={{ flex: 1 }}>
+                <span className="badge-sky" style={{ fontSize: '0.75rem' }}>Active Medical Passport</span>
+                <h2 style={{ fontSize: '1.5rem', margin: '4px 0', color: 'var(--text-main)' }}>{petPassportPrintModal.name}</h2>
+                <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                  <strong>{petPassportPrintModal.species}</strong> • {petPassportPrintModal.breed} • {petPassportPrintModal.age}
+                </div>
+              </div>
+            </div>
+
+            <div className="printable-slip-card" style={{ textAlign: 'left', fontSize: '0.88rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '14px' }}>
+                <div><strong>Weight:</strong> {petPassportPrintModal.weight || '8.5 kg'}</div>
+                <div><strong>Gender:</strong> {petPassportPrintModal.gender || 'Male'}</div>
+                <div><strong>Microchip ID:</strong> {petPassportPrintModal.microchip || '985-2341-8890-112'}</div>
+                <div><strong>Known Allergies:</strong> {petPassportPrintModal.allergies || 'None recorded'}</div>
+              </div>
+              <div style={{ borderTop: '1px solid var(--border-glass)', paddingTop: '12px' }}>
+                <strong>Vaccination Status:</strong>
+                <div style={{ color: '#10b981', fontWeight: '700', marginTop: '4px' }}>
+                  <i className="fa-solid fa-shield-check" style={{ marginRight: '6px' }}></i>
+                  {petPassportPrintModal.vaccinationInfo || 'Rabies, DHPP & FVRCP Core Vaccines Up-to-Date'}
+                </div>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', gap: '12px', marginTop: '20px' }}>
+              <button 
+                className="btn-sky-primary" 
+                style={{ flex: 1, padding: '12px 18px', fontSize: '0.95rem', fontWeight: '700' }}
+                onClick={() => window.print()}
+              >
+                <i className="fa-solid fa-print" style={{ marginRight: '8px' }}></i> Print Official Passport Card
+              </button>
+              <button 
+                className="btn-sky-outline" 
+                style={{ padding: '12px 20px' }}
+                onClick={() => setPetPassportPrintModal(null)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      
       {/* ── RESCHEDULE APPOINTMENT MODAL ── */}
       {rescheduleModalOpen && selectedAptToReschedule && (
         <div className="modal-overlay" onClick={() => setRescheduleModalOpen(false)}>
